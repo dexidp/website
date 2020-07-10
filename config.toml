@@ -11,7 +11,7 @@ style = "paraiso-dark"
 font_awesome_version = "5.12.0"
 description = "Boilerplate for building beautiful websites"
 favicon = "favicon.png"
-repositoryUrl = "https://github.com/cncf/hugo-netlify-starter"
+repositoryUrl = "https://github.com/dexidp/website"
 contentDir = "/content/"
 
 [params.logos]
@@ -24,7 +24,7 @@ hex = "#00aced"
 [[params.social]]
 name = "Twitter"
 color = "twitter-blue"
-url = "https://twitter.com/CloudNativeFdn"
+url = "https://twitter.com/dexidp"
 icon = "fab fa-twitter"
 
 [[params.fonts]]
