@@ -1,5 +1,6 @@
 ---
-title: "Authentication through an OpenID Connect provider"
+title: "Authentication Through an OpenID Connect Provider"
+linkTitle: "OpenID Connect"
 description: ""
 date: 2020-09-30
 draft: true

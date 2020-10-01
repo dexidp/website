@@ -1,5 +1,6 @@
 ---
-title: "Authentication through Gitlab"
+title: "Authentication Through Gitlab"
+linkTitle: "Gitlab"
 description: ""
 date: 2020-09-30
 draft: true

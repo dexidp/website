@@ -1,5 +1,6 @@
 ---
-title: "Proposal: design for revoking refresh tokens."
+title: "Proposal: Design for Revoking Refresh Tokens"
+linkTitle: "Design for Revoking Refresh Tokens"
 description: ""
 date: 2020-09-30
 draft: true

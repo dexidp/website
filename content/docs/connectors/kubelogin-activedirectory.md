@@ -1,5 +1,6 @@
 ---
 title: "Integration kubelogin and Active Directory"
+linkTitle: "Integration kubelogin and Active Directory"
 description: ""
 date: 2020-09-30
 draft: true

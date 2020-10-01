@@ -1,5 +1,6 @@
 ---
-title: "Proposal: upstream refreshing"
+title: "Proposal: Upstream Refreshing"
+linkTitle: "Upstream Refreshing"
 description: ""
 date: 2020-09-30
 draft: true

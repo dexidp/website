@@ -1,5 +1,6 @@
 ---
-title: "Authenticating proxy"
+title: "Authenticating Proxy"
+linkTitle: "Authenticating Proxy"
 description: ""
 date: 2020-09-30
 draft: true

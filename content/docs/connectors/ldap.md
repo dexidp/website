@@ -1,5 +1,6 @@
 ---
-title: "Authentication through LDAP"
+title: "Authentication Through LDAP"
+linkTitle: "LDAP"
 description: ""
 date: 2020-09-30
 draft: true

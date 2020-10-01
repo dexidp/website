@@ -1,5 +1,6 @@
 ---
-title: "Authentication through Microsoft"
+title: "Authentication Through Microsoft"
+linkTitle: "Microsoft"
 description: ""
 date: 2020-09-30
 draft: true

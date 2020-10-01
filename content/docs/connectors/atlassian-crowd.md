@@ -1,5 +1,6 @@
 ---
-title: "Authentication through Atlassian Crowd"
+title: "Authentication Through Atlassian Crowd"
+linkTitle: "Atlassian Crowd"
 description: ""
 date: 2020-09-30
 draft: true

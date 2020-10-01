@@ -1,5 +1,6 @@
 ---
-title: "Authentication through Bitbucket Cloud"
+title: "Authentication Through Bitbucket Cloud"
+linkTitle: "Bitbucket Cloud"
 description: ""
 date: 2020-09-30
 draft: true

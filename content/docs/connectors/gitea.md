@@ -1,5 +1,6 @@
 ---
-title: "Authentication through Gitea"
+title: "Authentication Through Gitea"
+linkTitle: "Gitea"
 description: ""
 date: 2020-09-30
 draft: true
