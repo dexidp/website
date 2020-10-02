@@ -1,5 +1,5 @@
 ---
-title: "An overview of OpenID Connect"
+title: "An Overview of OpenID Connect"
 description: ""
 date: 2020-09-30
 draft: true

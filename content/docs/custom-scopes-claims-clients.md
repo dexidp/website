@@ -1,5 +1,5 @@
 ---
-title: "Custom scopes, claims and client features"
+title: "Custom Scopes, Claims and Client Features"
 description: ""
 date: 2020-09-30
 draft: true

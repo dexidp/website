@@ -1,5 +1,5 @@
 ---
-title: "Running integration tests"
+title: "Running Integration Tests"
 description: ""
 date: 2020-09-30
 draft: true

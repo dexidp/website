@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes authentication through dex"
+title: "Kubernetes Authentication Through Dex"
 description: ""
 date: 2020-09-30
 draft: true

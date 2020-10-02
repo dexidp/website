@@ -1,5 +1,5 @@
 ---
-title: "Join the fun -- become a maintainer!"
+title: "Join the Fun -- Become a Maintainer!"
 description: ""
 date: 2020-09-30
 draft: true

@@ -1,5 +1,5 @@
 ---
-title: "Writing apps that use dex"
+title: "Writing Apps That Use Dex"
 description: ""
 date: 2020-09-30
 draft: true
