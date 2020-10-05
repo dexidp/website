@@ -1,4 +1,4 @@
-title = "Hugo Netlify Starter"
+title = "Dex"
 disableKinds = ["taxonomy", "taxonomyTerm"]
 copyright = "Cloud Native Computing Foundation"
 
@@ -9,7 +9,7 @@ style = "paraiso-dark"
 
 [params]
 font_awesome_version = "5.12.0"
-description = "Boilerplate for building beautiful websites"
+description = "A Federated OpenID Connect Provider"
 favicon = "favicon.png"
 repositoryUrl = "https://github.com/dexidp/website"
 contentDir = "/content/"
