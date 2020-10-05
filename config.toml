@@ -15,7 +15,7 @@ repositoryUrl = "https://github.com/dexidp/website"
 contentDir = "/content/"
 
 [params.logos]
-navbar = "cncf-color.png"
+navbar = "dex-horizontal-color.png"
 
 [[params.social]]
 name = "Twitter"

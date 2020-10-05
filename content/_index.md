@@ -6,8 +6,6 @@ title: "Home"
 [![Go Report Card](https://goreportcard.com/badge/github.com/dexidp/dex?style=flat-square)](https://goreportcard.com/report/github.com/dexidp/dex)
 [![go.dev reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white&style=flat-square)](https://pkg.go.dev/mod/github.com/dexidp/dex)
 
-![logo](img/logos/dex-horizontal-color.png)
-
 Dex is an identity service that uses [OpenID Connect][openid-connect] to drive authentication for other apps.
 
 Dex acts as a portal to other identity providers through ["connectors."](#connectors) This lets Dex defer authentication to LDAP servers, SAML providers, or established identity providers like GitHub, Google, and Active Directory. Clients write their authentication logic once to talk to Dex, then Dex handles the protocols for a given backend.
