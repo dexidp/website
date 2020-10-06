@@ -3,7 +3,7 @@ title: "Proposal: User Objects for Revoking Refresh Tokens and Merging Accounts"
 linkTitle: "User Objects for Revoking Refresh Tokens and Merging Accounts"
 description: ""
 date: 2020-09-30
-draft: true
+draft: false
 toc: true
 weight: 20
 ---

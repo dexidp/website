@@ -3,7 +3,7 @@ title: "Authentication through SAML 2.0"
 linkTitle: "SAML 2.0"
 description: ""
 date: 2020-09-30
-draft: true
+draft: false
 toc: true
 weight: 20
 ---
