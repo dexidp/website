@@ -3,7 +3,7 @@ title: "Proposal: Design for Revoking Refresh Tokens"
 linkTitle: "Design for Revoking Refresh Tokens"
 description: ""
 date: 2020-09-30
-draft: true
+draft: false
 toc: true
 weight: 20
 ---
