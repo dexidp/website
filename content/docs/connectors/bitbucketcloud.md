@@ -18,7 +18,7 @@ When a client redeems a refresh token through dex, dex will re-query Bitbucket t
 
 Register a new OAuth consumer with [Bitbucket](https://confluence.atlassian.com/bitbucket/oauth-on-bitbucket-cloud-238027431.html) ensuring the callback URL is `(dex issuer)/callback`. For example if dex is listening at the non-root path `https://auth.example.com/dex` the callback would be `https://auth.example.com/dex/callback`.
 
-The application requires the user to grant the `Read Account` and `Read Team membership` permissions. The latter is required only if group membership is a desired claim.
+The application requires the user to grant only the `Read Account` permission.
 
 The following is an example of a configuration for `examples/config-dev.yaml`:
 
@@ -39,4 +39,8 @@ connectors:
     # If `teams` is provided, this acts as a whitelist - only the user's Bitbucket teams that are in the configured `teams` below will go into the groups claim.  Conversely, if the user is not in any of the configured `teams`, the user will not be authenticated.
     teams:
     - my-team
+    # Optional parameter to include team groups.
+    # If enabled, the groups claim of dex id_token will looks like this:
+    # ["my_team", "my_team/administrators", "my_team/members"]
+    includeTeamGroups: true
 ```
