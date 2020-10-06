@@ -3,7 +3,7 @@ title: "Authentication Through Google"
 linkTitle: "Google"
 description: ""
 date: 2020-09-30
-draft: true
+draft: false
 toc: true
 weight: 20
 ---
