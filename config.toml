@@ -20,7 +20,7 @@ navbar = "dex-horizontal-color.png"
 [[params.social]]
 name = "Twitter"
 color = "#00aced"
-url = "https://twitter.com/CloudNativeFdn"
+url = "https://twitter.com/dexidp"
 icon = "fab fa-twitter"
 
 [[params.fonts]]
