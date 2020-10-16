@@ -44,11 +44,6 @@ url = "/"
 weight = 1
 
 [[menu.main]]
-name = "CNCF"
-url = "https://cncf.io"
-weight = 2
-
-[[menu.main]]
 name = "Getting Started"
 url = "/docs/getting-started/"
 weight = 3
