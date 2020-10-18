@@ -75,7 +75,7 @@ Configuration is essentially the same for either type of OpenID test instance. W
     ...
     ```
 1. Input `client_id` and `client_secret` from your config file.
-    * The `id` and `secret` used here are from the example config file [`staticClients` field](../examples/config-dev.yaml#L50-L55).
+    * The `id` and `secret` used here are from the example config file [`staticClients` field](https://github.com/dexidp/dex/tree/master/examples/config-dev.yaml#L93-L98).
 1. Use data returned by the `GET /.well-known/openid-configuration` API call to fill in the rest of the configuration forms:
     ```bash
     [home@localhost ~]$ curl http://my-test-ec2-server.com:5556/dex/.well-known/openid-configuration

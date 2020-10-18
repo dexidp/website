@@ -37,7 +37,7 @@ grpc:
 ## Clients
 
 gRPC is a suite of tools for generating client and server bindings from a common declarative language.
-The canonical schema for Dex's API can be found in the source tree at [`api/v2/api.proto`](../api/v2/api.proto).
+The canonical schema for Dex's API can be found in the source tree at [`api/v2/api.proto`](https://github.com/dexidp/dex/blob/master/api/v2/api.proto).
 Go bindings are generated and maintained in the same directory for both public and internal use.
 
 
@@ -98,7 +98,7 @@ func main() {
 }
 ```
 
-A clear working example of the Dex gRPC client for Go can be found [here](../examples/grpc-client/README.md).
+A clear working example of the Dex gRPC client for Go can be found [here](https://github.com/dexidp/dex/tree/master/examples/grpc-client/README.md).
 
 
 ### Other languages
