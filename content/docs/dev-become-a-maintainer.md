@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 100
 ---
 
 If a person or their company uses dex, has demonstrated an understanding of this

@@ -1,6 +1,7 @@
 ---
 title: "An Overview of OpenID Connect"
-description: ""
+linkTitle: "Intro to OpenID Connect"
+description: "" 
 date: 2020-09-30
 draft: false
 toc: true

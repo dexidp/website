@@ -1,10 +1,11 @@
 ---
 title: "Kubernetes Authentication Through Dex"
+linkTitle: "Using Kubernetes with Dex"
 description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 70
 ---
 
 ## Overview

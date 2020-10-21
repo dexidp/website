@@ -1,11 +1,11 @@
 ---
 title: "Authenticating Proxy"
-linkTitle: "Authenticating Proxy"
+linkTitle: "AuthProxy"
 description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 90
 ---
 
 NOTE: This connector is experimental and may change in the future.
