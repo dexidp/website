@@ -76,7 +76,7 @@ audience:server:client_id:cli-app
 
 The ID token claims will then include the following audience and authorized party:
 
-```
+```json
 {
     "aud": "cli-app",
     "azp": "web-app",
