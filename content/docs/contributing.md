@@ -1,5 +1,6 @@
 ---
 title: "Join the Fun -- Become a Maintainer!"
+linkTitle: "Become a Maintainer"
 description: ""
 date: 2020-09-30
 draft: false
