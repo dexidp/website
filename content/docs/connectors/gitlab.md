@@ -10,7 +10,7 @@ weight: 20
 
 ## Overview
 
-GitLab is a web-based Git repository manager with wiki and issue tracking features, using an open source license, developed by GitLab Inc. One of the login options for dex uses the GitLab OAuth2 flow to identify the end user through their GitLab account. You can use this option with [gitlab.com](gitlab.com), GitLab community or enterprise edition.
+GitLab is a web-based Git repository manager with wiki and issue tracking features, using an open source license, developed by GitLab Inc. One of the login options for dex uses the GitLab OAuth2 flow to identify the end user through their GitLab account. You can use this option with [gitlab.com](https://gitlab.com), GitLab community or enterprise edition.
 
 When a client redeems a refresh token through dex, dex will re-query GitLab to update user information in the ID Token. To do this, __dex stores a readonly GitLab access token in its backing datastore.__ Users that reject dex's access through GitLab will also revoke all dex clients which authenticated them through GitLab.
 
