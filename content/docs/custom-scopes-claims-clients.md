@@ -20,7 +20,7 @@ The following is the exhaustive list of scopes supported by dex:
 | `profile` | ID token claims should include the username of the end user. |
 | `groups` | ID token claims should include a list of groups the end user is a member of. |
 | `federated:id` | ID token claims should include information from the ID provider. The token will contain the connector ID and the user ID assigned at the provider. |
-| `offline_access` | Token response should include a refresh token. Doesn't work in combinations with some connectors, notability the [SAML connector][saml-connector] ignores this scope. |
+| `offline_access` | Token response should include a refresh token. Doesn't work in combinations with some connectors, notability the [SAML connector](/docs/connectors/saml/) ignores this scope. |
 | `audience:server:client_id:( client-id )` | Dynamic scope indicating that the ID token should be issued on behalf of another client. See the _"Cross-client trust and authorized party"_ section below. |
 
 ## Custom claims
@@ -101,7 +101,6 @@ Instead of traditional redirect URIs, public clients are limited to either redir
 
 When using the "out-of-browser" flow, an ID Token nonce is strongly recommended.
 
-[saml-connector]: saml-connector.md
 [core-claims]: https://openid.net/specs/openid-connect-core-1_0.html#IDToken
 [standard-claims]: https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
 [installed-apps]: https://developers.google.com/api-client-library/python/auth/installed-app

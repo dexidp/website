@@ -1,6 +1,6 @@
 title = "Dex"
 disableKinds = ["taxonomy", "taxonomyTerm"]
-copyright = "Cloud Native Computing Foundation"
+copyright = "Dex IdP Contributors"
 
 enableGitInfo = true
 
