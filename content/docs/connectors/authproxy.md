@@ -1,11 +1,11 @@
 ---
 title: "Authenticating Proxy"
-linkTitle: "Authenticating Proxy"
+linkTitle: "AuthProxy"
 description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 90
 ---
 
 NOTE: This connector is experimental and may change in the future.
@@ -70,7 +70,7 @@ such that it performs authentication for the `/dex/callback/myBasicAuth`
 location and provides the result in the X-Remote-User HTTP header. The following
 configuration will work for Apache 2.4.10+:
 
-```
+```bash
 <Location /dex/>
     ProxyPass "http://localhost:5556/dex/"
     ProxyPassReverse "http://localhost:5556/dex/"
@@ -104,7 +104,7 @@ configuration will work for Apache 2.4.10+:
 After installing your Linux distribution’s Apache2 package, place the following
 virtual host configuration in e.g. `/etc/apache2/sites-available/sso.conf`:
 
-```
+```bash
 <VirtualHost sso.example.net>
     ServerName sso.example.net
 

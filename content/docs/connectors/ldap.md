@@ -5,7 +5,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 10
 ---
 
 ## Overview
@@ -23,20 +23,20 @@ The dex repo contains a basic LDAP setup using [OpenLDAP][openldap].
 
 First start the LDAP server using docker-compose. This will run the OpenLDAP daemon in a Docker container, and seed it with an initial set of users.
 
-```
+```bash
 cd examples/ldap
 docker-compose up
 ```
 
 This container is expected to print several warning messages which are normal. Once the server is up, run dex in another terminal.
 
-```
+```bash
 ./bin/dex serve examples/ldap/config-ldap.yaml
 ```
 
 Then run the OAuth client in another terminal.
 
-```
+```bash
 ./bin/example-app
 ```
 
@@ -150,25 +150,25 @@ Searches that return multiple entries are considered ambiguous and will return a
 
 Writing a search configuration often involves mapping an existing LDAP schema to the various options dex provides. To query an existing LDAP schema install the OpenLDAP tool `ldapsearch`. For `rpm` based distros run:
 
-```
+```bash
 sudo dnf install openldap-clients
 ```
 
 For `apt-get`:
 
-```
+```bash
 sudo apt-get install ldap-utils
 ```
 
 For smaller user directories it may be practical to dump the entire contents and search by hand.
 
-```
+```bash
 ldapsearch -x -h ldap.example.org -b 'dc=example,dc=org' | less
 ```
 
 First, find a user entry. User entries declare users who can login to LDAP connector using username and password.
 
-```
+```bash
 dn: uid=jdoe,cn=users,cn=compat,dc=example,dc=org
 cn: Jane Doe
 objectClass: posixAccount
@@ -204,7 +204,7 @@ userSearch:
 
 Second, find a group entry.
 
-```
+```bash
 dn: cn=developers,cn=groups,cn=compat,dc=example,dc=org
 memberUid: janedoe
 memberUid: johndoe
@@ -234,7 +234,7 @@ groupSearch:
 ```
 To extract group specific information the `DN` can be used in the `userAttr` field.
 
-```
+```bash
 # Top level object example.coma in LDIF file.
 dn: dc=example,dc=com
 objectClass: top

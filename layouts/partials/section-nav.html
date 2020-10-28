@@ -7,7 +7,7 @@
 <nav class="section-nav">
       <p class="menu-label">Documentation:</p>
       <ul class="menu-list">
-        <li><a {{ if $isThisPage }} class="active" {{ end }} href="{{ .RelPermalink }}">{{ .CurrentSection.Title | markdownify }}</a>
+        <li><a {{ if $isThisPage }} class="active" {{ end }} href="{{ .RelPermalink }}">{{ .CurrentSection.LinkTitle | markdownify }}</a>
         {{ range .RegularPages }}
           <ul>
             <li>

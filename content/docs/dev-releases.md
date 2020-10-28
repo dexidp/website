@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 100
 ---
 
 Making a dex release involves:
@@ -25,7 +25,7 @@ https://git-scm.com/book/en/v2/Git-Tools-Signing-Your-Work) either globally or
 for the Dex repo. Note that the email the key is issued for must be the email
 you use for git.
 
-```
+```bash
 git config [--global] user.signingkey "{{ GPG key ID }}"
 git config [--global] user.email "{{ Email associated with key }}"
 ```
@@ -33,13 +33,13 @@ git config [--global] user.email "{{ Email associated with key }}"
 Create a signed tag at the commit you wish to release. This action will prompt
 you to enter a tag message, which can just be the release version.
 
-```
+```bash
 git tag -s v2.0.0 ea4c04fde83bd6c48f4d43862c406deb4ea9dba2
 ```
 
 Push that tag to the Dex repo.
 
-```
+```bash
 git push git@github.com:dexidp/dex.git v2.0.0
 ```
 
@@ -69,4 +69,4 @@ git cherry-pick (SHA of change)
 git push origin "cherry-picked-change"
 ```
 
-Open a PR onto $RELEASE_BRANCH to get the changes approved.
+Open a PR onto `$RELEASE_BRANCH` to get the changes approved.

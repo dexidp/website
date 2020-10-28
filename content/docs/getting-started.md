@@ -4,14 +4,14 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 10
 ---
 
 ## Building the dex binary
 
 Dex requires a Go installation and a GOPATH configured. For setting up a Go workspace, refer to the [official documentation][go-setup]. Clone it down the correct place, and simply type `make` to compile the dex binary.
 
-```
+```bash
 $ go get github.com/dexidp/dex
 $ cd $GOPATH/src/github.com/dexidp/dex
 $ make
@@ -21,7 +21,7 @@ $ make
 
 Dex exclusively pulls configuration options from a config file. Use the [example config][example-config] file found in the `examples/` directory to start an instance of dex with an in-memory data store and a set of predefined OAuth2 clients.
 
-```
+```bash
 ./bin/dex serve examples/config-dev.yaml
 ```
 
@@ -33,7 +33,7 @@ Dex operates like most other OAuth2 providers. Users are redirected from a clien
 
 By default, the example client is configured with the same OAuth2 credentials defined in `examples/config-dev.yaml` to talk to dex. Running the example app will cause it to query dex's [discovery endpoint][oidc-discovery] and determine the OAuth2 endpoints.
 
-```
+```bash
 ./bin/example-app
 ```
 

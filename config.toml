@@ -17,6 +17,13 @@ contentDir = "/content/"
 [params.logos]
 navbar = "dex-horizontal-color.png"
 
+
+[[params.social]]
+name = "GitHub"
+color = "#000000"
+url = "https://github.com/dexidp/dex"
+icon = "fab fa-github"
+
 [[params.social]]
 name = "Twitter"
 color = "#00aced"

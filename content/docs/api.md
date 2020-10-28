@@ -1,10 +1,11 @@
 ---
 title: "The Dex API"
+linkTitle: "gRPC API"
 description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 60
 ---
 
 Dex provides a [gRPC](http://www.grpc.io/) service for programmatic modification of dex's state.

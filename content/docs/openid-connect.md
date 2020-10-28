@@ -1,6 +1,7 @@
 ---
 title: "An Overview of OpenID Connect"
-description: ""
+linkTitle: "Intro to OpenID Connect"
+description: "" 
 date: 2020-09-30
 draft: false
 toc: true
@@ -46,7 +47,7 @@ https://tools.ietf.org/html/rfc7519) signed by the OpenID Connect server, with
 well known fields for user ID, name, email, etc. A typical token response from
 an OpenID Connect looks like (with less whitespace):
 
-```
+```json
 HTTP/1.1 200 OK
 Content-Type: application/json
 Cache-Control: no-store
@@ -74,7 +75,7 @@ That ID Token is a JWT with three base64'd fields separated by dots. The first
 is a header, the second is a payload, and the third is a signature of the first
 two fields. When parsed we can see the payload of this value is.
 
-```
+```json
 {
   "iss": "http://server.example.com",
   "sub": "248289761001",
@@ -98,7 +99,7 @@ TODO: Add examples of payloads with "email" fields.
 OpenID Connect servers have a discovery mechanism for OAuth2 endpoints, scopes
 supported, and indications of various other OpenID Connect features.
 
-```
+```bash
 $ curl http://127.0.0.1:5556/dex/.well-known/openid-configuration
 {
   "issuer": "http://127.0.0.1:5556",
@@ -129,7 +130,7 @@ parse the keys. The keys endpoint returns a [JSON Web Key](
 https://tools.ietf.org/html/rfc7517) Set of public keys that will look
 something like this:
 
-```
+```bash
 $ curl http://127.0.0.1:5556/dex/keys
 {
   "keys": [

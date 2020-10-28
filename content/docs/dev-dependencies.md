@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 100
 ---
 
 ## Go modules
@@ -13,7 +13,7 @@ Dex uses [Go modules][go-modules] to manage its dependencies. Go 1.11 or higher 
 
 Here is one way to activate the Go modules feature with Go 1.11.
 
-```
+```bash
 export GO111MODULE=on  # manually active module mode
 ```
 

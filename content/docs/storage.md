@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 50
 ---
 
 Dex requires persisting state to perform various tasks such as track refresh tokens, preventing replays, and rotating keys. This document is a summary of the storage configurations supported by dex.
@@ -17,7 +17,7 @@ Dex supports persisting state to [etcd v3](https://github.com/coreos/etcd).
 
 An example etcd configuration is using these values:
 
-```
+```yaml
 storage:
   type: etcd
   config:
@@ -53,7 +53,7 @@ The rest of this section will explore internal details of how dex uses CRDs. __A
 
 The following is an example of the AuthCode resource managed by dex:
 
-```
+```yaml
 apiVersion: apiextensions.k8s.io/v1beta1
 kind: CustomResourceDefinition
 metadata:
@@ -93,7 +93,7 @@ status:
 Once the `CustomResourceDefinition` is created, custom resources can be created and stored at a namespace level. The CRD type and the custom resources can be queried, deleted, and edited like any other resource using `kubectl`.
 
 dex requires access to the non-namespaced `CustomResourceDefinition` type. For example, clusters using RBAC authorization would need to create the following roles and bindings:
-```
+```yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
@@ -118,7 +118,6 @@ subjects:
 - kind: ServiceAccount
   name: dex                 # Service account assigned to the dex pod.
   namespace: dex-namespace  # The namespace dex is running in.
-
 ```
 
 
@@ -133,7 +132,7 @@ If you are currently running dex using TPRs, you will need to [migrate to CRDs](
 
 The storage configuration is extremely limited since installations running outside a Kubernetes cluster would likely prefer a different storage option. An example configuration for dex running inside Kubernetes:
 
-```
+```yaml
 storage:
   type: kubernetes
   config:
@@ -156,7 +155,7 @@ SQLite3 is the recommended storage for users who want to stand up dex quickly. I
 
 The SQLite3 configuration takes a single argument, the database file.
 
-```
+```yaml
 storage:
   type: sqlite3
   config:
@@ -172,7 +171,7 @@ When using Postgres, admins may want to dedicate a database to dex for the follo
 1. Dex requires privileged access to its database because it performs migrations.
 2. Dex's database table names are not configurable; when shared with other applications there may be table name clashes.
 
-```
+```postgres
 CREATE DATABASE dex_db;
 CREATE USER dex WITH PASSWORD '66964843358242dbaaa7778d8477c288';
 GRANT ALL PRIVILEGES ON DATABASE dex_db TO dex;
@@ -180,7 +179,7 @@ GRANT ALL PRIVILEGES ON DATABASE dex_db TO dex;
 
 An example config for Postgres setup using these values:
 
-```
+```yaml
 storage:
   type: postgres
   config:
@@ -201,7 +200,7 @@ Dex requires MySQL 5.7 or later version. When using MySQL, admins may want to de
 1. Dex requires privileged access to its database because it performs migrations.
 2. Dex's database table names are not configurable; when shared with other applications there may be table name clashes.
 
-```
+```sql
 CREATE DATABASE dex_db;
 CREATE USER dex IDENTIFIED BY '66964843358242dbaaa7778d8477c288';
 GRANT ALL PRIVILEGES ON dex_db.* TO dex;
@@ -209,7 +208,7 @@ GRANT ALL PRIVILEGES ON dex_db.* TO dex;
 
 An example config for MySQL setup using these values:
 
-```
+```yaml
 storage:
   type: mysql
   config:

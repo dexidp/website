@@ -136,7 +136,7 @@ Running Dex with HTTPS enabled requires a valid SSL certificate, and the API ser
 
 For our example use case, the TLS assets can be created using the following command:
 
-```
+```bash
 $ ./examples/k8s/gencert.sh 
 ```
 
@@ -144,7 +144,7 @@ This will generate several files under the `ssl` directory, the important ones b
 
 ### Run example client app with Github config
 
-```
+```bash
 ./bin/example-app --issuer-root-ca examples/k8s/ssl/ca.pem
 ```
 

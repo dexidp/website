@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 17
 ---
 
 Once you have dex up and running, the next step is to write applications that use dex to drive authentication. Apps that interact with dex generally fall into one of two categories:

@@ -1,10 +1,11 @@
 ---
 title: "Kubernetes Authentication Through Dex"
+linkTitle: "Using Kubernetes with Dex"
 description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 70
 ---
 
 ## Overview
@@ -34,7 +35,7 @@ Configuring the API server to use the OpenID Connect [authentication plugin][k8s
 
 Use the following flags to point your API server(s) at dex. `dex.example.com` should be replaced by whatever DNS name or IP address dex is running under.
 
-```
+```bash
 --oidc-issuer-url=https://dex.example.com:32000
 --oidc-client-id=example-app
 --oidc-ca-file=/etc/ssl/certs/openid-ca.pem
@@ -76,7 +77,7 @@ Running Dex with HTTPS enabled requires a valid SSL certificate, and the API ser
 
 For our example use case, the TLS assets can be created using the following command:
 
-```
+```bash
 $ cd examples/k8s
 $ ./gencert.sh
 ```
@@ -94,7 +95,7 @@ There are several options here but if you run your API server as a container pro
 
 The example pod manifest below assumes that you copied the CA file into `/etc/ssl/certs`. Adjust as necessary:
 
-```
+```yaml
 spec:
   containers:
 
@@ -126,13 +127,13 @@ Note that the `ca.pem` from above has been renamed to `openid-ca.pem` in this ex
 
 Once the cluster is up and correctly configured, use kubectl to add the serving certs as secrets.
 
-```
+```bash
 $ kubectl create secret tls dex.example.com.tls --cert=ssl/cert.pem --key=ssl/key.pem
 ```
 
 Then create a secret for the GitHub OAuth2 client.
 
-```
+```bash
 $ kubectl create secret \
     generic github-client \
     --from-literal=client-id=$GITHUB_CLIENT_ID \
@@ -143,7 +144,7 @@ $ kubectl create secret \
 
 Create the dex deployment, configmap, and node port service. This will also create RBAC bindings allowing the Dex pod access to manage [Custom Resource Definitions](storage.md#kubernetes-custom-resource-definitions-crds) within Kubernetes.
 
-```
+```bash
 $ kubectl create -f dex.yaml
 ```
 
@@ -177,13 +178,13 @@ When you login, GitHub first redirects to dex (https://dex.example.com:32000/cal
 
 The printed "ID Token" can then be used as a bearer token to authenticate against the API server.
 
-```
+```bash
 $ token='(id token)'
 $ curl -H "Authorization: Bearer $token" -k https://( API server host ):443/api/v1/nodes
 ```
 
 In the kubeconfig file ~/.kube/config, the format is:
-```
+```yaml
 users:
 - name: (USERNAME)
   user:

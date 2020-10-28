@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 40
 ---
 
 This document describes the set of OAuth2 and OpenID Connect features implemented by dex.
@@ -76,7 +76,7 @@ audience:server:client_id:cli-app
 
 The ID token claims will then include the following audience and authorized party:
 
-```
+```json
 {
     "aud": "cli-app",
     "azp": "web-app",

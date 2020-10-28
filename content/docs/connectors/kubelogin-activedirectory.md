@@ -5,7 +5,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 140
 ---
 
 ## Overview
@@ -32,7 +32,7 @@ Install it to your terminal.
 
 Create OpenSSL conf req.conf as follow:
 
-```
+```bash
 [req]
 req_extensions = v3_req
 distinguished_name = req_distinguished_name
@@ -51,7 +51,7 @@ DNS.1 = dex.example.com
 Please replace dex.example.com to your favorite hostname.
 Generate certificate and private key by following command.
 
-```console
+```bash
 $ openssl req -new -x509 -sha256 -days 3650 -newkey rsa:4096 -extensions v3_req -out openid-ca.pem -keyout openid-key.pem -config req.cnf -subj "/CN=kube-ca" -nodes
 $ ls openid*
 openid-ca.pem openid-key.pem
@@ -80,17 +80,17 @@ connectors:
 
 ### Run dex
 
-```
+```bash
 $ bin/dex serve examples/config-ad-kubelogin.yaml
 ```
 
 ### Configure kubernetes with oidc
 
-Copy openid-ca.pem to /etc/ssl/certs/openid-ca.pem on master node.
+Copy `openid-ca.pem` to `/etc/ssl/certs/openid-ca.pem` on master node.
 
 Use the following flags to point your API server(s) at dex. `dex.example.com` should be replaced by whatever DNS name or IP address dex is running under.
 
-```
+```bash
 --oidc-issuer-url=https://dex.example.com:32000/dex
 --oidc-client-id=kubernetes
 --oidc-ca-file=/etc/ssl/certs/openid-ca.pem
@@ -107,7 +107,7 @@ See https://kubernetes.io/docs/reference/access-authn-authz/authentication/ for 
 
 Add a new user to the kubeconfig for dex authentication:
 
-```console
+```bash
 $ kubectl config set-credentials oidc \
     --exec-api-version=client.authentication.k8s.io/v1beta1 \
     --exec-command=kubectl \
@@ -126,7 +126,7 @@ Please confirm `--oidc-issuer-url`, `--oidc-client-id`, `--oidc-client-secret` a
 
 Run the following command:
 
-```console
+```bash
 $ kubectl --user=oidc cluster-info
 ```
 
@@ -136,6 +136,6 @@ After login and grant, you can access the cluster.
 
 You can switch the current context to dex authentication.
 
-```console
+```bash
 $ kubectl config set-context --current --user=oidc
 ```
