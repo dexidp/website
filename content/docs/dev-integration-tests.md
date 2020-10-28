@@ -61,7 +61,7 @@ export DEX_LDAP_TESTS=1
 go test -v ./connector/ldap/
 ```
 
-To quickly stand up a LDAP server for development, see the LDAP [_"Getting started"_][ldap-getting-started] example. This also requires OpenLDAP installed on the host.
+To quickly stand up a LDAP server for development, see the LDAP [_"Getting started"_](/docs/connectors/ldap/#getting-started) example. This also requires OpenLDAP installed on the host.
 
 To stand up a containerized LDAP server run the OpenLDAP docker image:
 
@@ -148,4 +148,3 @@ Start both dex and the example app, and try logging in (requires not requesting 
 
 [okta-sign-up]: https://www.okta.com/developer/signup/
 [openldap]: https://www.openldap.org/
-[ldap-getting-started]: ldap-connector.md#getting-started

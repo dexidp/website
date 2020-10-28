@@ -45,11 +45,11 @@ Etcd storage can be customized further using the following options:
 
 ## Kubernetes custom resource definitions (CRDs)
 
-Kubernetes [custom resource definitions](crd) are a way for applications to create new resources types in the Kubernetes API.
+Kubernetes [custom resource definitions](https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/) are a way for applications to create new resources types in the Kubernetes API.
 
 The Custom Resource Definition (CRD) API object was introduced in Kubernetes version 1.7 to replace the Third Party Resource (TPR) extension. CRDs allow dex to run on top of an existing Kubernetes cluster without the need for an external database. While this storage may not be appropriate for a large number of users, it's extremely effective for many Kubernetes use cases.
 
-The rest of this section will explore internal details of how dex uses CRDs. __Admins should not interact with these resources directly__, except while debugging. These resources are only designed to store state and aren't meant to be consumed by end users. For modifying dex's state dynamically see the [API documentation](api.md).
+The rest of this section will explore internal details of how dex uses CRDs. __Admins should not interact with these resources directly__, except while debugging. These resources are only designed to store state and aren't meant to be consumed by end users. For modifying dex's state dynamically see the [API documentation](/docs/api/).
 
 The following is an example of the AuthCode resource managed by dex:
 
@@ -246,4 +246,3 @@ Any proposal to add a new implementation must address the following:
 [k8s-api]: https://github.com/kubernetes/kubernetes/blob/master/docs/devel/api-conventions.md#concurrency-control-and-consistency
 [psql-conn-options]: https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters
 [mysql-conn-options]: https://github.com/go-sql-driver/mysql#tls
-[crd]: https://kubernetes.io/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/

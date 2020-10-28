@@ -32,7 +32,7 @@ There are two ways to set up an OpenID test instance:
 
 Configuration is essentially the same for either type of OpenID test instance. We will proceed with option 1 in this example, and set up an [AWS EC2 instance][aws-ec2-instance] to deploy dex:
 * Create an [AWS EC2 instance][aws-ec2-quick-start] and connect to your instance using [SSH][aws-ec2-ssh].
-* Install [dex][dex-install].
+* Install [dex](/docs/getting-started/#building-the-dex-binary).
 * Ensure whatever port dex is listening on (usually 5556) is open to ingress traffic in your security group configuration.
 * In this example the public DNS name, automatically assigned to each internet-facing EC2 instance, is **my-test-ec2-server.com**. You can find your instances' in the AWS EC2 management console.
 
@@ -166,7 +166,6 @@ OP-OAuth-2nd-Revokes | Incomplete | Unsupported | userinfo_endpoint
 
 Once all test cases pass, submit your results by following instructions listed [on the website][oidc-result-submission].
 
-[dex-install]: https://github.com/dexidp/dex/blob/master/Documentation/getting-started.md#building-the-dex-binary
 [aws-ec2-instance]: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/concepts.htmlSSH
 [aws-ec2-ssh]: http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html
 [aws-ec2-quick-start]: http://docs.aws.amazon.com/quickstarts/latest/vmlaunch/step-1-launch-instance.html
