@@ -5,7 +5,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 60
+weight: 1060
 ---
 
 Dex provides a [gRPC](http://www.grpc.io/) service for programmatic modification of dex's state.

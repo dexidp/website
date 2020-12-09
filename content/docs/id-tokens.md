@@ -5,7 +5,7 @@ description: ""
 date: 2020-10-21
 draft: false
 toc: true
-weight: 13
+weight: 1013
 ---
 
 ID Tokens are an OAuth2 extension introduced by OpenID Connect and Dex's primary feature. ID Tokens are [JSON Web Tokens][jwt-io] (JWTs) signed by Dex and returned as part of the OAuth2 response that attest to the end user's identity. An example JWT might look like:

@@ -5,7 +5,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 20
+weight: 1020
 ---
 
 This document attempts to provide a general overview of the [OpenID Connect protocol](https://openid.net/connect/), a flavor of OAuth2 that dex implements. While this document isn't complete, we hope it provides enough information to get users up and running.

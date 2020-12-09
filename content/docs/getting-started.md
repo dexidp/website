@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 10
+weight: 1010
 ---
 
 ## Building the dex binary

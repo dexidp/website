@@ -4,6 +4,7 @@ description: ""
 date: 2020-01-07T14:59:38+01:00
 draft: false
 toc: true
+weight: 2000
 ---
 
 When a user logs in through Dex, the user's identity is usually stored in another user-management system: a LDAP directory, a GitHub org, etc. Dex acts as a shim between a client app and the upstream identity provider. The client only needs to understand OpenID Connect to query Dex, while Dex implements an array of protocols for querying other user-management systems.
