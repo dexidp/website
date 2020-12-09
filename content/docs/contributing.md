@@ -8,18 +8,19 @@ toc: true
 weight: 100
 ---
 
-If a person or their company uses dex, has demonstrated an understanding of this
-project (either by submitting PRs to dex or related projects such as Helm
-charts), and the ability to work productively with the community, that person
-can have write access to this repo. We want to be liberal with this privilege
-and enable companies using dex to have a voice in its development.
+If a person (or their company) that uses Dex demonstrates an understanding of this
+project (either by submitting PRs to Dex or related projects such as Helm
+charts) and the ability to work productively (for a longer period of time) with the community, that person
+can have write access to the project. We want to be liberal with this privilege
+and enable companies using Dex to have a voice in its development.
 
-The first 10 PRs by new maintainers must be approved by a maintainer from a
-different company.
+At the same time we realize that this can pose as trust issue to some users,
+so we enforce the following rules to establish trust between new maintainers and the community:
 
-Access to https://quay.io/dexidp will be restricted to @srenatus, @rithujohn191
-and @ericchiang to prevent new maintainers from being able to unilaterally push
-images.
+- The first few PRs (5-10 depending on the size) by new maintainers must be approved by an existing maintainer
+(preferably from a different company).
+- New maintainers will receive write access to the repository, but not to other resources,
+  for example the container image repository, to prevent new maintainers from being able to unilaterally push images.
 
-If you would like access, please email @ericchiang at ericchiang@google.com
-stating your case or open a public issue. Come join the fun 😃
+If you would like access, please email [@sagikazarmark](https://github.com/sagikazarmark/) at [mark.sagikazar@gmail.com](mailto:mark.sagikazar@gmail.com)
+stating your case or (preferably) open an issue on the [issue tracker](https://github.com/dexidp/dex/issues). Come join the fun 😃
