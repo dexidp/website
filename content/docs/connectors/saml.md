@@ -8,6 +8,10 @@ toc: true
 weight: 30
 ---
 
+## WARNING
+
+The SAML connector is unmaintained, likely vulnerable to authentication bypass vulnerablities, and is under consideration for deprecation (see [#1884](https://github.com/dexidp/dex/discussions/1884)). Please consider switching to OpenID Connect, OAuth2, or LDAP for identity providers that support these protocols. If you have domain expertise in SAML/XMLDSig and would like to volunteer to maintain the connector please comment on the discussion.
+
 ## Overview
 
 The SAML provider allows authentication through the SAML 2.0 HTTP POST binding. The connector maps attribute values in the SAML assertion to user info, such as username, email, and groups.
