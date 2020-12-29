@@ -54,12 +54,12 @@ connectors:
 ```
 
 ## Fetching groups from Google
-To allow Dex to fetch group information from Google, you must configure a method to retrieve group information
+To allow Dex to fetch group information from Google, you must configure a method to retrieve group information.
 
 ### Accessing group information from the user directly
-This method is only available to Google Workspace Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium accounts
+This method is only available to Google Workspace Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium accounts.
 
-You'll need the `https://www.googleapis.com/auth/cloud-identity.groups.readonly` scope:
+To access group information from the user directly, use the `https://www.googleapis.com/auth/cloud-identity.groups.readonly` scope:
 
 ```yaml
 connectors:
