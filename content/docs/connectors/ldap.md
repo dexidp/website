@@ -132,12 +132,11 @@ connectors:
       # Optional filter to apply when searching the directory.
       filter: "(objectClass=group)"
 
-      # Following list contains field pairs that are used to match a user to a group. It adds an additional
+      # Pairs of attributes that are used to match a user to a group. It adds an additional
       # requirement to the filter that an attribute in the group must match the user's
       # attribute value.
-      userMatchers:
-      - userAttr: uid
-        groupAttr: member
+      userAttr: uid
+      groupAttr: member
 
       # Represents group name.
       nameAttr: name
