@@ -9,7 +9,6 @@ toc: true
 
 * [Getting started](/docs/getting-started/)
 * [ID Tokens](/docs/id-tokens/)
-* [Kubernetes + Dex](/docs/kubernetes-dex/)
 * [Intro to OpenID Connect](/docs/openid-connect/)
 * [Writing apps that use Dex](/docs/using-dex/)
 * [What's new in v2](/docs/v2/)
