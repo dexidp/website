@@ -9,17 +9,21 @@ weight: 10
 
 ## Building the dex binary
 
-Dex requires a Go installation and a GOPATH configured. For setting up a Go workspace, refer to the [official documentation][go-setup]. Clone it down the correct place, and simply type `make` to compile the dex binary.
+To build dex from source code, install a working Go environment with version 1.15 or greater according to the [official documentation][go-setup].
+Then clone the repository down to the correct place, and simply type `make` to compile the dex binary.
 
 ```bash
-$ go get github.com/dexidp/dex
-$ cd $GOPATH/src/github.com/dexidp/dex
+$ mkdir -p $GOPATH/src/github.com/dexidp/
+$ cd $GOPATH/src/github.com/dexidp/
+$ git clone https://github.com/dexidp/dex.git
+$ cd dex
 $ make
 ```
+> **Note:** It is possible to clone the repository outside $GOPATH
 
 ## Configuration
 
-Dex exclusively pulls configuration options from a config file. Use the [example config][example-config] file found in the `examples/` directory to start an instance of dex with an in-memory data store and a set of predefined OAuth2 clients.
+Dex exclusively pulls configuration options from a config file. Use the [example config][example-config] file found in the `examples/` directory to start an instance of dex with a sqlite3 data store, and a set of predefined OAuth2 clients.
 
 ```bash
 ./bin/dex serve examples/config-dev.yaml
@@ -39,9 +43,11 @@ By default, the example client is configured with the same OAuth2 credentials de
 
 Login to dex through the example app using the following steps.
 
-1. Navigate to the example app in your browser at http://localhost:5555/ in your browser.
+1. Navigate to the example app at http://localhost:5555/ in your browser.
 2. Hit "login" on the example app to be redirected to dex.
-3. Choose the "Login with Email" and enter "admin@example.com" and "password"
+3. Choose an option to authenticate:
+   * "Login with Example" to use mocked user data.
+   * "Login with Email" to fill the form with static user credentials `admin@example.com` and `password`.
 4. Approve the example app's request.
 5. See the resulting token the example app claims from dex.
 
