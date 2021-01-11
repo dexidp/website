@@ -10,7 +10,7 @@ weight: 10
 ## Building the dex binary
 
 To build dex from source code, install a working Go environment with version 1.15 or greater according to the [official documentation][go-setup].
-Then clone the repository down to the correct place, and simply type `make` to compile the dex binary.
+Then clone the repository and use `make` to compile the dex binary.
 
 ```bash
 $ mkdir -p $GOPATH/src/github.com/dexidp/
