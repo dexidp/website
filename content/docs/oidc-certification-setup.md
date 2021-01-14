@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 100
+weight: 1100
 ---
 
 The OpenID Foundation provides a set of [conformance test profiles][oidc-conf-profiles] that test both Relying Party and OpenID Provider (OP) OpenID Connect implementations. Upon submission of [results][oidc-result-submission] and an affirmative response, the affirmed OP will be listed as a [certified OP][oidc-certified-ops] on the OpenID Connect website and allowed to use the [certification mark][oidc-cert-mark] according to the certification [terms and conditions][oidc-terms-conds], section 3(d).

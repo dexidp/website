@@ -4,7 +4,7 @@ description: ""
 date: 2020-09-30
 draft: false
 toc: true
-weight: 40
+weight: 1040
 ---
 
 This document describes the set of OAuth2 and OpenID Connect features implemented by dex.
