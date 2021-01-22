@@ -13,13 +13,10 @@ To build dex from source code, install a working Go environment with version 1.1
 Then clone the repository and use `make` to compile the dex binary.
 
 ```bash
-$ mkdir -p $GOPATH/src/github.com/dexidp/
-$ cd $GOPATH/src/github.com/dexidp/
 $ git clone https://github.com/dexidp/dex.git
-$ cd dex
+$ cd dex/
 $ make
 ```
-> **Note:** It is possible to clone the repository outside $GOPATH
 
 ## Configuration
 
