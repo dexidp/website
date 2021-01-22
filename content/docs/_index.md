@@ -20,13 +20,8 @@ weight: 1000
 * Client libraries
   * [Go](https://github.com/coreos/go-oidc)
 * [Integrations](/docs/integrations/)
-* [Managing Dependencies](/docs/dev-dependencies/)
 * [OpenID Connect Provider Certification](/docs/oidc-certification-setup/)
-* [Releases](/docs/development/releases/)
-* [Running Integration Tests](/docs/development/integration-tests/)
 * [Templates](/docs/templates/)
-
-Join the Fun – [Become a Maintainer!](/docs/contributing/)
 
 ## Reporting a security vulnerability
 
