@@ -56,7 +56,7 @@ connectors:
 
     # List of additional scopes to request in token response
     # Default is profile and email
-    # Full list at https://github.com/dexidp/dex/blob/master/Documentation/custom-scopes-claims-clients.md
+    # Full list at https://dexidp.io/docs/custom-scopes-claims-clients/
     # scopes:
     #  - profile
     #  - email
