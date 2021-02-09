@@ -124,3 +124,29 @@ connectors:
 
 Also, `useGroupsAsWhitelist` configuration option, can restrict the groups
 claims to include only the user's groups that are in the configured `groups`.
+
+If you need to match and deal with UPNs (User E-Mail) from the Active Directory, you
+don't know if this has been added with capital- or lowercase letters. So matching them
+at the end via Rolebinding can be difficult. Therefore you can use the
+`emailToLowercase` (boolean) configuration option, to streamline the result from AD before 
+transfering that as part of the authentication information towards the k8s-RBAC.
+
+```yaml
+connectors:
+  - type: microsoft
+    # Required field for connector id.
+    id: microsoft
+    # Required field for connector name.
+    name: Microsoft
+    config:
+      # Credentials can be string literals or pulled from the environment.
+      clientID: $MICROSOFT_APPLICATION_ID
+      clientSecret: $MICROSOFT_CLIENT_SECRET
+      redirectURI: http://127.0.0.1:5556/dex/callback
+      tenant: myorg.onmicrosoft.com
+      groups:
+        - developers
+        - devops
+      # All relevant E-Mail Adresses delivered by AD will transformed to lowercase if config is TRUE
+      emailToLowercase: true
+```
