@@ -29,7 +29,7 @@ OpenShift Service Accounts can be used as a constrained form of OAuth client. Ma
 Patch the Service Account to add an annotation for location of the Redirect URI
 
 ```bash
-oc patch serviceaccount <name> --type='json' -p='[{"op": "add", "path": "/metadata/annotations/serviceaccounts.openshift.io/oauth-redirecturi.dex", "value":"https:///<dex_url>/callback"}]'
+oc patch serviceaccount <name> --type='json' -p='[{"op": "add", "path": "/metadata/annotations/serviceaccounts.openshift.io~1oauth-redirecturi.dex", "value":"https://<dex_url>/callback"}]'
 ```
 
 The Client ID for a Service Account representing an OAuth Client takes the form `system:serviceaccount:<namespace>:<service_account_name>`
