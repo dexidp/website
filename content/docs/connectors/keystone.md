@@ -2,23 +2,23 @@
 title: "Authentication Through OpenStack Keystone"
 linkTitle: "OpenStack Keystone"
 description: ""
-date: 2020-09-30
+date: 2021-03-11
 draft: false
 toc: true
-weight: 2100
+weight: 2135
 ---
 
 ## Overview
 
 [Keystone](https://docs.openstack.org/keystone/latest/) is an OpenStack service that provides API client authentication, service discovery, and distributed multi-tenant authorization. 
 
-OpenStack Keystone connector supports `offline_access` and `groups` scopes. To use this connector, you need to create a domain and user with an admin role and then specify credentials in the configuration file like in the example below.
-Keystone should expose [Identity API v3](https://docs.openstack.org/api-ref/identity/v3/) to work with dex.
+OpenStack Keystone connector supports `offline_access` and `groups` scopes. To use this connector, create a domain and user with an admin role, then specify the credentials in the configuration file (see the example below).
+Keystone exposes the [Identity API v3](https://docs.openstack.org/api-ref/identity/v3/) to work with dex.
 
 
 ## Configuration
 
-The following is an example of a configuration for dex config file:
+The following is an example of an OpenStack Keystone configuration for dex:
 
 ```yaml
 connectors:
