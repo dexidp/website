@@ -10,7 +10,7 @@ weight: 2050
 
 ## Overview
 
-Dex users can make use of this connector to work with standards-compliant [OAuth 2.0](https://oauth.net/2/) authorization provider, in case of that authorization provider is not in the Dex connectors list.
+Dex users can make use of this connector to work with standards-compliant [OAuth 2.0](https://oauth.net/2/) authorization providers, in case those authorization providers are not already in the Dex connectors list.
 
 ## Configuration
 
@@ -33,10 +33,12 @@ connectors:
     authorizationURL: https://www.reddit.com/api/v1/authorize
     userInfoURL: https: https://www.reddit.com/api/v1/me
  
-    # Optional: Specify whether to communicate to Auth provider without validating SSL certificates
+    # Optional: Specify whether to communicate to Auth provider without
+    # validating SSL certificates
     # insecureSkipVerify: false
 
-    # Optional: The location of file containing SSL certificates to commmunicate to Auth provider 
+    # Optional: The location of file containing SSL certificates to commmunicate
+    # to Auth provider
     # rootCAs: /etc/ssl/reddit.pem
 
     # Optional: List of scopes to request Auth provider for access user account
