@@ -6,6 +6,7 @@ date: 2020-09-30
 draft: false
 toc: true
 weight: 2090
+versionintroduced: "v0.0.0"
 ---
 
 NOTE: This connector is experimental and may change in the future.
