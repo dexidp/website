@@ -1,11 +1,11 @@
 ---
-title: "Authentication Through an Generic OAuth 2.0 Provider"
-linkTitle: "Generic OAuth 2.0"
+title: "Authentication Through an OAuth 2.0 Provider"
+linkTitle: "OAuth 2.0"
 description: ""
 date: 2021-03-15
-draft: false
+draft: true
 toc: true
-weight: 2050
+weight: 2055
 ---
 
 ## Overview

@@ -24,6 +24,7 @@ Dex implements the following connectors:
 | [SAML 2.0](/docs/connectors/saml/) | no | yes | no | stable |
 | [GitLab](/docs/connectors/gitlab/) | yes | yes | yes | beta | |
 | [OpenID Connect](/docs/connectors/oidc/) | yes | yes | yes | beta | Includes Salesforce, Azure, etc. |
+| [OAuth 2.0](/docs/connectors/oauth/) | no | yes | yes | alpha |
 | [Google](/docs/connectors/google/) | yes | yes | yes | alpha | |
 | [LinkedIn](/docs/connectors/linkedin/) | yes | no | no | beta | |
 | [Microsoft](/docs/connectors/microsoft/) | yes | yes | no | beta | |
@@ -32,7 +33,6 @@ Dex implements the following connectors:
 | [OpenShift](/docs/connectors/openshift/) | no | yes | no | stable | |
 | [Atlassian Crowd](/docs/connectors/atlassian-crowd/) | yes | yes | yes * | beta | preferred_username claim must be configured through config |
 | [Gitea](/docs/connectors/gitea/) | yes | no | yes | alpha | |
-| [Generic OAuth 2.0](/docs/connectors/oauth/) | no | yes | yes | alpha |
 
 Stable, beta, and alpha are defined as:
 
