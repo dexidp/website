@@ -45,3 +45,4 @@ For details on how to request or validate an ID Token, see [“_Writing apps tha
 [standard-claims]: https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
 [kubernetes]: http://kubernetes.io/docs/admin/authentication/#openid-connect-tokens
 [aws-sts]: https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html
+[using-dex]: using-dex.md

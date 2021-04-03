@@ -47,7 +47,7 @@ Login to dex through the example app using the following steps.
 
 ## Further reading
 
-Dex is generally used as a building block to drive authentication for other apps. See [_"Writing apps that use dex"_][using-dex] for an overview of instrumenting apps to work with dex.
+Dex is generally used as a building block to drive authentication for other apps. See [_"Writing apps that use Dex"_][using-dex] for an overview of instrumenting apps to work with dex.
 
 For a primer on using LDAP to back dex's user store, see the OpenLDAP [_"Getting started"_](/docs/connectors/ldap/#getting-started) example.
 
