@@ -65,12 +65,12 @@ These tests can also be executed using docker:
 
 ## Kubernetes
 
-Running integration tests for Kubernetes storage require the `DEX_KUBERNETES_CONFIG_PATH` environment variable
-with the path to kubeconfig file of the existing cluster. For tests, it is ok to use "mini" Kubernetes distributive, e.g., [KinD][kind], [Microk8s][microk8s].
+Running integration tests for Kubernetes storage requires the `DEX_KUBERNETES_CONFIG_PATH` environment variable
+be set with the path to kubeconfig file of the existing cluster. For tests, it is ok to use "mini" Kubernetes distributive, e.g., [KinD][kind], [Microk8s][microk8s].
 
-There is an example for running tests in the KinD cluster.
+Example KinD cluster test run:
 
-* Install KinD using the instruction from the [official website][kind-install].
+* Install KinD using the instructions from the [official website][kind-install].
 
 * Run tests by executing the following commands:
   ```bash
