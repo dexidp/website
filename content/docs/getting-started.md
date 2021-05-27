@@ -15,7 +15,7 @@ Then clone the repository and use `make` to compile the dex binary.
 ```bash
 $ git clone https://github.com/dexidp/dex.git
 $ cd dex/
-$ make
+$ make build
 ```
 
 ## Configuration
