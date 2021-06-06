@@ -24,6 +24,7 @@ Dex implements the following connectors:
 | [SAML 2.0](/docs/connectors/saml/) | no | yes | no | stable |
 | [GitLab](/docs/connectors/gitlab/) | yes | yes | yes | beta | |
 | [OpenID Connect](/docs/connectors/oidc/) | yes | yes | yes | beta | Includes Salesforce, Azure, etc. |
+| [OAuth 2.0](/docs/connectors/oauth/) | no | yes | yes | alpha |
 | [Google](/docs/connectors/google/) | yes | yes | yes | alpha | |
 | [LinkedIn](/docs/connectors/linkedin/) | yes | no | no | beta | |
 | [Microsoft](/docs/connectors/microsoft/) | yes | yes | no | beta | |
