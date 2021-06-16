@@ -148,6 +148,7 @@ connectors:
       groups:
         - developers
         - devops
-      # All relevant E-Mail Adresses delivered by AD will transformed to lowercase if config is TRUE
+      # All relevant E-Mail Adresses delivered by AD will transformed to
+      # lowercase if config is TRUE
       emailToLowercase: true
 ```
