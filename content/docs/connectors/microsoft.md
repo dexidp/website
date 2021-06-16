@@ -125,11 +125,12 @@ connectors:
 Also, `useGroupsAsWhitelist` configuration option, can restrict the groups
 claims to include only the user's groups that are in the configured `groups`.
 
-If you need to match and deal with UPNs (User E-Mail) from the Active Directory, you
-don't know if this has been added with capital- or lowercase letters. So matching them
-at the end via Rolebinding can be difficult. Therefore you can use the
-`emailToLowercase` (boolean) configuration option, to streamline the result from AD before 
-transfering that as part of the authentication information towards the k8s-RBAC.
+You can use the emailToLowercase (boolean) configuration option to streamline 
+UPNs (user email) from Active Directory before putting them into an id token.
+Without this option, it can be tough to match the email claim because a client application 
+doesn't know whether an email address has been added with capital- or lowercase letters.
+For example, it is hard to bind Roles in Kubernetes using email as a user name 
+(--oidc-username-claim=email flag) because user names are case sensitive.
 
 ```yaml
 connectors:
