@@ -124,3 +124,32 @@ connectors:
 
 Also, `useGroupsAsWhitelist` configuration option, can restrict the groups
 claims to include only the user's groups that are in the configured `groups`.
+
+You can use the emailToLowercase (boolean) configuration option to streamline 
+UPNs (user email) from Active Directory before putting them into an id token.
+Without this option, it can be tough to match the email claim because a client 
+application doesn't know whether an email address has been added with 
+capital- or lowercase letters.
+For example, it is hard to bind Roles in Kubernetes using email as a user name 
+(--oidc-username-claim=email flag) because user names are case sensitive.
+
+```yaml
+connectors:
+  - type: microsoft
+    # Required field for connector id.
+    id: microsoft
+    # Required field for connector name.
+    name: Microsoft
+    config:
+      # Credentials can be string literals or pulled from the environment.
+      clientID: $MICROSOFT_APPLICATION_ID
+      clientSecret: $MICROSOFT_CLIENT_SECRET
+      redirectURI: http://127.0.0.1:5556/dex/callback
+      tenant: myorg.onmicrosoft.com
+      groups:
+        - developers
+        - devops
+      # All relevant E-Mail Adresses delivered by AD will transformed to
+      # lowercase if config is TRUE
+      emailToLowercase: true
+```
