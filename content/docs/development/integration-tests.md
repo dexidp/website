@@ -63,6 +63,30 @@ These tests can also be executed using docker:
   ```
 - clean up the etcd container: `docker rm -f dex-etcd`
 
+## Kubernetes
+
+Running integration tests for Kubernetes storage requires the `DEX_KUBERNETES_CONFIG_PATH` environment variable
+be set with the path to kubeconfig file of the existing cluster. For tests, it is ok to use "mini" Kubernetes distributive, e.g., [KinD][kind], [Microk8s][microk8s].
+
+Example KinD cluster test run:
+
+* Install KinD using the instructions from the [official website][kind-install].
+
+* Run tests by executing the following commands:
+  ```bash
+  export DEX_KUBERNETES_CONFIG_PATH=$(mktemp /tmp/kubeconfig.XXXXXXXX)
+  kind create cluster --kubeconfig "$DEX_KUBERNETES_CONFIG_PATH"
+
+  go test -v ./storage/kubernetes
+  ```
+* To clean up, run:
+  ```bash
+  rm -f "$DEX_KUBERNETES_CONFIG_PATH"
+  unset DEX_KUBERNETES_CONFIG_PATH
+  
+  kind delete cluster
+  ```
+
 ## LDAP
 
 The LDAP integration tests require [OpenLDAP][openldap] installed on the host machine. To run them, use `go test`:
@@ -157,5 +181,8 @@ connectors:
 
 Start both dex and the example app, and try logging in (requires not requesting a refresh token).
 
+[kind]: https://github.com/kubernetes-sigs/kind/
+[kind-install]: https://kind.sigs.k8s.io/docs/user/quick-start/#installation
+[microk8s]: https://github.com/ubuntu/microk8s
 [okta-sign-up]: https://www.okta.com/developer/signup/
 [openldap]: https://www.openldap.org/
