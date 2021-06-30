@@ -2,7 +2,6 @@
 title: "Templates"
 description: ""
 date: 2020-09-30
-draft: true
 toc: true
 weight: 1100
 ---
