@@ -128,13 +128,13 @@ Note that the `ca.pem` from above has been renamed to `openid-ca.pem` in this ex
 Once the cluster is up and correctly configured, use kubectl to add the serving certs as secrets.
 
 ```bash
-$ kubectl create secret tls dex.example.com.tls --cert=ssl/cert.pem --key=ssl/key.pem
+$ kubectl -n dex create secret tls dex.example.com.tls --cert=ssl/cert.pem --key=ssl/key.pem
 ```
 
 Then create a secret for the GitHub OAuth2 client.
 
 ```bash
-$ kubectl create secret \
+$ kubectl -n dex create secret \
     generic github-client \
     --from-literal=client-id=$GITHUB_CLIENT_ID \
     --from-literal=client-secret=$GITHUB_CLIENT_SECRET
