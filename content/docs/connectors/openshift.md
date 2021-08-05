@@ -81,7 +81,7 @@ connectors:
       insecureCA: false
       # Optional: The location of file containing SSL certificates to commmunicate to OpenShift
       rootCA: /etc/ssl/openshift.pem
-      # Optional list of required groups a user mmust be a member of
+      # Optional list of required groups a user must be a member of
       groups:
         - users
 ```
