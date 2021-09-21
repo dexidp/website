@@ -49,7 +49,7 @@ ID is `slack`, the callback URL would look like:
 https://auth.example.com/dex/callback/slack?state=xdg3z6quhrhwaueo5iysvliqf
 ``` 
 
-The proxy should login the user then return them to the exact URL (inlucing the
+The proxy should login the user then return them to the exact URL (including the
 query), setting `X-Remote-User` to the user's email before proxying the request
 to dex.
 
