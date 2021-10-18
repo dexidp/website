@@ -17,7 +17,7 @@ Once you have dex up and running, the next step is to write applications that us
 
 The first category of apps are standard OAuth2 clients. Users show up at a website, and the application wants to authenticate those end users by pulling claims out of the ID token.
 
-The second category of apps consume ID tokens as credentials. This lets another service handle OAuth2 flows, then use the ID token retrieved from dex to act on the end user's behalf with the app. An example of an app that falls into this category is the [Kubernetes API server][api-server].
+The second category of apps consume ID tokens as credentials. This lets dex handle OAuth2 flows, then use the ID token retrieved from dex to act on the end user's behalf with the app. An example of an app that falls into this category is the [Kubernetes API server][api-server].
 
 ## Requesting an ID token from dex
 
