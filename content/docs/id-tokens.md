@@ -44,7 +44,7 @@ Because these tokens are signed by Dex and [contain standard-based claims][stand
 For details on how to request or validate an ID Token, see [“_Writing apps that use Dex_.”][using-dex]
 
 ## Refresh tokens
-Refresh tokens are credentials used to obtain access tokens. Refresh tokens are issued to the client by the authorization server and are used to obtain 
+Refresh tokens are credentials used to obtain access tokens. Refresh tokens are issued to the client by the authorization server and are used to obtain
 a new id token when the current id token becomes invalid or expires. Issuing a refresh token is optional and is provided by passing `offline_access` scope to Dex server.
 
 __NOTE__: Some connectors do not support `offline_access` scope. You can find out which connectors support refresh tokens by looking into the [_connectors list_][connectors].
@@ -68,14 +68,14 @@ and prevents someone stealing it. The idea is described in detail in the corresp
 Dex has a section in the config file where you can specify expiration and rotation settings for id tokens and refresh tokens.
 __NOTE__: All duration options should be set in the format: number + time unit (s, m, h), e.g., `10m`.
 
-* `expire` - section for various expiration settings, including token settings:
+* `expiry` - section for various expiration settings, including token settings:
   * `idTokens` - the lifetime of id_token. It is preferable to use short-lived id tokens.
   * `refreshTokens` - section for various refresh token settings:
     * `validForIfNotUsed` - invalidate a refresh token if it is not used for a specified amount of time.
     * `absoluteLifetime` - a stricter variant of the previous option, absolute lifetime of a refresh token. It forces users to reauthenticate and obtain a new refresh token.
     * `disableRotation` - completely disables every-request rotation. The user will also have to specify one of the previous refresh token options to keep refresh tokens secure when toggling this.
-    * `reuseInterval` - allows getting the same refresh token from refresh endpoint within a specified interval, but only if the user's request contains the previous refresh token. 
-      
+    * `reuseInterval` - allows getting the same refresh token from refresh endpoint within a specified interval, but only if the user's request contains the previous refresh token.
+
 __NOTE__: `disableRotation` and `reuseInterval` options help effectively deal with network lags, concurrent requests, and so on in tradeoff for security. Use them with caution.
 
 [aws-sts]: https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html
