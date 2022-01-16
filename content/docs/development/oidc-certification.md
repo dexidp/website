@@ -7,19 +7,19 @@ toc: true
 weight: 1100
 ---
 
-The OpenID Foundation provides a set of [conformance test profiles][https://openid.net/wordpress-content/uploads/2018/06/OpenID-Connect-Conformance-Profiles.pdf] that test both Relying Party
+The OpenID Foundation provides a set of [conformance test profiles](https://openid.net/wordpress-content/uploads/2018/06/OpenID-Connect-Conformance-Profiles.pdf) that test both Relying Party
 and OpenID Provider (OP) OpenID Connect implementations.
-Upon submission of [results][https://openid.net/certification/submission/] and an affirmative response,
-the affirmed OP will be listed as a [certified OP][https://openid.net/developers/certified/] on the OpenID Connect website
-and allowed to use the [certification mark][https://openid.net/certification/mark/] according to the certification [terms and conditions][https://openid.net/wordpress-content/uploads/2015/03/OpenID-Certification-Terms-and-Conditions.pdf], section 3(d).
+Upon submission of [results](https://openid.net/certification/submission/) and an affirmative response,
+the affirmed OP will be listed as a [certified OP](https://openid.net/developers/certified/) on the OpenID Connect website
+and allowed to use the [certification mark](https://openid.net/certification/mark/) according to the certification [terms and conditions](https://openid.net/wordpress-content/uploads/2015/03/OpenID-Certification-Terms-and-Conditions.pdf), section 3(d).
 
 Further details about the certification are available on the [OpenID Connect website](https://openid.net/certification/instructions/).
 
 ## Basic OpenID Provider profile
 
-Dex is an OP that strives to implement the [mandatory set][https://openid.net/specs/openid-connect-core-1_0.html#ServerMTI] of OpenID Connect features,
-and can be tested against the Basic OpenID Provider profile ([profile outline][https://openid.net/wordpress-content/uploads/2018/06/OpenID-Connect-Conformance-Profiles.pdf], section 2.1.1).
-These tests ensure that all features required by a [basic client][https://openid.net/specs/openid-connect-basic-1_0.html] work as expected.
+Dex is an OP that strives to implement the [mandatory set](https://openid.net/specs/openid-connect-core-1_0.html#ServerMTI) of OpenID Connect features,
+and can be tested against the Basic OpenID Provider profile ([profile outline](https://openid.net/wordpress-content/uploads/2018/06/OpenID-Connect-Conformance-Profiles.pdf), section 2.1.1).
+These tests ensure that all features required by a [basic client](https://openid.net/specs/openid-connect-basic-1_0.html) work as expected.
 
 Unfortunately, Dex currently does not fully comply with the Basic profile at the moment.
 
