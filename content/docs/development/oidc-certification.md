@@ -7,7 +7,7 @@ toc: true
 weight: 1100
 ---
 
-The OpenID Foundation provides a set of [conformance test profiles](https://openid.net/wordpress-content/uploads/2018/06/OpenID-Connect-Conformance-Profiles.pdf) that test both Relying Party
+The OpenID Foundation provides a set of [conformance test profiles](https://openid.net/wordpress-content/uploads/2018/06/OpenID-Connect-Conformance-Profiles.pdf) that test both Relying Party (RP)
 and OpenID Provider (OP) OpenID Connect implementations.
 Upon submission of [results](https://openid.net/certification/submission/) and an affirmative response,
 the affirmed OP will be listed as a [certified OP](https://openid.net/developers/certified/) on the OpenID Connect website
@@ -37,7 +37,7 @@ The suite needs the following:
 
 The easiest way to run a public Dex instance is running one locally and exposing it using a [tunnel](https://github.com/anderspitman/awesome-tunneling).
 [Ngrok](https://ngrok.com/) is probably the most popular one. Personally, I prefer using [tunnelto.dev](https://tunnelto.dev/) these days.
-Alternatively, you can install Dex on an EC2 instance or a DigitalOcean droplet or anything that is publicly available.
+Alternatively, you can install Dex on an EC2 instance, a DigitalOcean droplet, or anything publicly available.
 
 Here is a minimal configuration example for running Dex:
 
