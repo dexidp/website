@@ -16,16 +16,22 @@ The `authproxy` connector returns identities based on authentication which your
 front-end web server performs. Dex consumes the `X-Remote-User` header set by
 the proxy, which is then used as the user's email address.
 
+It also consumes the `X-Remote-Group` header to use as the user's group.
+
+Header's names can be configured via the `userHeader` and `groupHeader` config.
+
+Additional static groups can also be defined in the connector's configuration.
+
 __The proxy MUST remove any `X-Remote-*` headers set by the client, for any URL
 path, before the request is forwarded to dex.__
 
-The connector does not support refresh tokens or groups.
+The connector does not support refresh tokens.
 
 ## Configuration
 
 The `authproxy` connector is used by proxies to implement login strategies not
 supported by dex. For example, a proxy could handle a different OAuth2 strategy
-such as Slack. The connector takes no configuration other than a `name` and `id`:
+such as Slack:
 
 ```yaml
 connectors:
@@ -63,12 +69,23 @@ connectors:
 - type: authproxy
   id: myBasicAuth
   name: HTTP Basic Auth
+  config:
+    userHeader: X-Forwarded-User # default is X-Remote-User
+    groupHeader: X-Forwarded-Group # default is X-Remote-Group
+    staticGroups:
+    - default
 ```
 
 The authproxy connector assumes that you configured your front-end web server
 such that it performs authentication for the `/dex/callback/myBasicAuth`
-location and provides the result in the X-Remote-User HTTP header. The following
-configuration will work for Apache 2.4.10+:
+location and provides the result in the HTTP headers.
+
+In this example, the configured headers are `X-Forwarded-User` for the user's mail
+and `X-Forwarded-Group` for the user's group.
+Dex authproxy connector will return a list of groups containing both
+configured `staticGroups` and return the group header.
+
+The following configuration will work for Apache 2.4.10+:
 
 ```bash
 <Location /dex/>
