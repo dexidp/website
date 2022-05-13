@@ -47,13 +47,6 @@ connectors:
     #
     # basicAuthUnsupported: true
     
-    # Google supports whitelisting allowed domains when using G Suite
-    # (Google Apps). The following field can be set to a list of domains
-    # that can log in:
-    #
-    # hostedDomains:
-    #  - example.com
-
     # List of additional scopes to request in token response
     # Default is profile and email
     # Full list at https://dexidp.io/docs/custom-scopes-claims-clients/
