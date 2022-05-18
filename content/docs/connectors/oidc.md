@@ -14,10 +14,6 @@ Dex is able to use another OpenID Connect provider as an authentication source. 
 
 Prominent examples of OpenID Connect providers include Google Accounts, Salesforce, and Azure AD v2 ([not v1][azure-ad-v1]).
 
-## Caveats
-
-When using refresh tokens, changes to the upstream claims aren't propagated to the id_token returned by dex. If a user's email changes, the "email" claim returned by dex won't change unless the user logs in again. Progress for this is tracked in [issue #863][issue-863].
-
 ## Configuration
 
 ```yaml
