@@ -85,6 +85,13 @@ connectors:
     # Default: name
     # userNameKey: nickname
 
+    # The acr_values variable specifies the Authentication Context Class Values within
+    # the Authentication Request that the Authorization Server is being requested to process
+    # from this Client.
+    # acrValues: 
+    #  - <value>
+    #  - <value>
+
     # For offline_access, the prompt parameter is set by default to "prompt=consent". 
     # However this is not supported by all OIDC providers, some of them support different
     # value for prompt, like "prompt=login" or "prompt=none"
