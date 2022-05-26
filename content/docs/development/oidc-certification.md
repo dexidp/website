@@ -36,8 +36,8 @@ The suite needs the following:
 `YOUR_ALIAS` is an arbitrary string that MUST be unique to avoid interference with other test runs.
 
 The easiest way to run a public Dex instance is running one locally and exposing it using a [tunnel](https://github.com/anderspitman/awesome-tunneling).
-[Ngrok](https://ngrok.com/) is probably the most popular one. Personally, I prefer using [tunnelto.dev](https://tunnelto.dev/) these days.
-Alternatively, you can install Dex on an EC2 instance, a DigitalOcean droplet, or anything publicly available.
+
+The following instructions use [tunnelto.dev](https://tunnelto.dev/).
 
 Here is a minimal configuration example for running Dex:
 
