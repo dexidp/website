@@ -71,7 +71,7 @@ __NOTE__: All duration options should be set in the format: number + time unit (
 * `expiry` - section for various expiration settings, including token settings:
   * `idTokens` - the lifetime of id_token. It is preferable to use short-lived id tokens.
   * `refreshTokens` - section for various refresh token settings:
-    * `validForIfNotUsed` - invalidate a refresh token if it is not used for a specified amount of time.
+    * `validIfNotUsedFor` - invalidate a refresh token if it is not used for a specified amount of time.
     * `absoluteLifetime` - a stricter variant of the previous option, absolute lifetime of a refresh token. It forces users to reauthenticate and obtain a new refresh token.
     * `disableRotation` - completely disables every-request rotation. The user will also have to specify one of the previous refresh token options to keep refresh tokens secure when toggling this.
     * `reuseInterval` - allows getting the same refresh token from refresh endpoint within a specified interval, but only if the user's request contains the previous refresh token.
