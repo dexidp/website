@@ -163,7 +163,7 @@ sudo apt-get install ldap-utils
 For smaller user directories it may be practical to dump the entire contents and search by hand.
 
 ```bash
-ldapsearch -x -h ldap.example.org -b 'dc=example,dc=org' | less
+ldapsearch -x -H ldap://ldap.example.org -b 'dc=example,dc=org' | less
 ```
 
 First, find a user entry. User entries declare users who can login to LDAP connector using username and password.
