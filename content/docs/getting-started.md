@@ -57,6 +57,6 @@ For a primer on using LDAP to back dex's user store, see the OpenLDAP [_"Getting
 Check out the Documentation directory for further reading on setting up different storages, interacting with the dex API, intros for OpenID Connect, and logging in through other identity providers such as Google, GitHub, or LDAP.
 
 [go-setup]: https://golang.org/doc/install
-[example-config]: https://github.com/dexidp/dex/blob/master/examples/config-dev.yaml
+[example-config]: https://github.com/dexidp/dex/blob/master/config.dev.yaml
 [oidc-discovery]: https://openid.net/specs/openid-connect-discovery-1_0-17.html#ProviderMetadata
 [using-dex]: using-dex.md
