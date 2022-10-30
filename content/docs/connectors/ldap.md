@@ -123,6 +123,8 @@ connectors:
       emailAttr: mail
       # Maps to display name of users. No default value.
       nameAttr: name
+      # Maps to preferred username of users. No default value.
+      preferredUsernameAttr: uid
 
     # Group search queries for groups given a user entry.
     groupSearch:
