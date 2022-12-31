@@ -2,7 +2,7 @@
 title: "Home"
 ---
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/dexidp/dex/CI?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dexidp/dex/ci.yaml?style=flat-square)
 [![Go Report Card](https://goreportcard.com/badge/github.com/dexidp/dex?style=flat-square)](https://goreportcard.com/report/github.com/dexidp/dex)
 
 Dex is an identity service that uses [OpenID Connect](https://openid.net/connect/) to drive authentication for other apps.
