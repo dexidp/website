@@ -9,7 +9,7 @@ weight: 1010
 
 ## Building the dex binary
 
-To build dex from source code, install a working Go environment with version 1.15 or greater according to the [official documentation][go-setup].
+To build dex from source code, install a working Go environment with version 1.19 or greater according to the [official documentation][go-setup].
 Then clone the repository and use `make` to compile the dex binary.
 
 ```bash
