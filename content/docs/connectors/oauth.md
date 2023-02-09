@@ -30,7 +30,7 @@ connectors:
 
     tokenURL: https://www.reddit.com/api/v1/access_token
     authorizationURL: https://www.reddit.com/api/v1/authorize
-    userInfoURL: https: https://www.reddit.com/api/v1/me
+    userInfoURL: https://www.reddit.com/api/v1/me
  
     # Optional: Specify whether to communicate to Auth provider without
     # validating SSL certificates
