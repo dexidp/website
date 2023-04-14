@@ -81,7 +81,7 @@ __NOTE__: `disableRotation` and `reuseInterval` options help effectively deal wi
 [aws-sts]: https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html
 [connectors]: connectors
 [jwt-io]: https://jwt.io/
-[kubernetes]: http://kubernetes.io/docs/admin/authentication/#openid-connect-tokens
+[kubernetes]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
 [rfc6819-5.2.2.3]: https://tools.ietf.org/html/rfc6819#section-5.2.2.3
 [standard-claims]: https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
 [using-dex]: using-dex
