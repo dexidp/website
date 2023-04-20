@@ -65,4 +65,4 @@ To get group fetching set up:
 2. Enable the [Admin SDK](https://console.developers.google.com/apis/library/admin.googleapis.com/)
 3. Add the `serviceAccountFilePath` and `adminEmail` configuration options to your Dex config.
   - `serviceAccountFilePath` should point to the location of the service account JSON key file
-  - `adminEmail` should be the email of a G Suite super user. The service account you created earlier will impersonate this user when making calls to the admin API. A valid user should be able to retrieve a list of groups when [testing the API](https://developers.google.com/admin-sdk/directory/v1/reference/groups/list#try-it).
+  - `adminEmail` should be the email of a Google Workspace user with a minimum of the `Groups Reader (BETA)` Role assigned. The service account you created earlier will impersonate this user when making calls to the admin API. A valid user should be able to retrieve a list of groups when [testing the API](https://developers.google.com/admin-sdk/directory/v1/reference/groups/list#try-it).
