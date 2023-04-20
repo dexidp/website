@@ -88,6 +88,37 @@ connectors:
       tenant: organizations
 ```
 
+`scopes` configuration parameter controls what the initial scope(s) of the identity
+token that dex requests from Microsoft. To change this initial set, configure
+the `scopes` parameter to be a list of one or more valid scopes (as defined in
+[Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent)).
+
+The default scope (if one is not specified in the connector's configuration) is
+`user.read`.
+
+The scope list requested may also be appended by specifing [groups](#groups) or
+requesting a new token through the use of a refresh token.
+
+For example, the following snippet configures dex to request an OpenID token
+with only getting the email address associated with the account and nothing else:
+
+```yaml
+connectors:
+  - type: microsoft
+    # Required field for connector id.
+    id: microsoft
+    # Required field for connector name.
+    name: Microsoft
+    config:
+      # Credentials can be string literals or pulled from the environment.
+      clientID: $MICROSOFT_APPLICATION_ID
+      clientSecret: $MICROSOFT_CLIENT_SECRET
+      redirectURI: http://127.0.0.1:5556/dex/callback
+      scopes:
+        - openid
+        - email
+```
+
 ### Groups
 
 When the `groups` claim is present in a request to dex __and__ `tenant` is
