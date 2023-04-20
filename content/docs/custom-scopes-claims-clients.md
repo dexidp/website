@@ -94,10 +94,12 @@ staticClients:
 - id: cli-app
   public: true
   name: 'CLI app'
-  secret: cli-app-secret
+  redirectURIs:
+  - ...
 ```
 
-Instead of traditional redirect URIs, public clients are limited to either redirects that begin with "http://localhost" or a special "out-of-browser" URL "urn:ietf:wg:oauth:2.0:oob". The latter triggers dex to display the OAuth2 code in the browser, prompting the end user to manually copy it to their app. It's the client's responsibility to either create a screen or a prompt to receive the code, then perform a code exchange for a token response.
+If no `redirectURIs` are specified, public clients only support redirects that begin with "http://localhost" or a special "out-of-browser" URL "urn:ietf:wg:oauth:2.0:oob".
+The latter triggers dex to display the OAuth2 code in the browser, prompting the end user to manually copy it to their app. It's the client's responsibility to either create a screen or a prompt to receive the code, then perform a code exchange for a token response.
 
 When using the "out-of-browser" flow, an ID Token nonce is strongly recommended.
 
