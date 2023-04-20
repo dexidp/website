@@ -189,7 +189,7 @@ func authorize(ctx context.Context, bearerToken string) (*user, error) {
 }
 ```
 
-[api-server]: https://kubernetes.io/docs/admin/authentication/#openid-connect-tokens
+[api-server]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
 [dex-flow]: img/dex-flow.png
 [dex-backend-flow]: img/dex-backend-flow.png
 [example-app]: https://github.com/dexidp/dex/tree/master/examples/example-app
