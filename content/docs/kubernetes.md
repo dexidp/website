@@ -191,12 +191,12 @@ users:
     token: (ID-TOKEN)
 ```
 
-[k8s-authz]: http://kubernetes.io/docs/admin/authorization/
+[k8s-authz]: https://kubernetes.io/docs/reference/access-authn-authz/authorization/
 [k8s-oidc]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
 [trusted-peers]: https://godoc.org/github.com/dexidp/dex/storage#Client
 [coreos-kubernetes]: https://github.com/coreos/coreos-kubernetes/
 [coreos-baremetal]: https://github.com/coreos/coreos-baremetal/
 [github-oauth2]: https://github.com/settings/applications/new
-[node-port]: http://kubernetes.io/docs/user-guide/services/#type-nodeport
+[node-port]: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 [coreos-kubernetes]: https://github.com/coreos/coreos-kubernetes
 [coreos-baremetal]: https://github.com/coreos/coreos-baremetal
