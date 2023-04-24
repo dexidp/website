@@ -36,7 +36,7 @@ connectors:
     # validating SSL certificates
     # insecureSkipVerify: false
 
-    # Optional: The location of file containing SSL certificates to commmunicate
+    # Optional: The location of file containing SSL certificates to communicate
     # to Auth provider
     # rootCAs: /etc/ssl/reddit.pem
 
@@ -48,8 +48,8 @@ connectors:
     # Default: id
     # userIDKey:
 
-    # Auth roviders return non-standard user identity profile
-    # Use claimMapping to map those user infomations to standard claims:
+    # Auth providers return non-standard user identity profile
+    # Use claimMapping to map those user informations to standard claims:
     claimMapping:
       # Optional: Configurable keys for user name look up
       # Default: user_name
