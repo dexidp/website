@@ -70,7 +70,7 @@ type RemoteIdentity struct {
 	// The ID of the connector used to login the user.
 	ConnectorID string
 	// A string which uniquely identifies the user with the remote system.
-	ConnectorUserID stirng
+	ConnectorUserID string
 
 	// Optional, human readable name for this remote identity. Only used when
 	// displaying the remote identity to the end user (e.g. when merging
