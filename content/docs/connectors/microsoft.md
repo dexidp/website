@@ -96,7 +96,7 @@ the `scopes` parameter to be a list of one or more valid scopes (as defined in
 The default scope (if one is not specified in the connector's configuration) is
 `user.read`.
 
-The scope list requested may also be appended by specifing [groups](#groups) or
+The scope list requested may also be appended by specifying [groups](#groups) or
 requesting a new token through the use of a refresh token.
 
 For example, the following snippet configures dex to request an OpenID token
