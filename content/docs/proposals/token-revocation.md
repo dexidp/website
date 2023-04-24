@@ -42,7 +42,7 @@ type RefreshTokenRef struct {
 // Will have to handle garbage collection i.e. if no refresh token exists for a user,
 // this object must be cleaned up.
 type OfflineSession struct {
-        // UserID of an end user who has logged in to the server.
+        // UserID of an end user who has logged into the server.
         UserID        string
         // The ID of the connector used to login the user.
         ConnID     string

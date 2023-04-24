@@ -24,7 +24,7 @@ This proposal defines the following objects and methods to be added to the
 storage package to allow user information to be persisted.
 
 ```go
-// User is an end user which has logged in to the server.
+// User is an end user which has logged into the server.
 //
 // Users do not hold additional data, such as emails, because claim information
 // is always supplied by an upstream provider during the auth flow. The ID is
