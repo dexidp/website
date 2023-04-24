@@ -37,7 +37,7 @@ To test your templates simply run Dex with a valid configuration and go through 
 
 ## Customize the official container image
 
-Dex is primarly distributed as a container image.
+Dex is primarily distributed as a container image.
 The above guide explains how to customize the templates for any Dex instance.
 
 You can combine that with a custom `Dockerfile` to ease the deployment of those custom templates:
