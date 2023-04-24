@@ -61,7 +61,7 @@ func getOfflineSession (userId string, connID string)
    Try to retrieve the `OfflineSession` object for the User with the given `UserID + ConnID`.
    This leads to two possibilities:   
 	* Object exists: This means a Refresh token already exists for the user.
-          Update the existing `OffilineSession` object with the newly received token as follows:
+          Update the existing `OfflineSession` object with the newly received token as follows:
 		* CreateRefresh() will create a new `RefreshToken` obj in the storage.
 		* Update the `Refresh` list with the new `RefreshToken` pointer.
 		* Delete the old refresh token in storage.
