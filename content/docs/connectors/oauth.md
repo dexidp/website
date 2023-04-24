@@ -48,7 +48,7 @@ connectors:
     # Default: id
     # userIDKey:
 
-    # Auth roviders return non-standard user identity profile
+    # Auth providers return non-standard user identity profile
     # Use claimMapping to map those user informations to standard claims:
     claimMapping:
       # Optional: Configurable keys for user name look up
