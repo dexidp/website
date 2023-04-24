@@ -36,7 +36,7 @@ connectors:
     # validating SSL certificates
     # insecureSkipVerify: false
 
-    # Optional: The location of file containing SSL certificates to commmunicate
+    # Optional: The location of file containing SSL certificates to communicate
     # to Auth provider
     # rootCAs: /etc/ssl/reddit.pem
 
