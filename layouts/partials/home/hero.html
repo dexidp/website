@@ -2,6 +2,15 @@
 {{ $desc  := site.Params.description | markdownify }}
 <section class="jumbotron">
   <div class="container">
-    <img src="/img/logos/dex-horizontal-color.png">
+    <div class="row">
+      <div class="col">
+        <h1 class="fs-xlarge" style="font-size: 3.5rem;">A Federated OpenID Connect Provider</h1>
+        <p class="fs-4" style="font-size: 1.5rem;">Integrate any identity provider into your application using <a href="https://openid.net/connect/">OpenID Connect</a>.</p>
+        <p class="fs-4" style="font-size: 1.5rem;">Federate across upstream identity providers with ease.</p>
+      </div>
+      <div class="col col-4 d-none d-lg-block">
+        <img src="/img/logos/dex-glyph-color.png">
+      </div>
+    </div>
   </div>
 </section>

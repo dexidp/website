@@ -2,9 +2,15 @@
 title: "Home"
 ---
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/dexidp/dex/ci.yaml?style=flat-square)
-[![Go Report Card](https://goreportcard.com/badge/github.com/dexidp/dex?style=flat-square)](https://goreportcard.com/report/github.com/dexidp/dex)
+## One provider to rule them all
 
-Dex is an identity service that uses [OpenID Connect](https://openid.net/connect/) to drive authentication for other apps.
+Dex supports a wide range of identity providers such as LDAP, SAML, and OAuth2 and implements [OpenID Connect (OIDC)](https://openid.net/connect/),
+allowing your application to plug in any upstream identity provider, but implement only OIDC.
 
-Dex acts as a portal to other identity providers through [“connectors.”](/docs/connectors/) This lets Dex defer authentication to LDAP servers, SAML providers, or established identity providers like GitHub, Google, and Active Directory. Clients write their authentication logic once to talk to Dex, then Dex handles the protocols for a given backend.
+Whether you're looking to secure your internal applications, provide seamless Single Sign-On (SSO) across your organization, or create a secure public-facing platform,
+Dex can be tailored to meet your unique requirements.
+
+## Single-Sign On
+
+Avoid implementing registration and login forms when you don't have to.
+Let users login with the identity provider of their (or your) choice and focus on your application logic instead of securing identity management.
