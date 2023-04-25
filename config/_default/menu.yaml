@@ -1,0 +1,12 @@
+main:
+  - name: Home
+    url: "/"
+    weight: 10
+
+  - name: Getting Started
+    url: "/docs/getting-started/"
+    weight: 20
+
+  - name: Documentation
+    url: "/docs/"
+    weight: 30
