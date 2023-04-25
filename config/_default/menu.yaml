@@ -10,3 +10,7 @@ main:
   - name: Documentation
     url: "/docs/"
     weight: 30
+
+  - name: Community
+    url: "/community/"
+    weight: 40
