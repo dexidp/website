@@ -61,18 +61,3 @@ type = "monospace"
 name = "Fire Sans"
 sizes = [100, 200, 300, 400, 500, 600, 700]
 type = "heading_font"
-
-[[menu.main]]
-name = "Home"
-url = "/"
-weight = 1
-
-[[menu.main]]
-name = "Getting Started"
-url = "/docs/getting-started/"
-weight = 3
-
-[[menu.main]]
-name = "Documentation"
-url = "/docs/"
-weight = 3
