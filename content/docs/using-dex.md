@@ -33,7 +33,7 @@ Apps that directly use dex to authenticate a user use OAuth2 code flows to reque
 
 The dex repo contains a small [example app][example-app] as a working, self contained app that performs this flow.
 
-The rest of this section explores the code sections which to help explain how to implementing this logic in your own app.
+The rest of this section explores the code sections which help explain how to implement this logic in your own app.
 
 ### Configuring your app
 
