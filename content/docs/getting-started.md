@@ -7,6 +7,18 @@ toc: true
 weight: 1010
 ---
 
+## Container image
+
+Dex is primarily distributed as a container image, published to the following locations:
+
+- [ghcr.io/dexidp/dex](https://github.com/dexidp/dex/pkgs/container/dex)
+- [docker.io/dexidp/dex](https://hub.docker.com/r/dexidp/dex/tags)
+
+2 variants (`alpine` and `distroless`) of container images are provided
+based on Alpine Linux and Distroless base images.
+
+A reference Kubernetes Helm chart for dex can be found at [charts.dexidp.io](charts.dexidp.io).
+
 ## Building the dex binary
 
 To build dex from source code, install a working Go environment with version 1.19 or greater according to the [official documentation][go-setup].
@@ -28,6 +40,18 @@ Dex exclusively pulls configuration options from a config file. Use the [example
 
 The [example config][example-config] file documents many of the configuration options through inline comments. For extra config options, look at that file.
 
+### Templated configuration
+
+The default entrypoint for distributed container images utilize [gomplate][gomplate]
+to pre-process configuration files (`.tpl`, `.tmpl`, `.yaml`) passed as arguments.
+This enables templating any field from the environment, for example:
+
+```yaml
+secret: "{{ .Env.MY_SECRET_ENV }}"
+```
+
+See [gomplate docs][gomplate-docs] for templaating syntax.
+
 ## Running a client
 
 Dex operates like most other OAuth2 providers. Users are redirected from a client app to dex to login. Dex ships with an example client app (built with the `make examples` command), for testing and demos.
@@ -43,8 +67,8 @@ Login to dex through the example app using the following steps.
 1. Navigate to the example app at http://localhost:5555/ in your browser.
 2. Hit "login" on the example app to be redirected to dex.
 3. Choose an option to authenticate:
-   * "Login with Example" to use mocked user data.
-   * "Login with Email" to fill the form with static user credentials `admin@example.com` and `password`.
+   - "Login with Example" to use mocked user data.
+   - "Login with Email" to fill the form with static user credentials `admin@example.com` and `password`.
 4. Approve the example app's request.
 5. See the resulting token the example app claims from dex.
 
@@ -58,5 +82,7 @@ Check out the Documentation directory for further reading on setting up differen
 
 [go-setup]: https://golang.org/doc/install
 [example-config]: https://github.com/dexidp/dex/blob/master/examples/config-dev.yaml
+[gomplate]: https://github.com/hairyhenderson/gomplate
+[gomplate-docs]: https://docs.gomplate.ca/
 [oidc-discovery]: https://openid.net/specs/openid-connect-discovery-1_0-17.html#ProviderMetadata
 [using-dex]: using-dex.md
