@@ -10,12 +10,12 @@ weight: 1080
 
 ## Overview
 
-Most Dex connectors redirect the user to the upstream identity provider as part of the authentication flow.
+Most Dex connectors redirect users to the upstream identity provider as part of the authentication flow.
 While this works for human users,
-it is much harder for machines and automated processes (e.g. CI pipelines) to complete this interactive flow.
+it is much harder for machines and automated processes (e.g., CI pipelines) to complete this interactive flow.
 This is where [OAuth2 Token Exchange][token-exchange] comes in:
-it allows clients to exchange an access or id token they already have
-(obtained from their environment, though custom cli commands, etc.)
+it allows clients to exchange an access or ID token they already have
+(obtained from their environment, though custom CLI commands, etc.)
 for a token issued by dex.
 
 This works like [GCP Workload Identity Federation][gcp-federation] and [AWS Web Identity Federation][aws-federation],
@@ -23,12 +23,12 @@ allowing processes running in trusted execution environments that issue OIDC tok
 such as [Gtihub Actions][gh-actions], [Buildkite][buildkite], [CircleCI][circleci], [GCP][gcp], and others,
 to exchange them for a dex issued token to access protected resources.
 
-The authentication flow looks like:
+The authentication flow looks like this:
 
 1. Client independently obtains an access / id token from the upstream IDP.
 2. Client exchanges the upstream token for a dex access / id token via the token exchange flow.
 3. Use token to access dex protected resources.
-4. Repeat from step 1 when the token expires.
+4. Repeat these steps when the token expires.
 
 ## Configuring dex
 
@@ -38,9 +38,9 @@ For this flow, `clientID`, `clientSecret`, and `redirectURI` aren't required.
 
 As the user performing the token exchange will need the client secret,
 we configure the client as a [public client](./custom-scopes-claims-clients.md#public-clients).
-If you need to allow both humans and machines to authenticate,
+If you need to allow humans and machines to authenticate,
 consider creating a dedicated public client for token exchange
-and making use of [cross client trust](./custom-scopes-claims-clients.md#cross-client-trust-and-authorized-party).
+and using [cross-client trust](./custom-scopes-claims-clients.md#cross-client-trust-and-authorized-party).
 
 ```yaml
 issuer: https://dex.example.com
@@ -89,9 +89,9 @@ staticClients:
 ## Performing a token exchange
 
 To exchange an upstream IDP token for a dex issued token,
-perform a `application/x-www-form-urlencoded` `POST` request
+perform an `application/x-www-form-urlencoded` `POST` request
 to dex's `/token` endpoint following [RFC 8693 Section 2.1][token-exchange-2-1].
-Additionally, dex requires the connector to be specified with the `connector_id` parameter,
+Additionally, dex requires the connector to be specified with the `connector_id` parameter
 and a client id/secret to be included as the username/password via Basic Authentication.
 
 ```sh
@@ -122,7 +122,7 @@ See [RFC 8693 Section 2.2.1][token-exchange-2-2-1] for details.
 }
 ```
 
-### Full example with Github Actions
+### Full example with GitHub Actions
 
 Here is an example of running dex as a service during a Github Actions workflow
 and getting an access token from it, exchanged from a Github Actions OIDC token.
