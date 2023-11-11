@@ -116,9 +116,9 @@ $ kubectl config set-credentials oidc \
     --exec-arg=--oidc-issuer-url=https://dex.example.com:32000/dex \
     --exec-arg=--oidc-client-id=kubernetes \
     --exec-arg=--oidc-client-secret=ZXhhbXBsZS1hcHAtc2VjcmV0 \
-    --exec-arg=--extra-scope=profile \
-    --exec-arg=--extra-scope=email \
-    --exec-arg=--extra-scope=groups \
+    --exec-arg=--oidc-extra-scope=profile \
+    --exec-arg=--oidc-extra-scope=email \
+    --exec-arg=--oidc-extra-scope=groups \
     --exec-arg=--certificate-authority-data=$(base64 -w 0 openid-ca.pem)
 ```
 
