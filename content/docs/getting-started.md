@@ -17,7 +17,7 @@ Dex is primarily distributed as a container image, published to the following lo
 2 variants (`alpine` and `distroless`) of container images are provided
 based on Alpine Linux and Distroless base images.
 
-A reference Kubernetes Helm chart for dex can be found at [charts.dexidp.io](charts.dexidp.io).
+A reference Kubernetes Helm chart for dex can be found at [charts.dexidp.io](https://charts.dexidp.io).
 
 ## Building the dex binary
 
