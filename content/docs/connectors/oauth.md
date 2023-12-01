@@ -38,7 +38,8 @@ connectors:
 
     # Optional: The location of file containing SSL certificates to communicate
     # to Auth provider
-    # rootCAs: /etc/ssl/reddit.pem
+    # rootCAs:
+    # - /etc/ssl/reddit.pem
 
     # Optional: List of scopes to request Auth provider for access user account
     # scopes:
