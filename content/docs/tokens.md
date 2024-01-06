@@ -1,6 +1,6 @@
 ---
-title: "ID Tokens"
-linkTitle: "ID Tokens"
+title: "Tokens"
+linkTitle: "Tokens"
 description: ""
 date: 2020-10-21
 draft: false
@@ -70,6 +70,8 @@ __NOTE__: All duration options should be set in the format: number + time unit (
 
 * `expiry` - section for various expiration settings, including token settings:
   * `idTokens` - the lifetime of id_token. It is preferable to use short-lived id tokens.
+  * `deviceRequests` - the lifetime of device_requests.
+  * `signingKeys` - the lifetime of signing_token.
   * `refreshTokens` - section for various refresh token settings:
     * `validIfNotUsedFor` - invalidate a refresh token if it is not used for a specified amount of time.
     * `absoluteLifetime` - a stricter variant of the previous option, absolute lifetime of a refresh token. It forces users to reauthenticate and obtain a new refresh token.
