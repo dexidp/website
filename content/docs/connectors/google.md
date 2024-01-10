@@ -51,7 +51,8 @@ connectors:
     #
     #serviceAccountFilePath: googleAuth.json
     #domainToAdminEmail:
-    #  example.com: super-user@example.com
+    #  *: super-user@example.com
+    #  my-domain.com: super-user@my-domain.com
 ```
 
 ## Fetching groups from Google
@@ -64,6 +65,9 @@ To get group fetching set up:
   - During service account creation, a JSON key file will be created that contains authentication information for the service account. This needs storing in a location accessible by Dex and you will set the `serviceAccountFilePath` to point at it.
   - When delegating the API scopes to the service account, delegate the `https://www.googleapis.com/auth/admin.directory.group.readonly` scope and only this scope. If you delegate more scopes to the service account, it will not be able to access the API.
 2. Enable the [Admin SDK](https://console.developers.google.com/apis/library/admin.googleapis.com/)
-3. Add the `serviceAccountFilePath` and `adminEmail` configuration options to your Dex config.
+3. Add the `serviceAccountFilePath` and `domainToAdminEmail` configuration options to your Dex config.
   - `serviceAccountFilePath` should point to the location of the service account JSON key file
+
+## GKE Workload Identity
+When operating DEX on GKE or GCE, it's possible and better to use the service account derived from [metadata](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) to retrieve groups. The google service account must have the Service Account Token Creator role (`roles/iam.serviceAccountTokenCreator`). If this is the case, it becomes unnecessary to specify the `serviceAccountFilePath` configuration option.
   - `domainToAdminEmail` should be mapping between the base domain and the email of a Google Workspace user with a minimum of the `Groups Reader (BETA)` Role assigned. The service account you created earlier will impersonate this user when making calls to the admin API. A valid user should be able to retrieve a list of groups when [testing the API](https://developers.google.com/admin-sdk/directory/v1/reference/groups/list#try-it).
