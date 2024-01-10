@@ -19,7 +19,7 @@ oauth2:
 ```
 
 ### Authentication flow
-* `responseTypes`: allows you to configure the desired auth flow (`Authorization Code Flow`, `Implicit Flow` or `Hybrid Flow`) based on different values. See the table below for valid configuration options.
+* `responseTypes` - allows you to configure the desired auth flow (`Authorization Code Flow`, `Implicit Flow`, or `Hybrid Flow`) based on different values. See the table below for valid configuration options.
 
 | `responseTypes` value  | flow                    |
 |------------------------|-------------------------|
@@ -35,8 +35,8 @@ Examples of the different flows and their behavior can be found in the [official
 
 Customizing the user flow allows you to influence how users login into your application.
 
-* `skipApprovalScreen`: controls the need for user approval before sharing data with connected applications. If enabled users have to approve the sharing of data with every auth flow.
-* `alwaysShowLoginScreen`: Whether to always display the login screen. If only one authentication method is enabled, the default behavior is to go directly to it. For connected IdPs, this redirects the browser away from application to upstream provider such as the Google login page
+* `skipApprovalScreen` - controls the need for user approval before sharing data with connected applications. If enabled, users must approve data sharing with every auth flow.
+* `alwaysShowLoginScreen` - whether to always display the login screen. If only one authentication method is enabled, the default behavior is to go directly to it. For connected IdPs, this redirects the browser away from the application to upstream provider, such as the Google login page.
 
 ## Password grants
 Password grants involve clients directly sending a user's credentials (`username` and `password`) to the authorization server (dex), acquiring access tokens without the need for an intermediate authorization step.
@@ -44,4 +44,4 @@ Password grants involve clients directly sending a user's credentials (`username
 oauth2:
   passwordConnector: local
 ```
-* `passwordConnector`: specifies the connector that is used for password grants
+* `passwordConnector` -  specifies the connector's id that is used for password grants
