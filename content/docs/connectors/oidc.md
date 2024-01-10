@@ -107,8 +107,8 @@ connectors:
       # Default: groups
       # groups: "cognito:groups"
 
-	  # The section to override options discovered automatically from
-	  # the providers' discovery URL (.well-known/openid-configuration).
+    # The section to override options discovered automatically from
+    # the providers' discovery URL (.well-known/openid-configuration).
     providerDiscoveryOverrides
       # tokenURL provides a way to user overwrite the token URL
       # from the .well-known/openid-configuration 'token_endpoint'.
