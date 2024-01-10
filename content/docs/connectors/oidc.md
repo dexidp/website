@@ -111,11 +111,11 @@ connectors:
 	  # the providers' discovery URL (.well-known/openid-configuration).
     providerDiscoveryOverrides
       # tokenURL provides a way to user overwrite the token URL
-	    # from the .well-known/openid-configuration 'token_endpoint'.
+      # from the .well-known/openid-configuration 'token_endpoint'.
       # tokenURL: ""
       #
-	    # authURL provides a way to user overwrite the authorization URL
-	    # from the .well-known/openid-configuration 'authorization_endpoint'.   
+      # authURL provides a way to user overwrite the authorization URL
+      # from the .well-known/openid-configuration 'authorization_endpoint'.   
       # authURL: ""
 ```
 
