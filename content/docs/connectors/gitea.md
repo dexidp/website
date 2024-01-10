@@ -16,7 +16,7 @@ When a client redeems a refresh token through dex, dex will re-query Gitea to up
 
 ## Configuration
 
-Register a new OAuth consumer with [Gitea](https://docs.gitea.io/en-us/oauth2-provider/) ensuring the callback URL is `(dex issuer)/callback`. For example if dex is listening at the non-root path `https://auth.example.com/dex` the callback would be `https://auth.example.com/dex/callback`.
+Register a new OAuth consumer with [Gitea](https://docs.gitea.com/next/development/oauth2-provider) ensuring the callback URL is `(dex issuer)/callback`. For example if dex is listening at the non-root path `https://auth.example.com/dex` the callback would be `https://auth.example.com/dex/callback`.
 
 The following is an example of a configuration for `examples/config-dev.yaml`:
 
