@@ -39,6 +39,11 @@ Customizing the user flow allows you to influence how users login into your appl
 * `alwaysShowLoginScreen` - whether to always display the login screen. If only one authentication method is enabled, the default behavior is to go directly to it. For connected IdPs, this redirects the browser away from the application to upstream provider, such as the Google login page.
 
 ## Password grants
+{{< warning >}}
+The password grant type is not recommended for use by the [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-13#section-3.4) because of serious security concerns.
+Please see [oauth.net](https://oauth.net/2/grant-types/password/) for additional information.
+{{< /warning >}}
+
 Password grants involve clients directly sending a user's credentials (`username` and `password`) to the authorization server (dex), acquiring access tokens without the need for an intermediate authorization step.
 ```yaml
 oauth2:
