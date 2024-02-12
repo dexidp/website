@@ -32,7 +32,7 @@ $ make build
 
 ## Configuration
 
-Dex exclusively pulls configuration options from a config file. Use the [example config][example-config] file found in the `examples/` directory to start an instance of dex with a sqlite3 data store, and a set of predefined OAuth2 clients.
+Dex exclusively pulls configuration options from a config file. Use the [dev config][dev-config] file found in the top-level directory to start an instance of dex with a sqlite3 data store, and a set of predefined OAuth2 clients.
 
 ```bash
 ./bin/dex serve examples/config-dev.yaml
@@ -81,7 +81,8 @@ For a primer on using LDAP to back dex's user store, see the OpenLDAP [_"Getting
 Check out the Documentation directory for further reading on setting up different storages, interacting with the dex API, intros for OpenID Connect, and logging in through other identity providers such as Google, GitHub, or LDAP.
 
 [go-setup]: https://golang.org/doc/install
-[example-config]: https://github.com/dexidp/dex/blob/master/examples/config-dev.yaml
+[dev-config]: https://github.com/dexidp/dex/blob/master/config.dev.yaml
+[example-config]: https://github.com/dexidp/dex/blob/master/config.yaml.dist
 [gomplate]: https://github.com/hairyhenderson/gomplate
 [gomplate-docs]: https://docs.gomplate.ca/
 [oidc-discovery]: https://openid.net/specs/openid-connect-discovery-1_0-17.html#ProviderMetadata
