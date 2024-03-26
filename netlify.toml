@@ -3,10 +3,61 @@ publish = "public"
 command = "make production-build"
 
 [build.environment]
-HUGO_VERSION = "0.111.3"
+HUGO_VERSION = "0.124.1"
+NODE_VERSION = "20"
 
 [context.deploy-preview]
 command = "make preview-build"
 
 [context.branch-deploy]
 command = "make preview-build"
+
+[[redirects]]
+from = "https://dexidp/docs/tokens/"
+to = "https://dexidp/docs/configuration/tokens/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/storage/"
+to = "https://dexidp/docs/configuration/storage/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/oauth2/"
+to = "https://dexidp/docs/configuration/oauth2/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/api/"
+to = "https://dexidp/docs/configuration/api/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/custom-scopes-claims-clients/"
+to = "https://dexidp/docs/configuration/custom-scopes-claims-clients/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/templates/"
+to = "https://dexidp/docs/guides/templates/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/token-exchange/"
+to = "https://dexidp/docs/guides/token-exchange/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/using-dex/"
+to = "https://dexidp/docs/guides/using-dex/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/kubernetes/"
+to = "https://dexidp/docs/guides/kubernetes/"
+force = true
+
+[[redirects]]
+from = "https://dexidp/docs/kubelogin-activedirectory/"
+to = "https://dexidp/docs/guides/kubelogin-activedirectory/"
+force = true

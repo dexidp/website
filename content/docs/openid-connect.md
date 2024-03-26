@@ -1,10 +1,11 @@
 ---
 title: "An Overview of OpenID Connect"
 linkTitle: "Intro to OpenID Connect"
-description: "" 
+description: "Intro to OpenID Connect (basics)"
 date: 2020-09-30
 draft: false
 toc: true
+type: "docs"
 weight: 1020
 ---
 
@@ -32,7 +33,7 @@ to access the authorized actions, such as viewing a users profile or posting on
 their wall.
 
 In these cases, dex is acting as Facebook (called the "provider" in OpenID
-Connect) while clients apps redirect to it for the end user's identity. 
+Connect) while clients apps redirect to it for the end user's identity.
 
 ## ID Tokens
 

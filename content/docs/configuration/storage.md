@@ -1,6 +1,6 @@
 ---
-title: "Storage Options"
-description: ""
+title: "Storage"
+description: "Configuration options for persistent data storage"
 date: 2020-09-30
 draft: false
 toc: true

@@ -1,0 +1,11 @@
+/* Docsy-delta full file override: we're not tracking changes to the Docsy file of the same name. */
+
+$dex-colors: (
+  'red': #F04D5C,
+  'blue': #449FD8,
+  'gray': #D3D3D3,
+);
+
+$primary: map-get($dex-colors, 'blue');
+$secondary: map-get($dex-colors, 'red');
+$td-enable-google-fonts: true;

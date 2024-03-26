@@ -1,18 +1,21 @@
-yarn:
-	yarn
+dependencies:
+	npm install -D
 
-serve: 
-	yarn
+docsy: dependencies
+	git submodule update --init --recursive
+	cd themes/docsy/ && npm install
+
+serve: docsy
 	hugo server \
 		--buildDrafts \
 		--buildFuture \
 		--disableFastRender
 
-production-build:
+production-build: docsy
 	hugo \
 		--minify
 
-preview-build:
+preview-build: docsy
 	hugo \
 		--baseURL $(DEPLOY_PRIME_URL) \
 		--buildDrafts \
