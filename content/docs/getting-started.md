@@ -1,10 +1,11 @@
 ---
 title: "Getting Started"
-description: ""
+description: "First touch with Dex"
 date: 2020-09-30
 draft: false
 toc: true
 weight: 1010
+type: "docs"
 ---
 
 ## Container image

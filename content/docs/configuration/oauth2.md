@@ -1,6 +1,6 @@
 ---
-title: "OAuth2 Options"
-description: ""
+title: "OAuth2"
+description: "OAuth2 flow customization options"
 date: 2024-01-05
 draft: false
 toc: true

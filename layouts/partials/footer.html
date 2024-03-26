@@ -1,7 +1,7 @@
 {{ $year := now.Year }}
 
-<footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3 border-top position-static fixed-bottom">
-  <div class="container">
+<footer class="td-footer row d-print-none">
+  <div class="container col-5">
     {{ with site.Copyright }}
     <p><small>
       &copy; {{ $year }} {{ . }}
@@ -10,5 +10,6 @@
     <p><small>
       &copy; {{ $year }} The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage</a> page.
     </small></p>
+    <br/>
   </div>
 </footer>
