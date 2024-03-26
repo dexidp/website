@@ -1,7 +1,7 @@
 ---
 title: "The Dex API"
 linkTitle: "gRPC API"
-description: ""
+description: "Configure Dex dynamically with the gRPC API"
 date: 2020-09-30
 draft: false
 toc: true

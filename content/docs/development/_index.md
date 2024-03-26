@@ -1,6 +1,6 @@
 ---
 title: "Development"
-description: ""
+description: "Dev Environment Setup, Testing, and Contributing to Dex"
 date: 2020-12-09
 draft: false
 toc: false

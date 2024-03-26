@@ -1,7 +1,7 @@
 ---
 title: "Tokens"
 linkTitle: "Tokens"
-description: ""
+description: "Types of tokens and expiration settings"
 date: 2020-10-21
 draft: false
 toc: true

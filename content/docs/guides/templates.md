@@ -1,5 +1,5 @@
 ---
-title: "Templates"
+title: "Customizing Dex Templates"
 description: ""
 date: 2020-09-30
 toc: true
