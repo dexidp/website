@@ -56,10 +56,31 @@ connectors:
 ```
 
 ## Fetching groups from Google
-To allow Dex to fetch group information from Google, you will need to configure a service account for Dex to use.
-This account needs Domain-Wide Delegation and permission to access the `https://www.googleapis.com/auth/admin.directory.group.readonly` API scope.
+To allow Dex to fetch group information from Google, you must configure a method to retrieve group information.
 
-To get group fetching set up:
+### Accessing group information from the user directly
+This method is only available to Google Workspace Enterprise Standard, Enterprise Plus, Enterprise for Education, and Cloud Identity Premium accounts.
+
+To access group information from the user directly, use the `https://www.googleapis.com/auth/cloud-identity.groups.readonly` scope:
+
+```yaml
+connectors:
+- type: google
+  id: google
+  name: Google
+  config:
+    # ...
+    scopes:
+    # These are default and required
+    - profile
+    - email
+    - https://www.googleapis.com/auth/cloud-identity.groups.readonly
+```
+
+The project that owns the OAuth client ID must also have [Cloud Identity API](https://console.developers.google.com/apis/library/cloudidentity.googleapis.com) enabled. Also, [non-Google Groups](https://cloud.google.com/identity/docs/groups#group_types) will not show up in groups.
+
+### Using domain-wide delegation and a service account
+This method requires setting up domain-wide delegation to a Google service account.
 
 1. Follow the [instructions](https://developers.google.com/admin-sdk/directory/v1/guides/delegation) to set up a service account with Domain-Wide Delegation
   - During service account creation, a JSON key file will be created that contains authentication information for the service account. This needs storing in a location accessible by Dex and you will set the `serviceAccountFilePath` to point at it.
