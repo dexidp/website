@@ -67,7 +67,4 @@ To get group fetching set up:
 2. Enable the [Admin SDK](https://console.developers.google.com/apis/library/admin.googleapis.com/)
 3. Add the `serviceAccountFilePath` and `domainToAdminEmail` configuration options to your Dex config.
   - `serviceAccountFilePath` should point to the location of the service account JSON key file
-
-## GKE Workload Identity
-When operating DEX on GKE or GCE, it's possible and better to use the service account derived from [metadata](https://cloud.google.com/kubernetes-engine/docs/how-to/workload-identity) to retrieve groups. The google service account must have the Service Account Token Creator role (`roles/iam.serviceAccountTokenCreator`). If this is the case, it becomes unnecessary to specify the `serviceAccountFilePath` configuration option.
-  - `domainToAdminEmail` should be mapping between the base domain and the email of a Google Workspace user with a minimum of the `Groups Reader (BETA)` Role assigned. The service account you created earlier will impersonate this user when making calls to the admin API. A valid user should be able to retrieve a list of groups when [testing the API](https://developers.google.com/admin-sdk/directory/v1/reference/groups/list#try-it).
+  - `domainToAdminEmail` should map the base domain to the email address of a Google Workspace user with a minimum of the `Groups Reader (BETA)` Role assigned. The service account you created earlier will impersonate this user when making calls to the admin API. A valid user should be able to retrieve a list of groups when [testing the API](https://developers.google.com/admin-sdk/directory/v1/reference/groups/list#try-it).
