@@ -90,6 +90,23 @@ connectors:
       tenant: organizations
 ```
 
+`domainHint` configuration parameter allows for a more streamlined login
+experience when the email domain is common to all users of the connector.
+By default, users with multiple Microsoft sessions will be prompted to choose
+which account they want to use for login.  When `domainHint` is configured,
+Microsoft will select the session with matching email without the interactive
+prompt.
+
+For example: user John Doe has 2 active Microsoft sessions:
+
+- John.Doe@live.com (consumer)
+- John.Doe@example.com (organization)
+
+If Example Organization configures the `domainHint` parameter with its
+organization's email suffix, John will not be prompted to select an account
+from the active sessions.  Instead, the matching organization session is
+selected automatically.
+
 `scopes` configuration parameter controls what the initial scope(s) of the identity
 token that dex requests from Microsoft. To change this initial set, configure
 the `scopes` parameter to be a list of one or more valid scopes (as defined in
@@ -116,6 +133,8 @@ connectors:
       clientID: $MICROSOFT_APPLICATION_ID
       clientSecret: $MICROSOFT_CLIENT_SECRET
       redirectURI: http://127.0.0.1:5556/dex/callback
+      tenant: example.onmicrosoft.com
+      domainHint: example.com
       scopes:
         - openid
         - email
