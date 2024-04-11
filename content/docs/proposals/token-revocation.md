@@ -42,7 +42,7 @@ type RefreshTokenRef struct {
 // Will have to handle garbage collection i.e. if no refresh token exists for a user,
 // this object must be cleaned up.
 type OfflineSession struct {
-        // UserID of an end user who has logged in to the server.
+        // UserID of an end user who has logged into the server.
         UserID        string
         // The ID of the connector used to login the user.
         ConnID     string
@@ -61,7 +61,7 @@ func getOfflineSession (userId string, connID string)
    Try to retrieve the `OfflineSession` object for the User with the given `UserID + ConnID`.
    This leads to two possibilities:   
 	* Object exists: This means a Refresh token already exists for the user.
-          Update the existing `OffilineSession` object with the newly received token as follows:
+          Update the existing `OfflineSession` object with the newly received token as follows:
 		* CreateRefresh() will create a new `RefreshToken` obj in the storage.
 		* Update the `Refresh` list with the new `RefreshToken` pointer.
 		* Delete the old refresh token in storage.

@@ -54,7 +54,7 @@ connectors:
     # authenticate with dex.
     #
     # If neither 'org' nor 'orgs' are specified in the config and 'loadAllGroups' setting set to true then user
-    # authenticate with ALL user's Github groups. Typical use case for this setup:
+    # authenticate with ALL user's GitHub groups. Typical use case for this setup:
     # provide read-only access to everyone and give full permissions if user has 'my-organization:admins-team' group claim.  
     orgs:
     - name: my-organization
@@ -142,7 +142,7 @@ $ ./examples/k8s/gencert.sh
 
 This will generate several files under the `ssl` directory, the important ones being `cert.pem` ,`key.pem` and `ca.pem`. The generated SSL certificate is for 'dex.example.com', although you could change this by editing `gencert.sh` if required.
 
-### Run example client app with Github config
+### Run example client app with GitHub config
 
 ```bash
 ./bin/example-app --issuer-root-ca examples/k8s/ssl/ca.pem

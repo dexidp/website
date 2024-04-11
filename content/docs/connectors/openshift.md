@@ -77,9 +77,9 @@ connectors:
       clientID: $OPENSHIFT_OAUTH_CLIENT_ID
       clientSecret: $OPENSHIFT_OAUTH_CLIENT_SECRET
       redirectURI: http://127.0.0.1:5556/dex/
-      # Optional: Specify whether to communicate to OpenShift without validating SSL ceertificates
+      # Optional: Specify whether to communicate to OpenShift without validating SSL certificates
       insecureCA: false
-      # Optional: The location of file containing SSL certificates to commmunicate to OpenShift
+      # Optional: The location of file containing SSL certificates to communicate to OpenShift
       rootCA: /etc/ssl/openshift.pem
       # Optional list of required groups a user must be a member of
       groups:

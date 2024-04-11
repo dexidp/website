@@ -183,6 +183,8 @@ An example config for Postgres setup using these values:
 storage:
   type: postgres
   config:
+    host: localhost
+    port: 5432
     database: dex_db
     user: dex
     password: 66964843358242dbaaa7778d8477c288

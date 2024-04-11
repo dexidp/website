@@ -3,7 +3,6 @@ title: "Authentication Through an OAuth 2.0 Provider"
 linkTitle: "OAuth 2.0"
 description: ""
 date: 2021-03-15
-draft: true
 toc: true
 weight: 2055
 ---
@@ -31,15 +30,16 @@ connectors:
 
     tokenURL: https://www.reddit.com/api/v1/access_token
     authorizationURL: https://www.reddit.com/api/v1/authorize
-    userInfoURL: https: https://www.reddit.com/api/v1/me
+    userInfoURL: https://www.reddit.com/api/v1/me
  
     # Optional: Specify whether to communicate to Auth provider without
     # validating SSL certificates
     # insecureSkipVerify: false
 
-    # Optional: The location of file containing SSL certificates to commmunicate
+    # Optional: The location of file containing SSL certificates to communicate
     # to Auth provider
-    # rootCAs: /etc/ssl/reddit.pem
+    # rootCAs:
+    # - /etc/ssl/reddit.pem
 
     # Optional: List of scopes to request Auth provider for access user account
     # scopes:
@@ -49,8 +49,8 @@ connectors:
     # Default: id
     # userIDKey:
 
-    # Auth roviders return non-standard user identity profile
-    # Use claimMapping to map those user infomations to standard claims:
+    # Auth providers return non-standard user identity profile
+    # Use claimMapping to map those user informations to standard claims:
     claimMapping:
       # Optional: Configurable keys for user name look up
       # Default: user_name

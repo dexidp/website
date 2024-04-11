@@ -97,7 +97,7 @@ curl https://dex.tunnelto.dev/dex/.well-known/openid-configuration
 ### Running tests
 
 1. Open https://www.certification.openid.net/ in your browser
-1. Login with your Google or Gitlab account
+1. Login with your Google or GitLab account
 1. Click _Create a new test plan_
 1. Select _OpenID Connect Core: Basic Certification Profile Authorization server test_ as the test plan
 1. _Server metadata location_ should be **discovery**

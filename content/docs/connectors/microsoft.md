@@ -22,9 +22,11 @@ authenticated them through Microsoft.
 ### Caveats
 
 `groups` claim in dex is only supported when `tenant` is specified in Microsoft
-connector config. In order for dex to be able to list groups on behalf of
-logged in user, an explicit organization administrator consent is required. To
-obtain the consent do the following:
+connector config. Furthermore, `tenant` must also be configured to either 
+`<tenant uuid>` or `<tenant name>` (see [Configuration](#configuration)). In 
+order for dex to be able to list groups on behalf of logged in user, an 
+explicit organization administrator consent is required. To obtain the 
+consent do the following:
 
   - when registering dex application on https://apps.dev.microsoft.com add
     an explicit `Directory.Read.All` permission to the list of __Delegated
@@ -105,6 +107,20 @@ organization's email suffix, John will not be prompted to select an account
 from the active sessions.  Instead, the matching organization session is
 selected automatically.
 
+`scopes` configuration parameter controls what the initial scope(s) of the identity
+token that dex requests from Microsoft. To change this initial set, configure
+the `scopes` parameter to be a list of one or more valid scopes (as defined in
+[Microsoft Documentation](https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent)).
+
+The default scope (if one is not specified in the connector's configuration) is
+`user.read`.
+
+The scope list requested may also be appended by specifying [groups](#groups) or
+requesting a new token through the use of a refresh token.
+
+For example, the following snippet configures dex to request an OpenID token
+with only getting the email address associated with the account and nothing else:
+
 ```yaml
 connectors:
   - type: microsoft
@@ -119,6 +135,9 @@ connectors:
       redirectURI: http://127.0.0.1:5556/dex/callback
       tenant: example.onmicrosoft.com
       domainHint: example.com
+      scopes:
+        - openid
+        - email
 ```
 
 ### Groups
@@ -128,6 +147,10 @@ configured, dex will query Microsoft API to obtain a list of groups the user is
 a member of. `onlySecurityGroups` configuration option restricts the list to
 include only security groups. By default all groups (security, Office 365,
 mailing lists) are included.
+
+Please note that `tenant` must be configured to either `<tenant uuid>` or 
+`<tenant name>` for this to work. For more details on `tenant` configuration,
+see [Configuration](#configuration).
 
 By default, dex resolve groups ids to groups names, to keep groups ids, you can
 specify the configuration option `groupNameFormat: id`.
@@ -182,7 +205,7 @@ connectors:
       groups:
         - developers
         - devops
-      # All relevant E-Mail Adresses delivered by AD will transformed to
+      # All relevant E-Mail Addresses delivered by AD will transformed to
       # lowercase if config is TRUE
       emailToLowercase: true
 ```

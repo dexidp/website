@@ -49,7 +49,7 @@ Additional notes:
   * Other authenticators, such as client certs, can still be used.
   * Dex doesn't need to be running when you start your API server.
 * Kubernetes only trusts ID Tokens issued to a single client.
-  * As a work around dex allows clients to [trust other clients][trusted-peers] to mint tokens on their behalf.
+  * As a workaround dex allows clients to [trust other clients][trusted-peers] to mint tokens on their behalf.
 * If a claim other than "email" is used for username, for example "sub", it will be prefixed by `"(value of --oidc-issuer-url)#"`. This is to namespace user controlled claims which may be used for privilege escalation.
 * The `/etc/ssl/certs/openid-ca.pem` used here is the CA from the [generated TLS assets](#generate-tls-assets), and is assumed to be present on the cluster nodes.
 
@@ -191,12 +191,12 @@ users:
     token: (ID-TOKEN)
 ```
 
-[k8s-authz]: http://kubernetes.io/docs/admin/authorization/
-[k8s-oidc]: http://kubernetes.io/docs/admin/authentication/#openid-connect-tokens
+[k8s-authz]: https://kubernetes.io/docs/reference/access-authn-authz/authorization/
+[k8s-oidc]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
 [trusted-peers]: https://godoc.org/github.com/dexidp/dex/storage#Client
 [coreos-kubernetes]: https://github.com/coreos/coreos-kubernetes/
 [coreos-baremetal]: https://github.com/coreos/coreos-baremetal/
 [github-oauth2]: https://github.com/settings/applications/new
-[node-port]: http://kubernetes.io/docs/user-guide/services/#type-nodeport
+[node-port]: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 [coreos-kubernetes]: https://github.com/coreos/coreos-kubernetes
 [coreos-baremetal]: https://github.com/coreos/coreos-baremetal

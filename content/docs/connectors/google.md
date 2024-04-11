@@ -50,7 +50,9 @@ connectors:
     # of a G Suite admin to impersonate:
     #
     #serviceAccountFilePath: googleAuth.json
-    #adminEmail: super-user@example.com
+    #domainToAdminEmail:
+    #  *: super-user@example.com
+    #  my-domain.com: super-user@my-domain.com
 ```
 
 ## Fetching groups from Google
@@ -63,6 +65,6 @@ To get group fetching set up:
   - During service account creation, a JSON key file will be created that contains authentication information for the service account. This needs storing in a location accessible by Dex and you will set the `serviceAccountFilePath` to point at it.
   - When delegating the API scopes to the service account, delegate the `https://www.googleapis.com/auth/admin.directory.group.readonly` scope and only this scope. If you delegate more scopes to the service account, it will not be able to access the API.
 2. Enable the [Admin SDK](https://console.developers.google.com/apis/library/admin.googleapis.com/)
-3. Add the `serviceAccountFilePath` and `adminEmail` configuration options to your Dex config.
+3. Add the `serviceAccountFilePath` and `domainToAdminEmail` configuration options to your Dex config.
   - `serviceAccountFilePath` should point to the location of the service account JSON key file
-  - `adminEmail` should be the email of a G Suite super user. The service account you created earlier will impersonate this user when making calls to the admin API. A valid user should be able to retrieve a list of groups when [testing the API](https://developers.google.com/admin-sdk/directory/v1/reference/groups/list#try-it).
+  - `domainToAdminEmail` should map the base domain to the email address of a Google Workspace user with a minimum of the `Groups Reader (BETA)` Role assigned. The service account you created earlier will impersonate this user when making calls to the admin API. A valid user should be able to retrieve a list of groups when [testing the API](https://developers.google.com/admin-sdk/directory/v1/reference/groups/list#try-it).

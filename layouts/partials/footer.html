@@ -1,12 +1,14 @@
 {{ $year := now.Year }}
 
-<footer class="footer">
+<footer class="footer d-flex flex-wrap justify-content-between align-items-center py-3 border-top position-static fixed-bottom">
   <div class="container">
-    <p>
-      {{ with site.Copyright }}
-      &copy; {{ $year }} {{ . }} </br>
-      {{ end }}
+    {{ with site.Copyright }}
+    <p><small>
+      &copy; {{ $year }} {{ . }}
+    </small></p>
+    {{ end }}
+    <p><small>
       &copy; {{ $year }} The Linux Foundation. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage/">Trademark Usage</a> page.
-    </p>
+    </small></p>
   </div>
 </footer>
