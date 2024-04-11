@@ -25,7 +25,7 @@ weight: 1000
 
 ## Reporting a security vulnerability
 
-Due to their public nature, GitHub and mailing lists are NOT appropriate places for reporting vulnerabilities. Please refer to CoreOS's [security disclosure](https://coreos.com/security/disclosure/) process when reporting issues that may be security related.
+Due to their public nature, GitHub and mailing lists are NOT appropriate places for reporting vulnerabilities. Please refer to the project's [security disclosure](https://github.com/dexidp/dex/blob/master/.github/SECURITY.md) process when reporting issues that may be security related.
 
 ## Getting help
 
