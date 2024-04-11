@@ -57,6 +57,8 @@ staticClients:
   - 'https://web-app.example.com/callback'
   name: 'Web app'
   secret: web-app-secret
+  # It is also possible to fetch the secret from an injected environment variable
+  # secretEnv: YOUR_INJECTED_SECRET
 
 - id: cli-app
   redirectURIs:
