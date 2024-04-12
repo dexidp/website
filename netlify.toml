@@ -21,8 +21,8 @@ force = false
 [[redirects]]
 from = "/docs/storage/"
 to = "/docs/configuration/storage/"
-  status = 301
-  force = false
+status = 301
+force = false
 
 [[redirects]]
 from = "/docs/oauth2/"
