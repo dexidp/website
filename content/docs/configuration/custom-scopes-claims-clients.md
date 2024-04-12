@@ -1,6 +1,6 @@
 ---
-title: "Custom Scopes, Claims and Client Features"
-description: ""
+title: "Scopes and Claims"
+description: "Custom Scopes, Claims and Client Features"
 date: 2020-09-30
 draft: false
 toc: true
@@ -85,7 +85,7 @@ The ID token claims will then include the following audience and authorized part
     "email": "foo@bar.com",
     // other claims...
 }
-``` 
+```
 
 ## Public clients
 

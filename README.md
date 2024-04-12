@@ -4,7 +4,7 @@ This repository contains a boilerplate static site generator setup for creating 
 
 The starter uses the following:
 * **[Hugo](https://gohugo.io/)** as a static site generator
-* **[Bootstrap 4.5.x](https://getbootstrap.com/docs/4.5/getting-started/introduction/)** as a CSS framework
+* **[Docsy](https://www.docsy.dev/)** as a documentation theme
 * **[Netlify](https://www.netlify.com/)** for building, hosting, and DNS management
 
 ## Running locally
@@ -12,9 +12,6 @@ The starter uses the following:
 Make sure you have [npm](https://www.npmjs.com/) and [yarn](https://yarnpkg.com/) installed. Clone this repository and run the following two commands in its directory:
 
 ```shell
-# Install npm assets (just Bulma for Sass/CSS)
-yarn
-
 # Run the server locally
 make serve
 ```
@@ -31,16 +28,3 @@ This repository comes with a pre-configured [`netlify.toml`](https://github.com/
 
 3. Install Netlify with access to your documentation site repository.
 4. Leave all other settings as default and click **Deploy Site**.
-
-# What's included
-
-This repository has two layouts with minimal styling, all stored under `/layouts/_default`:
-
-* A **homepage** template, a basic homepage which uses the following:
-  * The `index.html` file and partials in the `/partials/home` directory
-  * Some helpers in the `/assets/sass/helpers.sass` file
-* A **docs** template, a basic content page with submenu which uses the following:
-  * The `single.html` file and partials in the `/partials/docs` directory
-  * Classes in the `/assets/sass/helpers.sass` and `/assets/sass/_docs.sass` files
-
-Both use default components and styling from the Bootstrap CSS framework. No menus are structured, because menu structure is highly dependent on the nature of the project.

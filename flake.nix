@@ -17,7 +17,7 @@
             git
             gnumake
             hugo
-            yarn
+            npm
           ];
         };
       });
