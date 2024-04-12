@@ -11,35 +11,35 @@ weight: 1020
 
 This document attempts to provide a general overview of the [OpenID Connect protocol](https://openid.net/connect/), a flavor of OAuth2 that dex implements. While this document isn't complete, we hope it provides enough information to get users up and running.
 
-For an overview of custom claims, scopes, and client features implemented by dex, see [this document][scopes-claims-clients].
+For an overview of custom claims, scopes, and client features implemented by dex, see [this document](/docs/configuration/custom-scopes-claims-clients).
 
 ## OAuth2
 
 OAuth2 should be familiar to anyone who's used something similar to a "Login
-with Facebook" button. In these cases an application has chosen to let an
-outside provider, in this case Facebook, attest to your identity instead of
+with Google" button. In these cases an application has chosen to let an
+outside provider, in this case Google, attest to your identity instead of
 having you set a username and password with the app itself.
 
 The general flow for server side apps is:
 
 1. A new user visits an application.
-1. The application redirects the user to Facebook.
-1. The user logs into Facebook, then is asked if it's okay to let the
+1. The application redirects the user to Google.
+1. The user logs into Google, then is asked if it's okay to let the
 application view the user's profile, post on their behalf, etc.
-1. If the user clicks okay, Facebook redirects the user back to the application
+1. If the user clicks okay, Google redirects the user back to the application
 with a code.
 1. The application redeems that code with provider for a token that can be used
 to access the authorized actions, such as viewing a users profile or posting on
 their wall.
 
-In these cases, dex is acting as Facebook (called the "provider" in OpenID
+In these cases, dex is acting as Google (called the "provider" in OpenID
 Connect) while clients apps redirect to it for the end user's identity.
 
 ## ID Tokens
 
 Unfortunately the access token applications get from OAuth2 providers is
 completely opaque to the client and unique to the provider. The token you
-receive from Facebook will be completely different from the one you'd get from
+receive from Google will be completely different from the one you'd get from
 Twitter or GitHub.
 
 OpenID Connect's primary extension of OAuth2 is an additional token returned in
@@ -59,16 +59,7 @@ Pragma: no-cache
  "token_type": "Bearer",
  "refresh_token": "8xLOxBtZp8",
  "expires_in": 3600,
- "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjFlOWdkazcifQ.ewogImlzc
-   yI6ICJodHRwOi8vc2VydmVyLmV4YW1wbGUuY29tIiwKICJzdWIiOiAiMjQ4Mjg5
-   NzYxMDAxIiwKICJhdWQiOiAiczZCaGRSa3F0MyIsCiAibm9uY2UiOiAibi0wUzZ
-   fV3pBMk1qIiwKICJleHAiOiAxMzExMjgxOTcwLAogImlhdCI6IDEzMTEyODA5Nz
-   AKfQ.ggW8hZ1EuVLuxNuuIJKX_V8a_OMXzR0EHR9R6jgdqrOOF4daGU96Sr_P6q
-   Jp6IcmD3HP99Obi1PRs-cwh3LO-p146waJ8IhehcwL7F09JdijmBqkvPeB2T9CJ
-   NqeGpe-gccMg4vfKjkM8FcGvnzZUN4_KSP0aAp1tOJ1zZwgjxqGByKHiOtX7Tpd
-   QyHE5lcMiKPXfEIQILVq0pc_E2DzL7emopWoaoZTF_m0_N0YzFC6g6EJbOEoRoS
-   K5hoDalrcvRYLSrQAZZKflyuVCyixEoV9GfNQC3_osjzw2PAithfubEEBLuVVk4
-   XUVrWOLrLl0nx7RkKU8NXNHq-rvKMzqg"
+ "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjFlOWdkazcifQ.ewogImlzcyI6ICJodHRwOi8vc2VydmVyLmV4YW1wbGUuY29tIiwKICJzdWIiOiAiMjQ4Mjg5NzYxMDAxIiwKICJhdWQiOiAiczZCaGRSa3F0MyIsCiAibm9uY2UiOiAibi0wUzZfV3pBMk1qIiwKICJleHAiOiAxMzExMjgxOTcwLAogImlhdCI6IDEzMTEyODA5NzAKfQ.ggW8hZ1EuVLuxNuuIJKX_V8a_OMXzR0EHR9R6jgdqrOOF4daGU96Sr_P6qJp6IcmD3HP99Obi1PRs-cwh3LO-p146waJ8IhehcwL7F09JdijmBqkvPeB2T9CJNqeGpe-gccMg4vfKjkM8FcGvnzZUN4_KSP0aAp1tOJ1zZwgjxqGByKHiOtX7TpdQyHE5lcMiKPXfEIQILVq0pc_E2DzL7emopWoaoZTF_m0_N0YzFC6g6EJbOEoRoSK5hoDalrcvRYLSrQAZZKflyuVCyixEoV9GfNQC3_osjzw2PAithfubEEBLuVVk4XUVrWOLrLl0nx7RkKU8NXNHq-rvKMzqg"
 }
 ```
 
@@ -93,7 +84,31 @@ This has a few interesting fields such as
 * The token's subject (`sub`). In this case a unique ID of the end user.
 * The token's audience (`aud`). The ID of the OAuth2 client this was issued for.
 
-TODO: Add examples of payloads with "email" fields.
+A real world token would have additional claims like the user's name, email, groups, etc.
+
+```json
+{
+  "iss": "https://dex.example.com/",
+  "sub": "R29vZCBqb2IhIEdpdmUgdXMgYSBzdGFyIG9uIGdpdGh1Yg",
+  "aud": [
+    "kubernetes",
+    "kubeconfig-generator"
+  ],
+  "exp": 1712945837,
+  "iat": 1712945237,
+  "azp": "kubeconfig-generator",
+  "at_hash": "OamCo8c60Zdj3dVho3Km5oxA",
+  "c_hash": "HT04XtwtlUhfHvm7zf19qsGw",
+  "email": "maksim.nabokikh@palark.com",
+  "email_verified": true,
+  "groups": [
+    "administrators",
+    "developers"
+  ],
+  "name": "Maksim Nabokikh",
+  "preferred_username": "maksim.nabokikh"
+}
+```
 
 ## Discovery
 
@@ -146,5 +161,3 @@ $ curl http://127.0.0.1:5556/dex/keys
   ]
 }
 ```
-
-[scopes-claims-clients]: custom-scopes-claims-clients.md
