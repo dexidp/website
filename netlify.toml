@@ -13,51 +13,61 @@ command = "make preview-build"
 command = "make preview-build"
 
 [[redirects]]
-from = "https://dexidp/docs/tokens/"
-to = "https://dexidp/docs/configuration/tokens/"
-force = true
+from = "/docs/tokens/"
+to = "/docs/configuration/tokens/"
+status = 301
+force = false
 
 [[redirects]]
-from = "https://dexidp/docs/storage/"
-to = "https://dexidp/docs/configuration/storage/"
-force = true
+from = "/docs/storage/"
+to = "/docs/configuration/storage/"
+  status = 301
+  force = false
 
 [[redirects]]
-from = "https://dexidp/docs/oauth2/"
-to = "https://dexidp/docs/configuration/oauth2/"
-force = true
+from = "/docs/oauth2/"
+to = "/docs/configuration/oauth2/"
+status = 301
+force = false
 
 [[redirects]]
-from = "https://dexidp/docs/api/"
-to = "https://dexidp/docs/configuration/api/"
-force = true
+from = "/docs/api/"
+to = "/docs/configuration/api/"
+status = 301
+force = false
 
 [[redirects]]
-from = "https://dexidp/docs/custom-scopes-claims-clients/"
-to = "https://dexidp/docs/configuration/custom-scopes-claims-clients/"
-force = true
+from = "/docs/custom-scopes-claims-clients/"
+to = "/docs/configuration/custom-scopes-claims-clients/"
+status = 301
+force = false
 
 [[redirects]]
-from = "https://dexidp/docs/templates/"
-to = "https://dexidp/docs/guides/templates/"
-force = true
+from = "/docs/templates/"
+to = "/docs/guides/templates/"
+status = 301
+force = false
 
 [[redirects]]
-from = "https://dexidp/docs/token-exchange/"
-to = "https://dexidp/docs/guides/token-exchange/"
-force = true
+from = "/docs/token-exchange/"
+to = "/docs/guides/token-exchange/"
+status = 301
+force = false
 
 [[redirects]]
-from = "https://dexidp/docs/using-dex/"
-to = "https://dexidp/docs/guides/using-dex/"
-force = true
+from = "/docs/using-dex/"
+to = "/docs/guides/using-dex/"
+status = 301
+force = false
 
 [[redirects]]
-from = "https://dexidp/docs/kubernetes/"
-to = "https://dexidp/docs/guides/kubernetes/"
-force = true
+from = "/docs/kubernetes/"
+to = "/docs/guides/kubernetes/"
+status = 301
+force = false
 
 [[redirects]]
-from = "https://dexidp/docs/kubelogin-activedirectory/"
-to = "https://dexidp/docs/guides/kubelogin-activedirectory/"
-force = true
+from = "/docs/kubelogin-activedirectory/"
+to = "/docs/guides/kubelogin-activedirectory/"
+status = 301
+force = false
