@@ -44,5 +44,5 @@ Stable, beta, and alpha are defined as:
 
 All changes or deprecations of connector features will be announced in the [release notes.][release-notes]
 
-[scopes]: /docs/custom-scopes-claims-clients.md#scopes
+[scopes]: /docs/configuration/custom-scopes-claims-clients/#scopes
 [release-notes]: https://github.com/dexidp/dex/releases

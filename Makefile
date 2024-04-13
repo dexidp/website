@@ -24,3 +24,6 @@ preview-build: docsy
 
 open:
 	open https://dexidp.netlify.com
+
+check-links:
+	markdown-link-check -c .markdown-link-check.json $$(find ./content -name "*.md" | xargs)
