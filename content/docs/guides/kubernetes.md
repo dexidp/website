@@ -57,7 +57,7 @@ Additional notes:
 
 The dex repo contains scripts for running dex on a Kubernetes cluster with authentication through GitHub. The dex service is exposed using a [node port][node-port] on port 32000. This likely requires a custom `/etc/hosts` entry pointed at one of the cluster's workers.
 
-Because dex uses [CRDs](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/) to store state, no external database is needed. For more details see the [storage documentation](storage.md#kubernetes-custom-resource-definitions-crds).
+Because dex uses [CRDs](https://kubernetes.io/docs/tasks/access-kubernetes-api/custom-resources/custom-resource-definitions/) to store state, no external database is needed. For more details see the [storage documentation](/docs/configuration/storage/#kubernetes-custom-resource-definitions-crds).
 
 There are many different ways to spin up a Kubernetes development cluster, each with different host requirements and support for API server reconfiguration. At this time, this guide does not have copy-pastable examples, but can recommend the following methods for spinning up a cluster:
 
@@ -89,7 +89,7 @@ This will generate several files under the `ssl` directory, the important ones b
 #### Ensure the CA certificate is available to the API server
 
 
-The CA file which was used to sign the SSL certificates for Dex needs to be copied to a location where the API server can read it, and the API server configured to look for it with the flag `--oidc-ca-file`. 
+The CA file which was used to sign the SSL certificates for Dex needs to be copied to a location where the API server can read it, and the API server configured to look for it with the flag `--oidc-ca-file`.
 
 There are several options here but if you run your API server as a container probably the easiest method is to use a [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath) volume to mount the CA file directly from the host.
 
@@ -142,7 +142,7 @@ $ kubectl -n dex create secret \
 
 ### Deploy the Dex server
 
-Create the dex deployment, configmap, and node port service. This will also create RBAC bindings allowing the Dex pod access to manage [Custom Resource Definitions](storage.md#kubernetes-custom-resource-definitions-crds) within Kubernetes.
+Create the dex deployment, configmap, and node port service. This will also create RBAC bindings allowing the Dex pod access to manage [Custom Resource Definitions](/docs/configuration/storage/#kubernetes-custom-resource-definitions-crds) within Kubernetes.
 
 ```bash
 $ kubectl create -f dex.yaml
@@ -156,7 +156,7 @@ The `example-app` can be used to log into the cluster and get an ID Token. To bu
 cd examples/example-app
 go install .
 ```
- 
+
 To build the `example-app` requires at least a 1.7 version of Go.
 
 ```bash
@@ -173,7 +173,7 @@ On the next page, choose the GitHub option and grant access to dex to view your 
 
 The default redirect uri is http://127.0.0.1:5555/callback and can be changed with the `--redirect-uri` flag and should correspond with your configmap.
 
-Please note the redirect uri is different from the one you filled when creating `GitHub OAuth2 client credentials`. 
+Please note the redirect uri is different from the one you filled when creating `GitHub OAuth2 client credentials`.
 When you login, GitHub first redirects to dex (https://dex.example.com:32000/callback), then dex redirects to the redirect uri of example-app.
 
 The printed "ID Token" can then be used as a bearer token to authenticate against the API server.

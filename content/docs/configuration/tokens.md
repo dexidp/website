@@ -81,9 +81,9 @@ __NOTE__: All duration options should be set in the format: number + time unit (
 __NOTE__: `disableRotation` and `reuseInterval` options help effectively deal with network lags, concurrent requests, and so on in tradeoff for security. Use them with caution.
 
 [aws-sts]: https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html
-[connectors]: connectors
+[connectors]: /docs/connectors
 [jwt-io]: https://jwt.io/
 [kubernetes]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
 [rfc6819-5.2.2.3]: https://tools.ietf.org/html/rfc6819#section-5.2.2.3
 [standard-claims]: https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
-[using-dex]: using-dex
+[using-dex]: /docs/guides/using-dex

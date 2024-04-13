@@ -44,7 +44,7 @@ title: Dex
 <div class="row align-items-center text-center">
   <p>
     <a href="https://cncf.io">
-      <img src="img/logos/cncf-color.png" width="300">
+      <img src="/img/logos/cncf-color.png" width="300">
     </a>
     </br></br>
     Dex is a Cloud Native Computing Foundation <b>sandbox</b> project.

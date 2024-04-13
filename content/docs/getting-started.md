@@ -86,4 +86,4 @@ Check out the Documentation directory for further reading on setting up differen
 [gomplate]: https://github.com/hairyhenderson/gomplate
 [gomplate-docs]: https://docs.gomplate.ca/
 [oidc-discovery]: https://openid.net/specs/openid-connect-discovery-1_0-17.html#ProviderMetadata
-[using-dex]: using-dex.md
+[using-dex]: /docs//using-dex/

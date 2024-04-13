@@ -37,10 +37,10 @@ For this flow, `clientID`, `clientSecret`, and `redirectURI` aren't required.
 `getUserInfo` is required if you want to exchange from access tokens to dex issued tokens.
 
 As the user performing the token exchange will need the client secret,
-we configure the client as a [public client](./custom-scopes-claims-clients.md#public-clients).
+we configure the client as a [public client](/docs/configuration/custom-scopes-claims-clients/#public-clients).
 If you need to allow humans and machines to authenticate,
 consider creating a dedicated public client for token exchange
-and using [cross-client trust](./custom-scopes-claims-clients.md#cross-client-trust-and-authorized-party).
+and using [cross-client trust](/docs/configuration/custom-scopes-claims-clients/#cross-client-trust-and-authorized-party).
 
 ```yaml
 issuer: https://dex.example.com
@@ -82,7 +82,7 @@ staticClients:
     id: my-app
     secret: my-secret
     # We set public to indicate we don't intend to keep the client secret actually secret.
-    # https://dexidp.io/docs/custom-scopes-claims-clients/#public-clients
+    # https://dexidp.io/docs/configuration/custom-scopes-claims-clients/#public-clients
     public: true
 ```
 
@@ -221,7 +221,7 @@ jobs:
 [gcp-federation]: https://cloud.google.com/iam/docs/workload-identity-federation
 [aws-federation]: https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_oidc.html
 [gh-actions]: https://docs.github.com/en/actions/deployment/security-hardening-your-deployments/about-security-hardening-with-openid-connect
-[buildkite]: https://badge.buildkite.com/docs/agent/v3/cli-oidc
+[buildkite]: https://buildkite.com/docs/agent/v3/cli-oidc
 [circleci]: https://circleci.com/docs/openid-connect-tokens/
 [gcp]: https://cloud.google.com/sdk/gcloud/reference/auth/print-access-token
 [oidc-connector]: https://dexidp.io/docs/connectors/oidc/
