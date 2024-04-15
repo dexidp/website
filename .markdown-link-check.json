@@ -1,0 +1,32 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^http://localhost"
+    },
+    {
+      "pattern": "^http://127.0.0.1"
+    },
+    {
+      "pattern": "^#"
+    },
+    {
+      "pattern": "^https://dex.example.com"
+    },
+    {
+      "pattern": "^https://twitter.com/dexidp"
+    }
+  ],
+  "replacementPatterns": [
+    {
+      "pattern": "^/",
+      "replacement": "http://localhost:1313/"
+    },
+    {
+      "pattern": "^/",
+      "replacement": "http://localhost:1313/"
+    }
+  ],
+  "timeout": "3s",
+  "retryOn429": true,
+  "aliveStatusCodes": [200, 206]
+}
