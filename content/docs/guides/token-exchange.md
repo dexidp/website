@@ -20,7 +20,7 @@ for a token issued by dex.
 
 This works like [GCP Workload Identity Federation][gcp-federation] and [AWS Web Identity Federation][aws-federation],
 allowing processes running in trusted execution environments that issue OIDC tokens,
-such as [Gtihub Actions][gh-actions], [Buildkite][buildkite], [CircleCI][circleci], [GCP][gcp], and others,
+such as [Github Actions][gh-actions], [Buildkite][buildkite], [CircleCI][circleci], [GCP][gcp], and others,
 to exchange them for a dex issued token to access protected resources.
 
 The authentication flow looks like this:
