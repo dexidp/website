@@ -30,6 +30,10 @@ connectors:
     # Dex's issuer URL + "/callback"
     redirectURI: http://127.0.0.1:5556/callback
 
+    # Set the value of `prompt` query parameter in the authorization request
+    # The default value is "consent" when not set.
+    # promptType: consent
+
     # Google supports whitelisting allowed domains when using G Suite
     # (Google Apps). The following field can be set to a list of domains
     # that can log in:
@@ -56,6 +60,7 @@ connectors:
 ```
 
 ## Fetching groups from Google
+
 To allow Dex to fetch group information from Google, you will need to configure a service account for Dex to use.
 This account needs Domain-Wide Delegation and permission to access the `https://www.googleapis.com/auth/admin.directory.group.readonly` API scope.
 
@@ -68,3 +73,14 @@ To get group fetching set up:
 3. Add the `serviceAccountFilePath` and `domainToAdminEmail` configuration options to your Dex config.
   - `serviceAccountFilePath` should point to the location of the service account JSON key file
   - `domainToAdminEmail` should map the base domain to the email address of a Google Workspace user with a minimum of the `Groups Reader (BETA)` Role assigned. The service account you created earlier will impersonate this user when making calls to the admin API. A valid user should be able to retrieve a list of groups when [testing the API](https://developers.google.com/admin-sdk/directory/v1/reference/groups/list#try-it).
+
+## Consent Screen
+
+Dex will set `prompt=consent` by default when redirecting users to Google's
+authorization endpoint. This will force users to see the consent screen every
+time they log in.
+
+To change this behavior, you can set the `promptType` field in config file to
+any OIDC-supported value. To skip the consent screen for every authorization
+request, set `promptType` to `""` (empty string) to fall back to Google's
+default behavior.
