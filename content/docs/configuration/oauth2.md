@@ -36,6 +36,9 @@ Examples of the different flows and their behavior can be found in the [official
 Customizing the user flow allows you to influence how users login into your application.
 
 * `skipApprovalScreen` - controls the need for user approval before sharing data with connected applications. If enabled, users must approve data sharing with every auth flow.
+  {{% alert color="info" %}}
+  This setting is not applicable when the request has the `approval_prompt=force` parameter. In this case, the approval screen is always shown.
+  {{% /alert %}}
 * `alwaysShowLoginScreen` - whether to always display the login screen. If only one authentication method is enabled, the default behavior is to go directly to it. For connected IdPs, this redirects the browser away from the application to upstream provider, such as the Google login page.
 
 ## Password grants
@@ -46,5 +49,7 @@ oauth2:
 ```
 * `passwordConnector` -  specifies the connector's id that is used for password grants
 
-**WARNING:** The password grant type is not recommended for use by the [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-13#section-3.4) because of serious security concerns.
+{{% alert title="Warning" color="warning" %}}
+The password grant type is not recommended for use by the [OAuth 2.0 Security Best Current Practice](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-security-topics-13#section-3.4) because of serious security concerns.
 Please see [oauth.net](https://oauth.net/2/grant-types/password/) for additional information.
+{{% /alert %}}
