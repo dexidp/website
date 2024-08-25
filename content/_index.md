@@ -5,21 +5,24 @@ title: Dex
 {{< blocks/cover image_anchor="top" height="min">}}
 
 <div class="col text-center">
-  <img src="/img/logos/dex-glyph-color.png" height="200">
+  <img class="logo" src="/img/logos/dex-glyph-color.png" alt="Dex" height="250"/>
 </div>
 <br>
 <div class="col">
-  <h1 class="fs-xlarge" style="font-size: 4.5rem;"><b>Dex</b></h1>
-  <h1 class="fs-large" style="font-size: 3rem;">A Federated OpenID Connect Provider</h1>
-  <p class="fs-4" style="font-size: 1.5rem;">Integrate any identity provider into your application using <a href="https://openid.net/connect/">OpenID Connect</a>.</p>
-  <p class="fs-4" style="font-size: 1.5rem;">Federate across upstream identity providers with ease.</p>
+  <h1 class="fs-xlarge logo" style="font-size: 4.5rem;"><b>Dex</b></h1>
+  <h1 class="fs-large logo" style="font-size: 3rem;">A Federated OpenID Connect Provider</h1>
+  <p class="fs-4 logo" style="font-size: 1.5rem;">Integrate any identity provider into your application using <a href="https://openid.net/connect/">OpenID Connect</a>.</p>
+  <p class="fs-4 logo" style="font-size: 1.5rem;">Federate across upstream identity providers with ease.</p>
 </div>
 
+<a class="btn btn-lg btn-dark me-3 mb-4 text-white" href="https://github.com/dexidp/dex">
+  Download <i class="fab fa-github ms-2"></i>
+</a>
 <a class="btn btn-lg btn-primary me-3 mb-4 text-white" href="https://twitter.com/dexidp">
   Subscribe <i class="fab fa-twitter ms-2"></i>
 </a>
-<a class="btn btn-lg btn-secondary me-3 mb-4 text-white" href="https://github.com/dexidp/dex">
-  Download <i class="fab fa-github ms-2"></i>
+<a class="btn btn-lg btn-secondary me-3 mb-4 text-white" href="https://cloud-native.slack.com/archives/C01HF2G1R34">
+  Communicate <i class="fab fa-slack ms-2"></i>
 </a>
 
 {{< /blocks/cover >}}
