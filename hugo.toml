@@ -177,6 +177,12 @@ color = "#00aced"
 url = "https://twitter.com/dexidp"
 icon = "fab fa-twitter"
 
+[[params.social]]
+name = "Slack"
+color = "#00eded"
+url = "https://cloud-native.slack.com/archives/C01HF2G1R34"
+icon = "fab fa-slack"
+
 [[params.fonts]]
 name = "Fira Sans"
 sizes = [300, 400, 600, 700]
