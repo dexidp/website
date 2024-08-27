@@ -15,7 +15,7 @@ While this works for human users,
 it is much harder for machines and automated processes (e.g., CI pipelines) to complete this interactive flow.
 This is where [OAuth2 Token Exchange][token-exchange] comes in:
 it allows clients to exchange an access or ID token they already have
-(obtained from their environment, though custom CLI commands, etc.)
+(obtained from their environment, through custom CLI commands, etc.)
 for a token issued by dex.
 
 This works like [GCP Workload Identity Federation][gcp-federation] and [AWS Web Identity Federation][aws-federation],
@@ -51,7 +51,7 @@ storage:
 web:
     http: 0.0.0.0:8001
 
-outh2:
+oauth2:
   grantTypes:
     # ensure grantTypes includes the token-exchange grant (default)
     - "urn:ietf:params:oauth:grant-type:token-exchange"
