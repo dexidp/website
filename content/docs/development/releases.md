@@ -76,3 +76,21 @@ git push origin "cherry-picked-change"
 Open a PR onto `$RELEASE_BRANCH` to get the changes approved.
 
 Continue with the regular release process.
+
+## Dex API
+
+If there are changes in the API, the API version should be bumped to appear correctly in
+the [pkg.go.dev](https://pkg.go.dev/github.com/dexidp/dex/api/v2) and be able to
+be pulled by tags (via go get or go modules).
+
+Create a new tag with the `api/` path:
+```bash
+RELEASE_VERSION=v2.3.0
+git tag -s -m "${RELEASE_VERSION} Dex API release" "api/${RELEASE_VERSION}"
+```
+
+Push that tag to the Dex repo.
+
+```bash
+git push origin "api/${RELEASE_VERSION}"
+```
