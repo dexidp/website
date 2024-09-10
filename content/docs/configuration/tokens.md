@@ -69,9 +69,10 @@ Dex has a section in the config file where you can specify expiration and rotati
 __NOTE__: All duration options should be set in the format: number + time unit (s, m, h), e.g., `10m`.
 
 * `expiry` - section for various expiration settings, including token settings:
-  * `idTokens` - the lifetime of id_token. It is preferable to use short-lived id tokens.
-  * `deviceRequests` - the lifetime of device_requests.
-  * `signingKeys` - the lifetime of signing_token.
+  * `idTokens` - the lifetime of if tokens. It is preferable to use short-lived id tokens, e.g., 10 minutes.
+  * `authRequests` - the time frame in which users can exchange a code for an access or id token.
+  * `deviceRequests` - the time frame in which users can authorize a device to receive an access or id token.
+  * `signingKeys` - the period of time after which the signing keys are rotated. It is recommended to rotate keys regularly. If the `idTokens` lifetime exceeds, public parts of signing keys will be kept for validation for the extra time.
   * `refreshTokens` - section for various refresh token settings:
     * `validIfNotUsedFor` - invalidate a refresh token if it is not used for a specified amount of time.
     * `absoluteLifetime` - a stricter variant of the previous option, absolute lifetime of a refresh token. It forces users to reauthenticate and obtain a new refresh token.
