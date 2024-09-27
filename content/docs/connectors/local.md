@@ -52,6 +52,8 @@ Both local users and password grants are enabled, allowing the exchange of a tok
 
 ```yaml
 issuer: http://localhost:8080/dex
+web:
+  http: 127.0.0.1:8080
 storage:  # .. storage configuration
 # Setup clients
 staticClients:
