@@ -86,24 +86,26 @@ oauth2:
 Depending on whether you use a public or a private client you need to either include the just `clientId` or the `clientId` and `clientPassword` in the authorization header.
 
 **Public Client**
+
 ```shell
 curl -L -X POST 'http://localhost:8080/dex/token' \
--H 'Authorization: Basic cHVibGljLWNsaWVudAo=' \ # base64 encoded: public-client
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'scope=openid profile' \
 --data-urlencode 'username=admin@example.com' \
---data-urlencode 'password=admin'
+--data-urlencode 'password=password' \
+--data-urlencode 'client_id=public-client'
 ```
 
-
 **Private Client**
+
 ```shell
 curl -L -X POST 'http://localhost:8080/dex/token' \
--H 'Authorization: Basic cHJpdmF0ZS1jbGllbnQ6YXBwLXNlY3JldAo=' \ # base64 encoded: private-client:app-secret
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'scope=openid' \
 --data-urlencode 'username=admin@example.com' \
---data-urlencode 'password=admin'
+--data-urlencode 'password=password' \
+--data-urlencode 'client_id=private-client' \
+--data-urlencode 'client_secret=app-secret'
 ```
