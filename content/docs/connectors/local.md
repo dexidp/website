@@ -40,6 +40,7 @@ To specify users within the configuration file, the `staticPasswords` option can
 * `username`: The username associated with the user.
 * `userID`: The unique identifier (ID) of the user.
 
+Users created via the configuration file are stored only in memory and not in the underlying configured storage.
 
 #### Dynamic configuration (API)
 Users can be dynamically managed via the gRPC API, offering a versatile method to handle user-related operations within the system.
