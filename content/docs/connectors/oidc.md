@@ -108,9 +108,9 @@ connectors:
       # groups: "cognito:groups"
 
     # overrideClaimMapping will be used to override the options defined in claimMappings.
-	  # i.e. if there are 'email' and `preferred_email` claims available, by default Dex will always use the `email` claim independent of the claimMapping.email.
-	  # This setting allows you to override the default behavior of Dex and enforce the mappings defined in `claimMapping`.
-	  overrideClaimMapping: false
+    # i.e. if there are 'email' and `preferred_email` claims available, by default Dex will always use the `email` claim independent of the claimMapping.email.
+    # This setting allows you to override the default behavior of Dex and enforce the mappings defined in `claimMapping`.
+    overrideClaimMapping: false
 
     # The section to override options discovered automatically from
     # the providers' discovery URL (.well-known/openid-configuration).
