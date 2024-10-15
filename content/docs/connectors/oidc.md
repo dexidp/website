@@ -63,6 +63,11 @@ connectors:
     # This can be overridden with the below option
     # insecureEnableGroups: true
 
+    # Filter users based on membership in the given groups. Authentication will be successful it the user is a member in a least
+    # one of the specified groups.
+    # allowedGroups:
+    #  - <value>
+
     # When enabled, the OpenID Connector will query the UserInfo endpoint for additional claims. UserInfo claims
     # take priority over claims returned by the IDToken. This option should be used when the IDToken doesn't contain
     # all the claims requested.
