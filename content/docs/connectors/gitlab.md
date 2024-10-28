@@ -47,5 +47,5 @@ connectors:
       # Flag to include user group permissions in the user groups.
       # For example, if the user has maintainer access to a GitLab group named "project/group1", 
       # the user's groups will reflect two entries: "project/group1" and "project/group1:maintainer".
-      GetGroupsPermission: false
+      getGroupsPermission: false
 ```
