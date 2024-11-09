@@ -24,16 +24,66 @@ The authentication flow looks like:
 
 Username and group information can be combined with Kubernetes [authorization plugins][k8s-authz], such as role based access control (RBAC), to enforce policy.
 
-## Configuring the OpenID Connect plugin
+## Configuring Kubernetes
 
-Configuring the API server to use the OpenID Connect [authentication plugin][k8s-oidc] requires:
+Things to know before the start: 
 
-* Deploying an API server with specific flags.
-* Dex is running on HTTPS.
+* Dex has to be running on HTTPS.
   * Custom CA files must be accessible by the API server.
-* Dex is accessible to both your browser and the Kubernetes API server.
+* Dex must be accessible to both your browser and the Kubernetes API server.
+* The API server doesn't require dex to be available upfront.
+  * Other authenticators, such as client certs, can still be used.
+  * Dex doesn't need to be running when you start your API server.
+* If a claim other than "email" is used for the username, for example, "sub", it will be prefixed by `"issuer-url"`. This is to namespace user-controlled claims which may be used for privilege escalation.
+* The `/etc/ssl/certs/openid-ca.pem` used here is the CA from the [generated TLS assets](#generate-tls-assets), and is assumed to be present on the cluster nodes.
 
-Use the following flags to point your API server(s) at dex. `dex.example.com` should be replaced by whatever DNS name or IP address dex is running under.
+**Flow:** 
+
+At the beginning, kube-apiserver will fetch Dex keys to validate signatures of bearer tokens. When there is a bearer token in the request, kube-apiserver:
+
+1. Checks the token signature.
+2. Makes an expiration check.
+3. Validates claims (aud, iss).
+4. Gets subject attributes from token claims.
+
+Starting from Kubernetes v1.30.x, there are two options to connect Dex to your Kubernetes cluster:
+
+### Using StructuedAuthenticationConfiguration
+
+This is a structured configuration file that can be used to set up authenticator that will use Dex to validate incoming bearer tokens. You can find details about all the options and how the authenticator works by following [this link][structured-auth-config].
+
+Steps to connect Dex:
+
+1. Create a configuration file with the following content:
+
+```yaml
+# apiVersion can ends with the v1 / v1beta1 or v1alpah1 depending on your Kubernetes version
+apiVersion: apiserver.config.k8s.io/v1beta1
+kind: AuthenticationConfiguration
+jwt:
+- issuer:
+    url: https://dex.example.com:32000
+    audiences:
+    - example-app
+    # cat /etc/ssl/certs/openid-ca.pem | base64 -w0
+    certificateAuthority: ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789
+  claimMappings:
+    username:
+      claim: email
+    groups:
+      claim: groups
+  userValidationRules:
+  - expression: "!user.username.startsWith('system:')"
+    message: "username cannot use reserved system: prefix"
+```
+
+2. Use the `--authentication-config=/path-to-your-config` flag for the `kube-apiserver` to apply the config.
+
+### Using the OpenID Connect authenticator
+
+Configuring the API server to use the OpenID Connect [authentication plugin][k8s-oidc] is possible for all Kubernetes versions.
+
+Use the following flags to point your API server(s) at Dex. `dex.example.com` should be replaced by whatever DNS name or IP address Dex is running under.
 
 ```bash
 --oidc-issuer-url=https://dex.example.com:32000
@@ -44,14 +94,8 @@ Use the following flags to point your API server(s) at dex. `dex.example.com` sh
 ```
 
 Additional notes:
-
-* The API server configured with OpenID Connect flags doesn't require dex to be available upfront.
-  * Other authenticators, such as client certs, can still be used.
-  * Dex doesn't need to be running when you start your API server.
-* Kubernetes only trusts ID Tokens issued to a single client.
+* Kubernetes configured with the `oidc` flags can only trusts ID Tokens issued to a single client.
   * As a workaround dex allows clients to [trust other clients][trusted-peers] to mint tokens on their behalf.
-* If a claim other than "email" is used for username, for example "sub", it will be prefixed by `"(value of --oidc-issuer-url)#"`. This is to namespace user controlled claims which may be used for privilege escalation.
-* The `/etc/ssl/certs/openid-ca.pem` used here is the CA from the [generated TLS assets](#generate-tls-assets), and is assumed to be present on the cluster nodes.
 
 ## Deploying dex on Kubernetes
 
@@ -200,3 +244,4 @@ users:
 [node-port]: https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport
 [coreos-kubernetes]: https://github.com/coreos/coreos-kubernetes
 [coreos-baremetal]: https://github.com/coreos/coreos-baremetal
+[structured-auth-config]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#using-authentication-configuration
