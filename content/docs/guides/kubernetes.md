@@ -48,7 +48,7 @@ At the beginning, kube-apiserver will fetch Dex keys to validate signatures of b
 
 Starting from Kubernetes v1.30.x, there are two options to connect Dex to your Kubernetes cluster:
 
-### Using StructuedAuthenticationConfiguration
+### Using StructuredAuthenticationConfiguration
 
 This is a structured configuration file that can be used to set up authenticator that will use Dex to validate incoming bearer tokens. You can find details about all the options and how the authenticator works by following [this link][structured-auth-config].
 
@@ -57,7 +57,7 @@ Steps to connect Dex:
 1. Create a configuration file with the following content:
 
 ```yaml
-# apiVersion can ends with the v1 / v1beta1 or v1alpah1 depending on your Kubernetes version
+# apiVersion can ends with the v1 / v1beta1 or v1alpha1 depending on your Kubernetes version
 apiVersion: apiserver.config.k8s.io/v1beta1
 kind: AuthenticationConfiguration
 jwt:
