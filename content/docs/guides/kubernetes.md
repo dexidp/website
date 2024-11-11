@@ -57,7 +57,7 @@ Steps to connect Dex:
 1. Create a configuration file with the following content:
 
 ```yaml
-# apiVersion can ends with the v1 / v1beta1 or v1alpah1 depending on your Kubernetes version
+# apiVersion can ends with the v1 / v1beta1 or v1alpha1 depending on your Kubernetes version
 apiVersion: apiserver.config.k8s.io/v1beta1
 kind: AuthenticationConfiguration
 jwt:
