@@ -51,7 +51,7 @@ This enables templating any field from the environment, for example:
 secret: "{{ .Env.MY_SECRET_ENV }}"
 ```
 
-See [gomplate docs][gomplate-docs] for templaating syntax.
+See [gomplate docs][gomplate-docs] for templating syntax.
 
 ## Running a client
 
