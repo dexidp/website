@@ -40,6 +40,7 @@ To specify users within the configuration file, the `staticPasswords` option can
 * `username`: The username associated with the user.
 * `userID`: The unique identifier (ID) of the user.
 
+Users created via the configuration file are stored only in memory and not in the underlying configured storage.
 
 #### Dynamic configuration (API)
 Users can be dynamically managed via the gRPC API, offering a versatile method to handle user-related operations within the system.
@@ -52,6 +53,8 @@ Both local users and password grants are enabled, allowing the exchange of a tok
 
 ```yaml
 issuer: http://localhost:8080/dex
+web:
+  http: 127.0.0.1:8080
 storage:  # .. storage configuration
 # Setup clients
 staticClients:
@@ -83,24 +86,26 @@ oauth2:
 Depending on whether you use a public or a private client you need to either include the just `clientId` or the `clientId` and `clientPassword` in the authorization header.
 
 **Public Client**
+
 ```shell
 curl -L -X POST 'http://localhost:8080/dex/token' \
--H 'Authorization: Basic cHVibGljLWNsaWVudAo=' \ # base64 encoded: public-client
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'scope=openid profile' \
 --data-urlencode 'username=admin@example.com' \
---data-urlencode 'password=admin'
+--data-urlencode 'password=password' \
+--data-urlencode 'client_id=public-client'
 ```
 
-
 **Private Client**
+
 ```shell
 curl -L -X POST 'http://localhost:8080/dex/token' \
--H 'Authorization: Basic cHJpdmF0ZS1jbGllbnQ6YXBwLXNlY3JldAo=' \ # base64 encoded: private-client:app-secret
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'scope=openid' \
 --data-urlencode 'username=admin@example.com' \
---data-urlencode 'password=admin'
+--data-urlencode 'password=password' \
+--data-urlencode 'client_id=private-client' \
+--data-urlencode 'client_secret=app-secret'
 ```
