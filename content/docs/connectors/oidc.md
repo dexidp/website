@@ -107,6 +107,28 @@ connectors:
       # Default: groups
       # groups: "cognito:groups"
 
+    # claimModifications can change claims during the login
+    claimModifications:
+      # newGroupFromClaims allows to create a new group, based on other claims
+      # they are concatenated using the delimiter.
+      # Currently only string claims are supported, and other claims are skipped
+      # The new group name is added to the groups claims, passed to the clients.
+      # For this example, the resulting group would be: `example::organization::email`
+      # newGroupFromClaims:
+      #   - prefix: example
+      #     delimiter: "::"
+      #     clearDelimiter: false
+      #     claims:
+      #       - organization
+      #       - email
+      # filterGroupClaims allows to filter the groups, using a regex.
+      # The regex must conform to the RE2 regex specification used in go regexp.
+      # Groups added using the newGroupFromClaims modification, are not passed through the filterGroupClaims
+      # filterGroupClaims:
+      #   groupsFilter: "<REGEX>"
+
+
+
     # overrideClaimMapping will be used to override the options defined in claimMappings.
     # i.e. if there are 'email' and `preferred_email` claims available, by default Dex will always use the `email` claim independent of the claimMapping.email.
     # This setting allows you to override the default behavior of Dex and enforce the mappings defined in `claimMapping`.
