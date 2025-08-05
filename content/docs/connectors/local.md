@@ -85,22 +85,22 @@ Depending on whether you use a public or a private client you need to either inc
 **Public Client**
 ```shell
 curl -L -X POST 'http://localhost:8080/dex/token' \
--H 'Authorization: Basic cHVibGljLWNsaWVudAo=' \ # base64 encoded: public-client
+-H 'Authorization: Basic cHVibGljLWNsaWVudDo=' \ # base64 encoded: public-client:
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'scope=openid profile' \
 --data-urlencode 'username=admin@example.com' \
---data-urlencode 'password=admin'
+--data-urlencode 'password=password'
 ```
 
 
 **Private Client**
 ```shell
 curl -L -X POST 'http://localhost:8080/dex/token' \
--H 'Authorization: Basic cHJpdmF0ZS1jbGllbnQ6YXBwLXNlY3JldAo=' \ # base64 encoded: private-client:app-secret
+-H 'Authorization: Basic cHJpdmF0ZS1jbGllbnQ6YXBwLXNlY3JldA==' \ # base64 encoded: private-client:app-secret
 -H 'Content-Type: application/x-www-form-urlencoded' \
 --data-urlencode 'grant_type=password' \
 --data-urlencode 'scope=openid' \
 --data-urlencode 'username=admin@example.com' \
---data-urlencode 'password=admin'
+--data-urlencode 'password=password'
 ```
