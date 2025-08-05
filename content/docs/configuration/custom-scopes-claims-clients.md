@@ -34,6 +34,8 @@ Beyond the [required OpenID Connect claims][core-claims], and a handful of [stan
 | `email` | The email of the user. |
 | `email_verified` | If the upstream provider has verified the email. |
 | `name` | User's display name. |
+| `preferred_username` | Shorthand name by which the End-User wishes to be referred to. |
+
 
 The `federated_claims` claim has the following format:
 
