@@ -26,7 +26,7 @@ connectors:
     # Connector config values starting with a "$" will read from the environment.
     clientID: $REDDIT_CLIENT_ID
     clientSecret: $REDDIT_CLIENT_SECRET
-    redirectURI: http://127.0.0.1:5556/callback
+    redirectURI: http://127.0.0.1:5556/dex/callback
 
     tokenURL: https://www.reddit.com/api/v1/access_token
     authorizationURL: https://www.reddit.com/api/v1/authorize

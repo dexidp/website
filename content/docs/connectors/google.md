@@ -28,7 +28,7 @@ connectors:
     clientSecret: $GOOGLE_CLIENT_SECRET
 
     # Dex's issuer URL + "/callback"
-    redirectURI: http://127.0.0.1:5556/callback
+    redirectURI: http://127.0.0.1:5556/dex/callback
 
     # Set the value of `prompt` query parameter in the authorization request
     # The default value is "consent" when not set.
