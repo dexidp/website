@@ -126,12 +126,21 @@ connectors:
       #     claims:
       #       - organization
       #       - email
+
       # filterGroupClaims allows to filter the groups, using a regex.
       # The regex must conform to the RE2 regex specification used in go regexp.
       # Groups added using the newGroupFromClaims modification, are not passed through the filterGroupClaims
       # filterGroupClaims:
       #   groupsFilter: "<REGEX>"
 
+      # modifyGroupNames allows to add a prefix or suffix to all groups
+      # Either one, or both fields can be specified, and they will be pre-/appended directly to the group-name as provided by the oidc issuer
+      # The modifications are applied to all groups, not filtered by filterGroupClaims, and before Groups from newGroupFromClaims are created
+      # For example, if the connector provides a group called "regular-users",
+      # this modification would convert it to "example-prefix-regular-usersexample-suffix"
+      # modifyGroupNames:
+      #   prefix: example-prefix- # note the delimiter at the end
+      #   suffix: example-suffix
 
 
     # overrideClaimMapping will be used to override the options defined in claimMappings.
