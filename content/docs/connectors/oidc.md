@@ -28,6 +28,12 @@ connectors:
     # See: https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig
     issuer: https://accounts.google.com
 
+    # Some offspec providers like Azure, Oracle IDCS have oidc discovery url
+    # different from issuer url which causes issuerValidation to fail
+    # issuerAlias provides a way to override the Issuer url
+    # from the .well-known/openid-configuration issuer
+    # issuerAlias: https://accounts.google.com
+
     # Connector config values starting with a "$" will read from the environment.
     clientID: $GOOGLE_CLIENT_ID
     clientSecret: $GOOGLE_CLIENT_SECRET
