@@ -19,7 +19,7 @@ The following is an example of a configuration for using OAuth connector with Re
 connectors:
 - type: oauth
   # ID of OAuth 2.0 provider
-  id: reddit 
+  id: reddit
   # Name of OAuth 2.0 provider
   name: reddit
   config:
@@ -31,7 +31,12 @@ connectors:
     tokenURL: https://www.reddit.com/api/v1/access_token
     authorizationURL: https://www.reddit.com/api/v1/authorize
     userInfoURL: https://www.reddit.com/api/v1/me
- 
+
+    # Optional: Some providers return claims without "email_verified", when they had no usage of emails verification in enrollment process
+    # or if they are acting as a proxy for another IDP etc AWS Cognito with an upstream SAML IDP
+    # This can be overridden with the below option
+    # insecureSkipEmailVerified: true
+
     # Optional: Specify whether to communicate to Auth provider without
     # validating SSL certificates
     # insecureSkipVerify: false
