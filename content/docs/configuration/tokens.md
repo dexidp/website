@@ -81,10 +81,91 @@ __NOTE__: All duration options should be set in the format: number + time unit (
 
 __NOTE__: `disableRotation` and `reuseInterval` options help effectively deal with network lags, concurrent requests, and so on in tradeoff for security. Use them with caution.
 
+## Token signing configuration
+
+Dex provides flexible token signing options through the `signer` configuration section. You can choose between a local signer or integrate with Vault-compatible APIs for centralized key management.
+
+### Local signer
+
+The local signer uses keys managed by Dex's storage backend with automatic rotation. This is the default option for simple deployments.
+
+* `type` - set to `local` to use local signing
+* `config` - configuration section for local signer:
+  * `keysRotationPeriod` - (required) the period after which signing keys are rotated (e.g., `6h`, `24h`)
+
+**Supported signing algorithms (not configurable):**
+
+* `RS256` (RSA with SHA-256)
+
+Example configuration:
+```yaml
+signer:
+  type: local
+  config:
+    keysRotationPeriod: 6h
+```
+
+### Vault-compatible signer
+
+For enhanced security and centralized key management. This allows you to use HashiCorp Vault or OpenBao for signing operations without storing keys locally.
+
+* `type` - set to `vault` to use Vault-compatible API
+* `config` - configuration section for Vault signer:
+  * `keyName` - (required) the key identifier in Vault/OpenBao to use for signing (e.g., `dex/signing-key`)
+  * `addr` - Vault/OpenBao server address (optional, can be set via `VAULT_ADDR` environment variable)
+  * `token` - authentication token for Vault/OpenBao (optional, can be set via `VAULT_TOKEN` environment variable)
+
+**Supported signing algorithms:**
+
+* `RS256` (RSA with SHA-256)
+* `ES256` (ECDSA with SHA-256)
+* `ES384` (ECDSA with SHA-384)
+* `ES512` (ECDSA with SHA-512)
+* `EdDSA` (Edwards-curve Digital Signature Algorithm)
+
+The signing algorithm is determined by the key type configured in Vault/OpenBao's Transit backend.
+
+{{% alert title="Note" color="primary" %}}
+Only the `keyName` parameter is required. The `addr` and `token` can be provided through environment variables, making it easier to manage sensitive credentials without exposing them in configuration files.
+{{% /alert %}}
+
+Example configuration:
+```yaml
+signer:
+  type: vault
+  config:
+    keyName: dex/signing-key
+    addr: http://localhost:8200
+    token: test-token
+```
+
+Using environment variables:
+```yaml
+signer:
+  type: vault
+  config:
+    keyName: dex/signing-key
+```
+
+With environment variables set:
+```bash
+export VAULT_ADDR=https://vault.example.com:8200
+export VAULT_TOKEN=your-vault-token
+```
+
+This approach ensures that signing keys never leave your Vault/OpenBao server, providing better security and auditability of key operations.
+
+{{% alert title="Note" color="primary" %}}
+Dex supports Vault-compatible APIs through [OpenBao API v2 integration package](https://pkg.go.dev/github.com/openbao/openbao/api/v2).
+
+Integration tests for Dex guarantee compatibility with Vault, but it may change in the future.
+{{% /alert %}}
+
 [aws-sts]: https://docs.aws.amazon.com/STS/latest/APIReference/Welcome.html
 [connectors]: /docs/connectors
 [jwt-io]: https://jwt.io/
 [kubernetes]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
+[openbao]: https://pkg.go.dev/github.com/openbao/openbao/api/v2
 [rfc6819-5.2.2.3]: https://tools.ietf.org/html/rfc6819#section-5.2.2.3
 [standard-claims]: https://openid.net/specs/openid-connect-core-1_0.html#StandardClaims
 [using-dex]: /docs/guides/using-dex
