@@ -1,56 +1,112 @@
 ---
 title: Dex
 ---
+## Why Dex?
 
-{{< blocks/cover image_anchor="top" height="min">}}
+Dex is a powerful OpenID Connect provider that acts as a gateway between your applications and identity providers.
 
-<div class="col text-center">
-  <img class="logo" src="/img/logos/dex-glyph-color.png" alt="Dex" height="250"/>
+### 🔗 Integrate Everything
+
+Connect any service to Dex through OIDC - your entire platform uses a single authentication layer. Once integrated, seamlessly add any identity provider without touching your application code.
+
+### ☸️ Kubernetes Native
+
+Built for cloud-native environments. Runs perfectly in Kubernetes with minimal configuration.
+
+### ✓ Production Ready
+
+Used by organizations worldwide. Standards-based, flexible, and battle-tested.
+
+
+### ⚡ Wide Provider Support
+
+Dex connects to **LDAP**, **SAML**, **OAuth2**, **GitHub**, **Google**, and many more. Your applications only implement OIDC while Dex handles upstream complexity.
+
+## Supported Identity Providers
+
+<div class="providers-grid">
+  <a href="/docs/connectors/github/" class="provider-card">
+    <i class="fab fa-github fa-3x"></i>
+    <h4>GitHub</h4>
+  </a>
+  <a href="/docs/connectors/google/" class="provider-card">
+    <i class="fab fa-google fa-3x"></i>
+    <h4>Google</h4>
+  </a>
+  <a href="/docs/connectors/microsoft/" class="provider-card">
+    <i class="fab fa-microsoft fa-3x"></i>
+    <h4>Microsoft</h4>
+  </a>
+  <a href="/docs/connectors/ldap/" class="provider-card">
+    <i class="fas fa-id-card fa-3x"></i>
+    <h4>LDAP</h4>
+  </a>
+  <a href="/docs/connectors/saml/" class="provider-card">
+    <i class="fas fa-key fa-3x"></i>
+    <h4>SAML</h4>
+  </a>
+  <a href="/docs/connectors/oidc/" class="provider-card">
+    <i class="fas fa-unlock-alt fa-3x"></i>
+    <h4>OpenID Connect</h4>
+  </a>
+  <a href="/docs/connectors/gitlab/" class="provider-card">
+    <i class="fab fa-gitlab fa-3x"></i>
+    <h4>GitLab</h4>
+  </a>
+  <a href="/docs/connectors/linkedin/" class="provider-card">
+    <i class="fab fa-linkedin fa-3x"></i>
+    <h4>LinkedIn</h4>
+  </a>
+  <a href="/docs/connectors/atlassian-crowd/" class="provider-card">
+    <i class="fab fa-atlassian fa-3x"></i>
+    <h4>Atlassian</h4>
+  </a>
+  <a href="/docs/connectors/gitea/" class="provider-card">
+    <i class="fas fa-code-branch fa-3x"></i>
+    <h4>Gitea</h4>
+  </a>
+  <a href="/docs/connectors/oauth/" class="provider-card">
+    <i class="fas fa-shield-alt fa-3x"></i>
+    <h4>OAuth 2.0</h4>
+  </a>
+  <a href="/docs/connectors/authproxy/" class="provider-card">
+    <i class="fas fa-network-wired fa-3x"></i>
+    <h4>AuthProxy</h4>
+  </a>
 </div>
+<div class="providers-more">
+  <a href="/docs/connectors/" class="btn-more-providers">View all connectors →</a>
+</div>
+
+## Use Cases
+<div class="use-cases-grid">
+  <div class="use-case-card">
+    <div class="use-case-icon">🔐</div>
+    <h3>Unified Platform Authentication</h3>
+    <p>Integrate all your services and applications with Dex once. Then add identity providers (LDAP, SAML, OIDC) without modifying any application code.</p>
+  </div>
+  <div class="use-case-card">
+    <div class="use-case-icon">📦</div>
+    <h3>Deploy as a Dependency</h3>
+    <p>Dex is lightweight and can be deployed alongside your application. Your platform immediately supports authentication through dozens of providers.</p>
+  </div>
+  <div class="use-case-card">
+    <div class="use-case-icon">☸️</div>
+    <h3>Kubernetes Authentication</h3>
+    <p>Provide seamless SSO for your Kubernetes dashboard and internal tools.</p>
+  </div>
+  <div class="use-case-card">
+    <div class="use-case-icon">🧪</div>
+    <h3>Development and Testing</h3>
+    <p>Built-in mock provider for testing during development.</p>
+  </div>
+</div>
+
+## Getting Started
+**[📖 Installation Guide](/docs/getting-started/)** • **[⚙️ Configuration](/docs/configuration/)** • **[🔌 Connectors](/docs/connectors/)**
+
+<div class="cncf-badge">
+<img src="/img/logos/cncf-color.png" alt="CNCF" style="height: 60px; margin-bottom: 1rem;">
 <br>
-<div class="col">
-  <h1 class="fs-xlarge logo" style="font-size: 4.5rem;"><b>Dex</b></h1>
-  <h1 class="fs-large logo" style="font-size: 3rem;">A Federated OpenID Connect Provider</h1>
-  <p class="fs-4 logo" style="font-size: 1.5rem;">Integrate any identity provider into your application using <a href="https://openid.net/connect/">OpenID Connect</a>.</p>
-  <p class="fs-4 logo" style="font-size: 1.5rem;">Federate across upstream identity providers with ease.</p>
+Dex is a <strong>Cloud Native Computing Foundation</strong> sandbox project.
 </div>
-
-<a class="btn btn-lg btn-dark me-3 mb-4 text-white" href="https://github.com/dexidp/dex">
-  Download <i class="fab fa-github ms-2"></i>
-</a>
-<a class="btn btn-lg btn-primary me-3 mb-4 text-white" href="https://twitter.com/dexidp">
-  Subscribe <i class="fab fa-twitter ms-2"></i>
-</a>
-<a class="btn btn-lg btn-secondary me-3 mb-4 text-white" href="https://cloud-native.slack.com/archives/C01HF2G1R34">
-  Communicate <i class="fab fa-slack ms-2"></i>
-</a>
-
-{{< /blocks/cover >}}
-
-{{% blocks/lead color="primary" %}}
-<div class="row justify-content-md-center">
-
-{{% blocks/feature icon="text-white fa-puzzle-piece" %}}
-<div class="text-white">
-  Dex supports a wide range of identity providers such as <b>LDAP</b>, <b>SAML</b>, and <b>OAuth2</b> and implements <b><a href="https://openid.net/connect" class="link-light">OpenID Connect (OIDC)</a></b>, allowing your application to plug in any upstream identity provider, but implement only OIDC.
-</div>
-{{% /blocks/feature %}}
-{{% blocks/feature icon="text-white fa-lock" %}}
-<div class="text-white">
-  Whether you’re looking to secure your internal applications, provide <b>seamless Single Sign-On (SSO)</b> across your organization, or create a secure public-facing platform, Dex can be tailored to meet your unique requirements.
-</div>
-{{% /blocks/feature %}}
-</div>
-{{% /blocks/lead %}}
-
-{{% blocks/section color="white" %}}
-<div class="row align-items-center text-center">
-  <p>
-    <a href="https://cncf.io">
-      <img src="/img/logos/cncf-color.png" width="300">
-    </a>
-    </br></br>
-    Dex is a Cloud Native Computing Foundation <b>sandbox</b> project.
-  </p>
-</div>
-{{% /blocks/section %}}

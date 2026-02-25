@@ -1,13 +1,140 @@
 /*
-
-Nothing defined here. The Hugo project that uses this theme can override Bootstrap by adding a file to:
-
-assets/scss/_styles_project.scss
-
+Minimal style improvements
 */
 
-.logo {
-    max-height: 250px;
-    -webkit-filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
-    filter: drop-shadow(12px 12px 7px rgba(0, 0, 0, 0.5));
+// Inter font for everything
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+// Clean link colors
+a {
+  color: #449FD8;
+
+  &:hover {
+    color: #F04D5C;
+  }
+}
+
+// Logo
+.logo {
+  max-height: 250px;
+}
+
+
+// Sidebar - add left margin to shift content slightly right
+.td-sidebar-nav,
+.td-sidebar-nav__section,
+aside nav ul {
+  margin-left: 5px !important;
+}
+
+// Mobile responsiveness for docs
+@media (max-width: 768px) {
+  .td-search__icon {
+      margin-left: 12px !important;
+  }
+
+  // Search - padding for input text to avoid overlapping with icon (only in docs)
+  .td-sidebar .td-search input,
+  .td-content + .td-search input,
+  aside input[type="search"] {
+    margin-left: 12px !important;
+  }
+
+  // Add padding to content areas
+  .td-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .content-section {
+    padding-left: 0;
+    padding-right: 0;
+
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  .td-content {
+    h1 {
+      font-size: 1.75rem;
+      word-wrap: break-word;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      word-wrap: break-word;
+    }
+
+    h3 {
+      font-size: 1.25rem;
+      word-wrap: break-word;
+    }
+
+    p, li {
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    // Lists - full width on mobile, force column direction
+    ul, ol {
+      padding-left: 1.5rem !important;
+      display: block !important; // Override any flex
+      width: 100% !important;
+
+      li {
+        display: list-item !important; // Force list-item
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 0.75rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
+        float: none !important; // No floating
+        clear: both !important;
+        flex: none !important; // No flex sizing
+      }
+    }
+
+    // Target nested lists
+    li > ul, li > ol {
+      margin-top: 0.5rem !important;
+    }
+
+    // Specifically for td-content area
+    .td-content ul,
+    .td-content ol {
+      display: block !important;
+
+      li {
+        display: list-item !important;
+        width: 100% !important;
+      }
+    }
+
+    code {
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      font-size: 0.85rem;
+    }
+
+    pre {
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+
+    // Tables responsive
+    table {
+      display: block;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+  }
+}
+
