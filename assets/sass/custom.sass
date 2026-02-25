@@ -1,6 +1,9 @@
 // Custom.scss
 @charset "utf-8"
 
+// Import modern fonts
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
+
 {{ $extraColors := site.Params.colors.extra }}
 {{ $fontAwesomeVersion := site.Params.font_awesome_version }}
 {{ $fonts := site.Params.fonts }}
@@ -110,3 +113,9 @@ nav
 .jumbotron
   background-color: #86c6df65
   // background-color: transparent !important
+
+// Import home page styles
+@import "../scss/home"
+@import "../scss/styles_project"
+@import "../scss/docs-anchors"
+

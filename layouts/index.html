@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  {{- partial "head.html" . -}}
+  <body class="td-home">
+    <!-- Navigation from Docsy -->
+    {{- partial "navbar.html" . -}}
+
+    <div class="container-fluid td-default td-outer">
+      <main role="main" class="td-main">
+        <!-- Hero -->
+        <div class="hero-gradient">
+          <div class="container hero-container">
+            <div class="row align-items-center">
+              <div class="col-lg-6 col-md-12 order-2 order-lg-1">
+                <h1 class="hero-title">Dex</h1>
+                <h2 class="hero-subtitle">A Federated OpenID Connect Provider</h2>
+                <p class="hero-text">Integrate any identity provider into your application using <a href="https://openid.net/connect/" class="hero-link">OpenID Connect</a>.</p>
+                <p class="hero-text">Federate across upstream identity providers with ease.</p>
+
+                <div class="hero-buttons mt-5">
+                  <a href="https://github.com/dexidp/dex" class="btn btn-hero">
+                    <i class="fab fa-github"></i> GitHub
+                  </a>
+                  <a href="/docs/" class="btn btn-hero">
+                    <i class="fas fa-book"></i> Documentation
+                  </a>
+                  <a href="https://github.com/dexidp/dex/discussions" class="btn btn-hero">
+                    <i class="fas fa-comments"></i> Ask Questions
+                  </a>
+                  <a href="https://cloud-native.slack.com/archives/C01HF2G1R34" class="btn btn-hero">
+                    <i class="fab fa-slack"></i> Slack
+                  </a>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-12 text-center order-1 order-lg-2">
+                <img src="/img/logos/dex-glyph-color.png" alt="Dex" class="hero-logo">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Section -->
+        <section class="content-section">
+          <div class="container">
+            {{ .Content }}
+          </div>
+        </section>
+      </main>
+    </div>
+
+    {{- partial "footer.html" . -}}
+  </body>
+</html>
+

@@ -2,6 +2,17 @@ baseURL = "https://dexidp.io/"
 copyright = "Dex IdP Contributors"
 theme = "docsy"
 
+# Build configuration
+[build]
+  writeStats = false
+
+# Services configuration
+[services]
+  [services.googleAnalytics]
+    ID = ""
+  [services.disqus]
+    shortname = ""
+
 # Language settings
 contentDir = "content"
 defaultContentLanguage = "en"
@@ -184,18 +195,18 @@ url = "https://cloud-native.slack.com/archives/C01HF2G1R34"
 icon = "fab fa-slack"
 
 [[params.fonts]]
-name = "Fira Sans"
-sizes = [300, 400, 600, 700]
+name = "Inter"
+sizes = [300, 400, 500, 600, 700]
 type = "sans_serif"
 
 [[params.fonts]]
-name = "Fira Mono"
-sizes = [300, 400, 600, 700]
+name = "JetBrains Mono"
+sizes = [400, 500, 600]
 type = "monospace"
 
 [[params.fonts]]
-name = "Fire Sans"
-sizes = [100, 200, 300, 400, 500, 600, 700]
+name = "Fira Sans"
+sizes = [300, 400, 600, 700]
 type = "heading_font"
 
 [params.links]

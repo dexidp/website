@@ -1,0 +1,62 @@
+{{ $cover := and
+    (.HasShortcode "blocks/cover")
+    (not .Site.Params.ui.navbar_translucent_over_cover_disable)
+-}}
+{{ $baseURL := urls.Parse $.Site.Params.Baseurl -}}
+
+<nav class="td-navbar navbar-dark js-navbar-scroll
+            {{- if $cover }} td-navbar-cover {{- end }}">
+<div class="container-fluid flex-column flex-md-row">
+  <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
+    {{- /**/ -}}
+    <span class="navbar-brand__logo navbar-logo">
+      {{- if ne .Site.Params.ui.navbar_logo false -}}
+        {{ with resources.Get "icons/logo.svg" -}}
+          {{ ( . | minify).Content | safeHTML -}}
+        {{ end -}}
+      {{ end -}}
+    </span>
+    {{- /**/ -}}
+    <span class="navbar-brand__name">
+      {{- .Site.Title -}}
+    </span>
+    {{- /**/ -}}
+  </a>
+  <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
+    <ul class="navbar-nav">
+      {{ $p := . -}}
+      {{ range .Site.Menus.main -}}
+      <li class="nav-item">
+        {{ $active := or ($p.IsMenuCurrent "main" .) ($p.HasMenuCurrent "main" .) -}}
+        <a class="nav-link{{if $active}} active{{end}}" href="{{ .URL }}" {{if .HasChildren}}id="navbarDropdown{{.Name}}" role="button" data-bs-toggle="dropdown" aria-expanded="false"{{end}}>
+          <span>{{ .Name }}</span>
+        </a>
+        {{ if .HasChildren }}
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{.Name}}">
+          {{ range .Children }}
+          <li><a class="dropdown-item" href="{{ .URL }}">{{ .Name }}</a></li>
+          {{end}}
+        </ul>
+        {{ end }}
+      </li>
+      {{ end }}
+      <!-- Discussion link -->
+      <li class="nav-item">
+        <a class="nav-link" href="https://github.com/dexidp/dex/discussions">
+          <span>Discussion</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="d-none d-lg-block">
+    {{ if or (eq .Site.Language.Lang "en") (eq .Site.Language.Lang "") -}}
+      {{- partial "search-input.html" . -}}
+    {{ end -}}
+  </div>
+</div>
+</nav>
+{{ if (and (ne .Site.Params.ui.navbar_variant "dark") (not $cover)) -}}
+<div class="container-fluid">
+  <hr class="my-0">
+</div>
+{{- end }}

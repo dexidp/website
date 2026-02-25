@@ -1,0 +1,448 @@
+/* Home page - full width, no white strips */
+.td-outer {
+  max-width: 100% !important;
+  padding: 0 !important;
+}
+
+.td-main {
+  padding: 0 !important;
+  max-width: 100% !important;
+}
+
+.hero-gradient {
+  background: linear-gradient(135deg, #449FD8 0%, #F04D5C 100%);
+  padding: 2rem 0 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container {
+  padding: 3rem 15px 2rem 15px;
+}
+
+.hero-gradient::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+.hero-title {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+.hero-subtitle {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-text {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+  position: relative;
+  z-index: 1;
+}
+.hero-link {
+  color: white;
+  text-decoration: underline;
+}
+.hero-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  position: relative;
+  z-index: 1;
+}
+.btn-hero {
+  border-radius: 6px;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: 2px solid white;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: white;
+  color: #449FD8;
+  font-size: 0.9rem;
+}
+.btn-hero:hover {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: #449FD8;
+  text-decoration: none;
+}
+.hero-logo {
+  max-width: 280px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+  position: relative;
+  z-index: 1;
+}
+/* Content section - NO white gap */
+.content-section {
+  background-color: #f9fafb;
+  padding: 0 0 3rem 0;
+  margin-top: -1px;
+}
+
+
+.content-section h2 {
+  color: #111827;
+  font-size: 2rem;
+  margin: 3.5rem 0 1.5rem 0; /* More space between sections */
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid #449FD8;
+}
+
+.content-section h2:first-of-type {
+  margin-top: 0.5rem; /* Minimal margin for first heading - no gap */
+}
+
+/* Why Dex section - nice formatting for feature points */
+.content-section h2:first-of-type + p {
+  font-size: 1.05rem;
+  color: #4B5563;
+  margin-bottom: 1.5rem;
+}
+
+.content-section h2:first-of-type ~ h3 {
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #449FD8;
+  margin: 1rem 0;
+}
+
+.content-section h2:first-of-type ~ h3:nth-of-type(2) {
+  border-left-color: #F04D5C;
+}
+
+.content-section h2:first-of-type ~ h3:nth-of-type(3) {
+  border-left-color: #8B5CF6;
+}
+
+.content-section h2:first-of-type ~ h3:nth-of-type(4) {
+  border-left-color: #10B981;
+}
+
+.content-section h3 {
+  color: #1F2937;
+  font-size: 1.25rem;
+  margin: 1rem 0 0.75rem 0;
+}
+.content-section p {
+  color: #4B5563;
+  line-height: 1.6;
+  margin: 0.75rem 0;
+}
+.content-section a {
+  color: #449FD8;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.content-section a:hover {
+  text-decoration: underline;
+}
+
+/* Remove underline from provider cards */
+.provider-card,
+.provider-card:hover {
+  text-decoration: none !important;
+}
+/* Use cases grid - FORMATTED PROPERLY */
+.use-cases-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+.use-case-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+.use-case-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-color: #449FD8;
+}
+.use-case-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+.use-case-card h3 {
+  color: #1F2937;
+  font-size: 1.25rem;
+  margin: 0 0 0.75rem 0;
+  font-weight: 600;
+  line-height: 1.4;
+  cursor: default;
+}
+
+.use-case-card p {
+  color: #6B7280;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+}
+/* Providers grid */
+.providers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+.provider-card {
+  background: white;
+  padding: 1.5rem 1rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: block;
+}
+.provider-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+}
+.provider-card i {
+  color: #449FD8;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.provider-card h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #1F2937;
+  font-weight: 600;
+  cursor: default;
+}
+/* View all - simple text link */
+.providers-more {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.btn-more-providers {
+  color: #449FD8;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: color 0.2s ease;
+}
+
+.btn-more-providers:hover {
+  color: #3A8BC7;
+  text-decoration: underline;
+}
+/* CNCF Badge */
+.cncf-badge {
+  margin: 3rem 0 2rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #EFF6FF 0%, #FEE2E2 100%);
+  border: 3px solid #449FD8;
+  border-radius: 12px;
+  text-align: center;
+  font-size: 1.25rem;
+  color: #1F2937;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+.cncf-badge strong {
+  color: #449FD8;
+  font-size: 1.3rem;
+}
+
+.cncf-badge img {
+  max-width: 100%;
+  height: auto;
+  max-height: 60px;
+}
+
+/* Anchor links - WITH # ON HOVER */
+.content-section h2,
+.content-section h3,
+.td-content h2,
+.td-content h3,
+.td-content h4,
+.td-content h5,
+.td-content h6 {
+  position: relative;
+  scroll-margin-top: 120px;
+  cursor: pointer;
+}
+/* Link icon before heading */
+.content-section h2::before,
+.content-section h3::before,
+.td-content h2::before,
+.td-content h3::before,
+.td-content h4::before,
+.td-content h5::before,
+.td-content h6::before {
+  content: '🔗';
+  position: absolute;
+  left: -1.8em;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-size: 0.8em;
+  cursor: pointer;
+}
+
+.content-section h2:hover::before,
+.content-section h3:hover::before,
+.td-content h2:hover::before,
+.td-content h3:hover::before,
+.td-content h4:hover::before,
+.td-content h5:hover::before,
+.td-content h6:hover::before {
+  opacity: 1;
+}
+
+/* Hide link icon in cards */
+.use-case-card h3::before,
+.provider-card h4::before {
+  content: none !important;
+}
+
+/* Hash symbol after heading on hover */
+.content-section h2::after,
+.content-section h3::after,
+.td-content h2::after,
+.td-content h3::after,
+.td-content h4::after,
+.td-content h5::after,
+.td-content h6::after {
+  content: ' #';
+  color: #449FD8;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-size: 0.75em;
+  font-weight: normal;
+  margin-left: 0.5em;
+}
+
+.content-section h2:hover::after,
+.content-section h3:hover::after,
+.td-content h2:hover::after,
+.td-content h3:hover::after,
+.td-content h4:hover::after,
+.td-content h5:hover::after,
+.td-content h6:hover::after {
+  opacity: 0.6;
+}
+
+/* Hide hash symbol in cards */
+.use-case-card h3::after,
+.provider-card h4::after {
+  content: none !important;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-gradient {
+    margin: 0; /* No negative margins on mobile */
+    padding: 0; /* Container handles padding */
+  }
+
+  .hero-gradient .hero-container {
+    padding: 2rem 1.25rem 1.5rem 1.25rem !important; /* Force padding on mobile */
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+  }
+
+  .hero-text {
+    font-size: 0.95rem;
+  }
+
+  .hero-logo {
+    max-width: 180px;
+    margin-bottom: 2rem; /* Space before buttons */
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .btn-hero {
+    width: 100%;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .use-cases-grid,
+  .providers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  // Ensure padding for container in content-section on mobile
+  .content-section {
+    margin-left: 0;
+    margin-right: 0;
+
+    .container {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+  }
+
+  .cncf-badge {
+    padding: 1.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .cncf-badge strong {
+    font-size: 1.1rem;
+  }
+
+  .cncf-badge img {
+    max-height: 50px;
+  }
+
+  // Getting Started section - links in column on mobile
+  // Target the paragraph after "Getting Started" h2
+  .content-section h2 + p strong {
+    display: block;
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  .content-section h2 + p {
+    text-align: center;
+    line-height: 2;
+  }
+}

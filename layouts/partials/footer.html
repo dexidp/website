@@ -1,7 +1,7 @@
 {{ $year := now.Year }}
 
 <footer class="td-footer row d-print-none">
-  <div class="container col-5">
+  <div class="container col-12 col-md-8 col-lg-6 px-4">
     {{ with site.Copyright }}
     <p><small>
       &copy; {{ $year }} {{ . }}
@@ -13,3 +13,6 @@
     <br/>
   </div>
 </footer>
+
+<script src="{{ "js/anchors.js" | relURL }}"></script>
+
