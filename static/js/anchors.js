@@ -1,74 +1,69 @@
-// Anchor link functionality - fixed to not interfere with internal links
-(function() {
-  function initAnchors() {
-    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    // console.log('Anchor links initialized for', headings.length, 'headings');
-    headings.forEach(heading => {
-      // Skip headings inside cards
-      if (heading.closest('.use-case-card') || heading.closest('.provider-card')) {
-        return;
-      }
-      // Create ID if not exists
-      if (!heading.id) {
-        heading.id = heading.textContent
-          .toLowerCase()
-          .trim()
-          .replace(/[^\w\s-]/g, '')
-          .replace(/\s+/g, '-')
-          .replace(/-+/g, '-');
-      }
-      // Make clickable
-      heading.style.cursor = 'pointer';
-      heading.title = 'Click to copy link';
-      heading.addEventListener('click', function(e) {
-        // ONLY handle direct clicks on heading, not clicks on links TO heading
-        if (e.target !== this && e.target.tagName === 'A') {
-          // This is a click on a link, let it work normally
-          return;
-        }
-        e.preventDefault();
-        const url = window.location.href.split('#')[0] + '#' + this.id;
-        // Add to URL
-        history.pushState(null, null, '#' + this.id);
-        // Smooth scroll to top of viewport
-        this.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        console.log('Clicked heading:', this.textContent, 'URL:', url);
-        // Copy to clipboard
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(url).then(() => {
-            console.log('Copied to clipboard:', url);
-          }).catch(err => {
-            console.error('Failed to copy:', err);
-          });
-        }
-      });
-    });
-    // Handle direct links with hash on page load or when clicking internal links
-    function handleHashChange() {
-      if (window.location.hash) {
-        setTimeout(() => {
-          const target = document.querySelector(window.location.hash);
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        }, 100);
-      }
+// Heading anchors — the `<a class="heading-anchor">` element is injected
+// at build time by the render-heading.html render hook. This script only
+// handles two runtime behaviours:
+//
+//   1. Click on `.heading-anchor` → copy permalink to clipboard + scroll
+//      to the section, with a brief "copied" feedback.
+//   2. `hashchange` (or initial page load with a hash) → scroll to the
+//      target, honouring `scroll-margin-top` via `scrollIntoView`.
+//
+// Scroll behaviour adapts to `prefers-reduced-motion` so users with motion
+// sensitivity get an instant jump instead of a smooth animation.
+(function () {
+  'use strict';
+
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  function scrollBehavior() {
+    return reducedMotionQuery.matches ? 'auto' : 'smooth';
+  }
+
+  function copyPermalink(anchor) {
+    const hash = anchor.getAttribute('href');
+    if (!hash || hash[0] !== '#') return;
+    const url = window.location.href.split('#')[0] + hash;
+    history.pushState(null, '', hash);
+
+    const target = document.getElementById(hash.slice(1));
+    if (target) {
+      target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
     }
-    // On page load
-    handleHashChange();
-    // When hash changes (e.g., clicking internal links)
-    window.addEventListener('hashchange', handleHashChange);
+
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(function () {
+        anchor.classList.add('copied');
+        setTimeout(function () { anchor.classList.remove('copied'); }, 1200);
+      }).catch(function () { /* clipboard failed — silent */ });
+    }
   }
-  // Run on load
+
+  function scrollToHash() {
+    if (!window.location.hash) return;
+    let target;
+    try {
+      target = document.querySelector(window.location.hash);
+    } catch (_) {
+      return;
+    }
+    if (!target) return;
+    requestAnimationFrame(function () {
+      target.scrollIntoView({ behavior: scrollBehavior(), block: 'start' });
+    });
+  }
+
+  function init() {
+    document.addEventListener('click', function (e) {
+      const anchor = e.target.closest('.heading-anchor');
+      if (!anchor) return;
+      e.preventDefault();
+      copyPermalink(anchor);
+    });
+    scrollToHash();
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAnchors);
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    initAnchors();
+    init();
   }
+  window.addEventListener('hashchange', scrollToHash);
 })();

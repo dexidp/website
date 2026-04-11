@@ -3,7 +3,10 @@ publish = "public"
 command = "make production-build"
 
 [build.environment]
-HUGO_VERSION = "0.124.1"
+# Keep in sync with the Hugo version used locally. Must be ≥ 0.125 because
+# Docsy's templates reference APIs (Site.Config.Services.Disqus.Shortname,
+# render-heading hook, etc.) that older Hugo doesn't ship. See STYLES.md.
+HUGO_VERSION = "0.134.2"
 NODE_VERSION = "20"
 
 [context.deploy-preview]

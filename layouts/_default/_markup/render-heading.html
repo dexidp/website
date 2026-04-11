@@ -1,0 +1,23 @@
+{{- /*
+  Render hook for markdown headings (h1-h6). Emits:
+
+    <h{level} id="{anchor}">
+      {text}
+      <a class="heading-anchor" href="#{anchor}" aria-label="Copy link" tabindex="-1"></a>
+    </h{level}>
+
+  The trailing <a> is a real element, not a pseudo, so its click target is
+  isolated from the parent heading's hit box and never steals clicks from
+  adjacent paragraph links.
+
+  h1 is emitted without an anchor (it's the page title — nobody links to it).
+  Headings that already contain a link inside (rare but possible in markdown
+  like `## [Title](url)`) also skip the anchor to avoid double links.
+*/ -}}
+{{- $hasLink := or (findRE "<a " .Text) (findRE "<a>" .Text) -}}
+<h{{ .Level }} id="{{ .Anchor | safeURL }}">
+  {{- .Text | safeHTML -}}
+  {{- if and (ge .Level 2) (not $hasLink) -}}
+    <a class="heading-anchor" href="#{{ .Anchor | safeURL }}" aria-label="Copy link to this section" tabindex="-1"></a>
+  {{- end -}}
+</h{{ .Level }}>

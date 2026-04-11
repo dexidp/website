@@ -1,0 +1,396 @@
+/* ==========================================================================
+   Docsy docs content area — everything inside .td-content, plus the left
+   sidebar nav, the right TOC, alerts, tables, code blocks, and dark-theme
+   image treatment.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Kill Docsy's legacy scroll-offset hack for heading ids. It inserts a
+   `h{N}[id]::before { display: block; height: 5rem; margin-top: -5rem }`
+   pseudo that extends the heading's hit box ~80px UPWARD and intercepts
+   clicks on any link in the paragraph above. We already use the modern
+   `scroll-margin-top` for the same purpose (set below).
+   -------------------------------------------------------------------------- */
+
+@media (min-width: $bp-sm) {
+  .td-content :is(h2, h3, h4, h5, h6)[id]::before {
+    content: none;
+    display: none;
+    margin-top: 0;
+    height: auto;
+    visibility: visible;
+  }
+}
+
+/* Modern scroll offset for the fixed navbar. Replaces Docsy's legacy hack
+   that was killed above. No `position: relative` needed — heading-anchor is
+   a plain inline element. */
+:is(.content-section, .td-content) :is(h2, h3, h4, h5, h6) {
+  scroll-margin-top: 90px;
+}
+
+/* --------------------------------------------------------------------------
+   .td-content — headings, paragraphs, tables, pre, blockquote
+   -------------------------------------------------------------------------- */
+
+.td-content {
+  h1 { font-size: 2.25rem; font-weight: 700; margin-bottom: 1.25rem; }
+  h2 { font-size: var(--text-2xl); font-weight: 600; margin-top: 2.5rem; }
+  h3 { font-size: 1.25rem;  font-weight: 600; margin-top: 2rem; }
+
+  p, li {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  strong { color: var(--text-primary); }
+
+  pre {
+    border-radius: var(--radius-md);
+    /* No padding-right here — moved onto the inner <code> (see below) so
+       that when long lines overflow horizontally, the scrolled text gets a
+       matching 1.25rem of breathing room on the right edge. Padding-right
+       on the scroll container itself is not part of the scrollable area
+       in every browser, causing text to hug the right edge on scroll. */
+    padding: 1rem 0 1rem 1.25rem;
+    box-shadow: var(--shadow-sm);
+    overflow-x: auto;
+  }
+
+  pre > code {
+    display: inline-block;
+    min-width: calc(100% - 1.25rem);
+    padding-right: 1.25rem;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th, td {
+      padding: 0.6rem 0.8rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    th {
+      background-color: var(--bg-muted);
+      font-weight: 600;
+      text-align: left;
+    }
+  }
+
+  blockquote {
+    border-left: 3px solid var(--dex-blue);
+    padding: 0.5rem 1rem;
+    margin: 1.25rem 0;
+    background-color: var(--bg-muted);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    color: var(--text-secondary);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar (left)
+   -------------------------------------------------------------------------- */
+
+.td-sidebar {
+  background-color: var(--bg-muted);
+  border-right: 1px solid var(--border-subtle);
+}
+
+.td-sidebar-nav {
+  padding-left: 0.5rem;
+
+  .td-sidebar-link {
+    color: var(--text-secondary);
+    border-radius: var(--radius-sm);
+    padding: 0.35rem 0.6rem;
+    font-weight: 500;
+    transition: background-color 0.15s ease, color 0.15s ease;
+
+    &:hover {
+      background-color: var(--blue-tint-2);
+      color: var(--text-primary);
+    }
+
+    &.active {
+      background-color: var(--blue-tint-3);
+      color: var(--dex-blue-700);
+      font-weight: 600;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Right sidebar "On this page" TOC
+   Docsy's `.td-toc #TableOfContents a:hover { color: initial }` resolves to
+   canvastext (≈ black) and makes links disappear on dark backgrounds;
+   we override with higher specificity.
+   -------------------------------------------------------------------------- */
+
+.td-sidebar-toc,
+.td-toc {
+  background-color: transparent;
+  border-left: 1px solid var(--border-subtle);
+}
+
+/* Docsy's own rule `.td-toc #TableOfContents a:hover { color: initial }` needs
+   equal-or-higher specificity to be overridden; we match it with the ID in
+   the selector so the hover colour resolves to brand blue, not canvastext. */
+:is(.td-toc, .td-sidebar-toc) #TableOfContents a {
+  color: var(--text-secondary);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.15s ease, color 0.15s ease;
+
+  &:hover,
+  &:focus {
+    background-color: var(--blue-tint-3);
+    color: var(--dex-blue);
+    text-decoration: none;
+  }
+
+  &.active {
+    color: var(--dex-blue);
+    font-weight: 600;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Alerts — Docsy hardcodes `background: #fff`, making them invisible on the
+   light page background and garish on dark. Mixin emits one variant per
+   semantic colour.
+   -------------------------------------------------------------------------- */
+
+@mixin alert-variant($bg, $accent, $heading-light, $heading-dark) {
+  background-color: $bg;
+  border-left-color: $accent;
+
+  .alert-heading { color: $heading-light; }
+
+  :root[data-theme="dark"] & .alert-heading { color: $heading-dark; }
+}
+
+:is(.td-content, .content) .alert {
+  background-color: var(--bg-muted);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--dex-blue);
+  border-radius: var(--radius-sm);
+  padding: 1.1rem 1.25rem;
+  font-weight: 400;
+  margin: 1.5rem 0;
+
+  p:last-child { margin-bottom: 0; }
+}
+
+:is(.td-content, .content) .alert-heading {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem;
+  color: var(--text-primary);
+  display: block;
+}
+
+:is(.td-content, .content) .alert-primary {
+  @include alert-variant(var(--blue-tint-2), var(--dex-blue), var(--dex-blue-700), var(--dex-blue-400));
+}
+
+:is(.td-content, .content) :is(.alert-secondary, .alert-danger) {
+  @include alert-variant(var(--red-tint-2), var(--dex-red), var(--dex-red-600), var(--dex-red-300));
+}
+
+:is(.td-content, .content) .alert-info {
+  @include alert-variant(var(--color-info-bg), var(--color-info), var(--color-info-text), var(--color-info-text-dk));
+}
+
+:is(.td-content, .content) .alert-success {
+  @include alert-variant(var(--color-success-bg), var(--color-success), var(--color-success-text), var(--color-success-text-dk));
+}
+
+:is(.td-content, .content) .alert-warning {
+  @include alert-variant(var(--color-warning-bg), var(--color-warning), var(--color-warning-text), var(--color-warning-text-dk));
+}
+
+/* --------------------------------------------------------------------------
+   Tables — Bootstrap 5 uses CSS custom properties on .table / .td-table as
+   the source of truth; overriding native `color` / `background-color` loses
+   to Bootstrap's `--bs-table-*` cascade, so we set those directly.
+
+   Docsy v0.11+ adds `.td-initial` as an opt-out class and scopes its base
+   rules with `table:not(.td-initial)` — we have to match that specificity
+   or we lose the cascade war.
+   -------------------------------------------------------------------------- */
+
+.td-content :is(table:not(.td-initial), .td-table:not(.td-initial), .table) {
+  --bs-table-color:         var(--text-primary);
+  --bs-table-bg:            transparent;
+  --bs-table-striped-color: var(--text-primary);
+  --bs-table-striped-bg:    rgba(148, 163, 184, 0.06);
+  --bs-table-hover-color:   var(--text-primary);
+  --bs-table-hover-bg:      var(--blue-tint-2);
+  --bs-table-border-color:  var(--border-subtle);
+
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+.td-content table:not(.td-initial) th,
+.td-content table:not(.td-initial) thead th {
+  background-color: var(--bg-muted);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+  font-weight: 600;
+}
+
+.td-content table:not(.td-initial) td {
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+
+  code {
+    color: var(--dex-red-600);
+    background-color: var(--red-tint-2);
+  }
+}
+
+:root[data-theme="dark"] .td-content table:not(.td-initial) td code {
+  color: var(--dex-red-300);
+  background-color: rgba(252, 165, 165, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Code blocks in dark theme — Chroma generates inline `style=""` on .highlight,
+   so we use `!important` to beat it. One-time cost, documented.
+   -------------------------------------------------------------------------- */
+
+:root[data-theme="dark"] .td-content :is(pre, .highlight pre, .highlight, div.highlight) {
+  background-color: #0D1424 !important;
+  color: #E2E8F0;
+  border: 1px solid var(--border-subtle);
+}
+
+:root[data-theme="dark"] .td-content code {
+  background-color: var(--bg-code);
+  color: var(--dex-red-300);
+}
+
+:root[data-theme="dark"] .td-content pre code {
+  background-color: transparent;
+  color: inherit;
+}
+
+:root[data-theme="dark"] .td-content :is(p, li, td) code {
+  color: var(--dex-red-300);
+  background-color: rgba(252, 165, 165, 0.1);
+}
+
+/* --------------------------------------------------------------------------
+   Click-to-copy button on code blocks. Docsy ships `btn btn-dark btn-sm`
+   with a grey shadow that visually screams in every theme. Tone it down:
+   invisible until hover, subtle muted glyph. Code blocks stay onedark in
+   both themes, so the button is always white-on-translucent.
+   -------------------------------------------------------------------------- */
+
+.td-content .highlight {
+  position: relative;
+
+  .click-to-copy {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 1;
+  }
+
+  &:hover .click-to-copy,
+  &:focus-within .click-to-copy {
+    opacity: 1;
+  }
+
+  button.td-click-to-copy {
+    position: static;
+    padding: 0.25rem 0.45rem;
+    margin: 0;
+    font-size: 0.8rem;
+    line-height: 1;
+    border-radius: var(--radius-sm);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background-color: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.55);
+    box-shadow: none;
+    backdrop-filter: blur(4px);
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:active {
+      background-color: rgba(255, 255, 255, 0.18);
+      color: #FFFFFF;
+      transform: none;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Content images (docs diagrams) — keep legible on dark theme.
+   Wraps raster images with a white background card so they never sit
+   directly on a dark canvas.
+   -------------------------------------------------------------------------- */
+
+:root[data-theme="dark"] .td-content img:not([src*=".svg"]):not(.no-wrap) {
+  background-color: #FFFFFF;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  max-width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   CNCF logo swap (light-coloured art in light theme, white art in dark)
+   -------------------------------------------------------------------------- */
+
+.cncf-card {
+  .cncf-logo-light { display: block; }
+  .cncf-logo-dark  { display: none; }
+}
+
+:root[data-theme="dark"] .cncf-card {
+  .cncf-logo-light { display: none; }
+  .cncf-logo-dark  { display: block; }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile (docs content only — home is in _home.scss)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: $bp-sm-down) {
+  .td-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    h1 { font-size: 1.75rem; }
+    h2 { font-size: 1.4rem; }
+    h3 { font-size: var(--text-lg); }
+
+    p, li { font-size: var(--text-base); }
+
+    pre, code { font-size: 0.85rem; }
+
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+  }
+
+  .td-search__icon { margin-left: 12px; }
+}
