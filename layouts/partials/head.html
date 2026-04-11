@@ -47,6 +47,13 @@
 {{ template "_internal/opengraph.html" . -}}
 {{ template "_internal/schema.html" . -}}
 {{ template "_internal/twitter_cards.html" . -}}
+{{/* Hugo's internal OG template doesn't emit width/height/alt for static-
+     file images, so we augment them here. Crawlers (Slack, Twitter, LinkedIn)
+     prefer explicit dimensions to skip a pre-fetch round-trip. */}}
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dex — Federated OpenID Connect provider">
+<meta name="twitter:image:alt" content="Dex — Federated OpenID Connect provider">
 {{ partialCached "head-css.html" . "asdf" -}}
 {{/* Our custom styles */}}
 {{ $custom := resources.Get "sass/dex-custom.sass" | toCSS }}

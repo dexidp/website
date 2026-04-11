@@ -67,7 +67,7 @@ languageName ="English"
 weight = 1
 [languages.en.params]
 title = "Dex"
-description = "Federate Identity Provider"
+description = "Federated OpenID Connect provider — a lightweight Go binary that sits in front of LDAP, SAML, GitHub and other identity sources, exposing them as standard OIDC."
 
 [markup]
   [markup.goldmark]
@@ -107,8 +107,10 @@ section = ["HTML", "print", "RSS"]
 [params]
 privacy_policy = "https://policies.google.com/privacy"
 
-# First one is picked as the Twitter card image if not set on page.
-# images = ["images/project-illustration.png"]
+# Default Open Graph / Twitter card image (picked by Hugo's internal
+# opengraph and twitter_cards templates when a page doesn't set its own).
+# Override per-page by adding `images: [...]` to front matter.
+images = ["img/social/og-image.png"]
 
 # Menu title if your navbar has a versions selector to access old versions of your site.
 # This menu appears only if you have at least one [params.versions] set.
