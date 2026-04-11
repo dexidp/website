@@ -1,5 +1,6 @@
 ---
 title: Dex
+description: Federated OpenID Connect provider — a single Go binary that sits in front of LDAP, SAML, GitHub, Google and other identity sources, exposing them as standard OIDC.
 ---
 
 <section class="band band--light">
