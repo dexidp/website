@@ -1,0 +1,127 @@
+/* ==========================================================================
+   Design tokens — CSS custom properties for light and dark themes.
+   Everything else in the stylesheet should reference these, not inline hexes.
+   ========================================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ---------- Brand ---------- */
+  --dex-blue:        #449FD8;
+  --dex-blue-300:    #9DD0F0;
+  --dex-blue-400:    #7CC5ED;
+  --dex-blue-600:    #2E86C0;
+  --dex-blue-700:    #1F6FA3;
+  --dex-red:         #F04D5C;
+  --dex-red-300:     #FCA5A5;
+  --dex-red-400:     #FF8A94;
+  --dex-red-500:     #FF5B6A;
+  --dex-red-600:     #D63848;
+
+  /* ---------- Brand tints (reusable alpha overlays) ---------- */
+  --blue-tint-1:     rgba(68, 159, 216, 0.04);
+  --blue-tint-2:     rgba(68, 159, 216, 0.08);
+  --blue-tint-3:     rgba(68, 159, 216, 0.12);
+  --blue-tint-4:     rgba(68, 159, 216, 0.20);
+  --red-tint-1:      rgba(240, 77, 92, 0.04);
+  --red-tint-2:      rgba(240, 77, 92, 0.08);
+  --red-tint-3:      rgba(240, 77, 92, 0.12);
+  --red-tint-4:      rgba(240, 77, 92, 0.20);
+
+  /* ---------- Semantic alert colors ---------- */
+  --color-info:          #0EA5E9;
+  --color-info-text:     #0369A1;
+  --color-info-text-dk:  #7DD3FC;
+  --color-info-bg:       rgba(56, 189, 248, 0.08);
+
+  --color-success:          #10B981;
+  --color-success-text:     #047857;
+  --color-success-text-dk:  #6EE7B7;
+  --color-success-bg:       rgba(16, 185, 129, 0.08);
+
+  --color-warning:          #F59E0B;
+  --color-warning-text:     #B45309;
+  --color-warning-text-dk:  #FCD34D;
+  --color-warning-bg:       rgba(245, 158, 11, 0.09);
+
+  /* ---------- Neutrals (light theme) ---------- */
+  --bg-page:         #FFFFFF;
+  --bg-muted:        #F8FAFC;
+  --bg-card:         #FFFFFF;
+  --bg-code:         #F1F5F9;
+  --border-subtle:   #E5E7EB;
+  --border-strong:   #CBD5E1;
+
+  --text-primary:    #0F172A;
+  --text-secondary:  #475569;
+  /* #55647A gives ~5.7:1 on --bg-muted (WCAG AA with cushion). The lighter
+     Slate-500 #64748B was only 4.55:1 — passed AA for normal text but failed
+     for small mono labels (.feature-label et al.) at 0.72rem. */
+  --text-muted:      #55647A;
+  --text-on-dark:    #F8FAFC;
+
+  --link:            var(--dex-blue-600);
+  --link-hover:      var(--dex-red);
+
+  /* ---------- Hero (always dark) ---------- */
+  --hero-bg:         #0B1220;
+  --hero-bg-accent:  #111A30;
+  --hero-text:       #F8FAFC;
+  --hero-text-muted: #94A3B8;
+
+  /* ---------- Typography scale ---------- */
+  --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono:  'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-2xs:  0.72rem;   /* mono labels, identifiers */
+  --text-xs:   0.8rem;    /* eyebrows, meta */
+  --text-sm:   0.875rem;  /* card titles, small captions */
+  --text-base: 0.95rem;   /* body in dense contexts */
+  --text-md:   1.05rem;   /* body in spacious contexts, section leads */
+  --text-lg:   1.15rem;   /* card headings */
+  --text-xl:   1.3rem;    /* feature/use-case headings */
+  --text-2xl:  1.625rem;  /* h2 in docs */
+  --text-3xl:  2rem;      /* h1 in docs, mobile band h2 */
+  --text-4xl:  2.5rem;    /* band h2 */
+  --text-hero: clamp(2.25rem, 4.6vw, 4rem); /* hero headline */
+
+  --tracking-tighter: -0.035em;
+  --tracking-tight:   -0.02em;
+  --tracking-normal:  -0.005em;
+  --tracking-wide:    0.06em;
+  --tracking-wider:   0.1em;
+  --tracking-widest:  0.14em;
+
+  /* ---------- Shape ---------- */
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+
+  /* ---------- Shadows ---------- */
+  --shadow-sm:  0 1px 2px rgba(15, 23, 42, 0.05);
+  --shadow-md:  0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg:  0 12px 32px rgba(15, 23, 42, 0.12);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg-page:        #0B1220;
+  --bg-muted:       #0F172A;
+  --bg-card:        #111A30;
+  --bg-code:        #0F172A;
+  --border-subtle:  #1E293B;
+  --border-strong:  #334155;
+
+  --text-primary:   #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-muted:     #94A3B8;
+
+  --link:           var(--dex-blue-400);
+  --link-hover:     var(--dex-red-400);
+
+  --shadow-sm:  0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md:  0 4px 12px rgba(0, 0, 0, 0.5);
+  --shadow-lg:  0 12px 32px rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,518 @@
+/* ==========================================================================
+   Components — navbar, search, theme toggle, heading anchor, cards, footer,
+   doc-cards, offline-search popover.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Navbar
+   -------------------------------------------------------------------------- */
+
+.td-navbar {
+  background-color: var(--hero-bg);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+  min-height: 64px;
+
+  .nav-link {
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 500;
+    transition: color 0.15s ease;
+
+    &:hover,
+    &.active {
+      color: #FFFFFF;
+    }
+  }
+
+  /* SVG logo already contains the wordmark — the accompanying `.visually-hidden`
+     span gives the brand link an accessible name without duplicating the
+     wordmark visually. We rely on Bootstrap's `.visually-hidden` utility. */
+
+  .navbar-brand__logo svg {
+    height: 38px;
+    width: auto;
+  }
+}
+
+.logo {
+  max-height: 250px;
+}
+
+/* --------------------------------------------------------------------------
+   Theme toggle
+   -------------------------------------------------------------------------- */
+
+.theme-toggle {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.8);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  font-size: var(--text-base);
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.theme-toggle .icon-sun  { display: none; }
+.theme-toggle .icon-moon { display: inline-block; }
+
+:root[data-theme="dark"] .theme-toggle .icon-sun  { display: inline-block; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+/* Docsy has a global `#main_navbar li i { padding-right: 0.5em }` rule meant
+   for FA icons inside ordinary nav links. It ends up pushing the sun/moon
+   glyph of our theme-toggle off-centre. Kill the padding on our icons. */
+#main_navbar .theme-toggle i,
+.td-navbar .theme-toggle i {
+  padding: 0;
+}
+
+/* Mobile: theme toggle sits inside .navbar-nav as a <li>. Nav-item padding
+   would shift the square; reset it and give an explicit gap. */
+.td-navbar .navbar-nav .nav-item.d-lg-none .theme-toggle {
+  margin-left: 0.75rem;
+}
+
+/* On mobile Docsy turns the navbar-nav into a horizontally-scrollable strip.
+   We keep that UX but:
+     - make the strip a flex container so items (incl. the 36px theme-toggle)
+       are vertically centred instead of top-aligned;
+     - hide the scrollbar with `scrollbar-width: none` + `::-webkit-scrollbar`
+       instead of Docsy's `padding-bottom: 2rem` hack, which pushed items up;
+     - bump the height to 3.5rem so the 36px toggle fits without clipping.
+   Breakpoint matches Docsy's lg-down (991.98px) so there's no fractional-
+   pixel gap where only Docsy's rule would apply. */
+@media (max-width: $bp-md-down) {
+  .td-navbar .td-navbar-nav-scroll {
+    max-width: 100%;
+    height: 3.5rem;
+    overflow: hidden;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .td-navbar .navbar-nav {
+    padding: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: center;
+    scrollbar-width: none;
+    width: 100%;
+  }
+
+  .td-navbar .navbar-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .td-navbar .nav-item.d-lg-none {
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Search input — global, theme-aware base; navbar context adds a dark tint.
+   Docsy uses `text-indent: 1.25em` to clear the absolutely-positioned icon;
+   we use explicit padding-left instead so the placeholder can never slide
+   under the icon.
+   -------------------------------------------------------------------------- */
+
+.td-search__input,
+input.td-search__input.form-control {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.75rem 0.45rem 2.75rem;
+  text-indent: 0;
+  font-size: 0.9rem;
+  transition: background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* In dark theme `--bg-card` (#111A30) is almost identical to the sidebar
+   `--bg-muted` (#0F172A) — the input disappears visually. Use a lighter
+   translucent overlay so the input always reads against its backdrop. */
+:root[data-theme="dark"] .td-search__input,
+:root[data-theme="dark"] input.td-search__input.form-control {
+  background-color: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+:root[data-theme="dark"] .td-search__input:focus,
+:root[data-theme="dark"] input.td-search__input.form-control:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(68, 159, 216, 0.6);
+}
+
+/* Defensive: Docsy's base `text-indent: 1.25em` lives on a selector with
+   equal specificity; we always keep it zero. */
+.td-search .td-search__input,
+.td-search .td-search-input {
+  text-indent: 0;
+}
+
+.td-search__input::placeholder {
+  color: var(--text-muted);
+  opacity: 1;
+}
+
+.td-search__input:focus,
+input.td-search__input.form-control:focus {
+  background-color: var(--bg-card);
+  border-color: var(--dex-blue);
+  color: var(--text-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(68, 159, 216, 0.18);
+}
+
+.td-search:focus-within .td-search__icon {
+  display: flex;
+  color: var(--text-muted);
+}
+
+.td-search__icon {
+  left: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+  color: var(--text-muted);
+  position: absolute;
+  pointer-events: none;
+  font-size: 0.95rem;
+}
+
+/* Docsy sets `.td-search--offline:focus-within .td-search__icon` to a dark
+   placeholder colour; override to keep our muted value in dark themes. */
+.td-search--offline:focus-within .td-search__icon {
+  color: var(--text-muted);
+}
+
+@media (max-width: $bp-sm-down) {
+  .td-search__input,
+  input.td-search__input.form-control {
+    /* iOS forces 16px form-controls to avoid zoom-on-focus; the lupe icon
+       becomes relatively wider, so bump the left padding to match. */
+    font-size: 1rem;
+    padding-left: 3rem;
+  }
+}
+
+/* Navbar context: dark hero bar, tinted input */
+.td-navbar .td-search__input,
+.td-navbar input[type="search"] {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #FFFFFF;
+}
+
+.td-navbar .td-search__input::placeholder,
+.td-navbar input[type="search"]::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.td-navbar .td-search__input:focus,
+.td-navbar input[type="search"]:focus {
+  background-color: rgba(255, 255, 255, 0.14);
+  border-color: rgba(68, 159, 216, 0.6);
+  box-shadow: 0 0 0 3px rgba(68, 159, 216, 0.25);
+  color: #FFFFFF;
+}
+
+.td-navbar .td-search__icon {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* Sidebar context: stretch input to fill available width */
+.td-sidebar__search {
+  padding: 0.5rem 0;
+}
+
+.td-sidebar__search .td-search {
+  flex: 1 1 auto;
+}
+
+/* --------------------------------------------------------------------------
+   Offline search — Bootstrap popover with .td-offline-search-results class
+   -------------------------------------------------------------------------- */
+
+.popover.td-offline-search-results {
+  --bs-popover-bg: var(--bg-card);
+  --bs-popover-border-color: var(--border-subtle);
+  --bs-popover-header-bg: var(--bg-muted);
+  --bs-popover-header-color: var(--text-primary);
+  --bs-popover-body-color: var(--text-primary);
+
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  color: var(--text-primary);
+  max-width: 520px;
+  min-width: 320px;
+
+  .popover-body { color: var(--text-primary); padding: 1rem 1.1rem; }
+
+  .popover-arrow::after,
+  .popover-arrow::before { border-bottom-color: var(--border-subtle); }
+
+  a {
+    color: var(--link);
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover { color: var(--dex-red); text-decoration: underline; }
+  }
+
+  small,
+  .text-muted {
+    color: var(--text-muted) !important;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xs);
+  }
+
+  p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 0.35rem 0 0;
+  }
+
+  .mt-4 {
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--border-subtle);
+
+    &:last-child { border-bottom: none; padding-bottom: 0; }
+  }
+
+  .td-offline-search-results__close-button {
+    cursor: pointer;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
+
+    &:hover { color: var(--dex-red); }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Heading anchor — real <a class="heading-anchor"> injected by JS / render
+   hook. Click copies the section permalink. Because it's a real link, the
+   parent heading never intercepts clicks on adjacent elements.
+   -------------------------------------------------------------------------- */
+
+.heading-anchor {
+  display: inline-block;
+  opacity: 0;
+  margin-left: 0.4em;
+  font-size: 0.75em;
+  font-weight: 400;
+  color: var(--dex-blue);
+  text-decoration: none;
+  vertical-align: middle;
+  transition: opacity 0.15s ease, color 0.15s ease, transform 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.heading-anchor::before { content: '#'; }
+
+:is(.content-section, .td-content) :is(h2, h3, h4, h5, h6):hover .heading-anchor,
+.heading-anchor:focus {
+  opacity: 0.55;
+  text-decoration: none;
+}
+
+.heading-anchor:hover {
+  opacity: 1;
+  color: var(--dex-red);
+  text-decoration: none;
+}
+
+.heading-anchor.copied::before {
+  content: '✓';
+  color: var(--color-success);
+}
+
+/* --------------------------------------------------------------------------
+   Bootstrap cards (community shortcode uses these too — must NOT be scoped
+   to .td-content). Override via Bootstrap 5 CSS custom properties.
+   Also kill Docsy's `max-width: 80%` cap and `me-4` trailing gap.
+   -------------------------------------------------------------------------- */
+
+:is(.card, .td-card) {
+  --bs-card-bg:                 var(--bg-card);
+  --bs-card-color:              var(--text-primary);
+  --bs-card-cap-bg:             var(--bg-muted);
+  --bs-card-cap-color:          var(--text-primary);
+  --bs-card-border-color:       var(--border-subtle);
+  --bs-card-border-radius:      0;
+  --bs-card-inner-border-radius: 0;
+
+  background-color: var(--bg-card);
+  border-color: var(--border-subtle);
+  color: var(--text-primary);
+  border-radius: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+:is(.content, .td-content) :is(.td-card.card, .td-card-group.card-group) {
+  max-width: 100%;
+  width: 100%;
+}
+
+.td-card.card.me-4 { margin-right: 0 !important; }
+
+.td-card-group.card-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  > .td-card.card {
+    flex: 1 1 320px;
+    margin: 0;
+    border-left: 1px solid var(--border-subtle);
+  }
+}
+
+:is(.card, .td-card) .card-header {
+  background-color: var(--bg-muted);
+  border-bottom-color: var(--border-subtle);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+:is(.card, .td-card) .card-body {
+  color: var(--text-secondary);
+
+  p, .card-text { color: var(--text-secondary); }
+}
+
+:is(.card, .td-card) a { color: var(--link); }
+
+.pageinfo {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+
+  a { color: var(--link); }
+}
+
+/* Community page uses layouts/simple — content lives in .content, not
+   .td-content. Match our neutrals. */
+.content {
+  color: var(--text-primary);
+
+  p, li { color: var(--text-secondary); }
+  strong { color: var(--text-primary); }
+  a { color: var(--link); }
+}
+
+/* --------------------------------------------------------------------------
+   Doc landing cards (/docs/) — minimalist editorial listing
+   -------------------------------------------------------------------------- */
+
+.doc-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0;
+  margin: 2.5rem 0 3rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.doc-card {
+  display: block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  border-right: 1px solid var(--border-subtle);
+  border-radius: 0;
+  padding: 1.75rem 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background-color 0.15s ease;
+  position: relative;
+
+  &:last-child { border-right: none; }
+
+  &:hover {
+    background-color: var(--red-tint-1);
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.doc-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: lowercase;
+  color: var(--text-muted);
+  margin: 0 0 0.6rem;
+  display: block;
+}
+
+.doc-card h3 {
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 0.45rem;
+  letter-spacing: var(--tracking-tight);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &::after {
+    content: '→';
+    color: var(--text-muted);
+    font-weight: 400;
+    transition: transform 0.15s ease, color 0.15s ease;
+    font-family: var(--font-mono);
+  }
+}
+
+.doc-card:hover h3::after {
+  color: var(--dex-red);
+  transform: translateX(3px);
+}
+
+.doc-card p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: $bp-sm-down) {
+  .doc-cards { grid-template-columns: 1fr; }
+  .doc-card { border-right: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.td-footer {
+  background-color: var(--hero-bg);
+  color: var(--hero-text-muted);
+  padding: 2rem 0 1rem;
+
+  a { color: var(--dex-blue); }
+  small { color: var(--hero-text-muted); }
+}

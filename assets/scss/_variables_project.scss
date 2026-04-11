@@ -1,12 +1,24 @@
 /* Docsy-delta full file override: we're not tracking changes to the Docsy file of the same name. */
 
-// Original Dex brand colors
-$dex-colors: (
-  'red': #F04D5C,
-  'blue': #449FD8,
-  'gray': #D3D3D3,
-);
+/* ----- Dex brand palette ----- */
+$dex-blue: #449FD8;
+$dex-blue-600: #2E86C0;
+$dex-blue-700: #1F6FA3;
+$dex-red: #F04D5C;
+$dex-red-600: #D63848;
 
-$primary: map-get($dex-colors, 'blue');
-$secondary: map-get($dex-colors, 'red');
-$td-enable-google-fonts: true;
+/* ----- Responsive breakpoints (referenced from partials) ----- */
+$bp-xs: 560px;
+$bp-sm: 768px;
+$bp-md: 991px;
+$bp-lg: 1200px;
+
+/* Bootstrap / Docsy overrides */
+$primary:   $dex-blue;
+$secondary: $dex-red;
+
+$td-enable-google-fonts: false;
+
+/* Docsy uses these to build the navbar/sidebar colors */
+$dark:  #0B1220;
+$light: #F8FAFC;

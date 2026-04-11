@@ -8,19 +8,18 @@
             {{- if $cover }} td-navbar-cover {{- end }}">
 <div class="container-fluid flex-column flex-md-row">
   <a class="navbar-brand" href="{{ .Site.Home.RelPermalink }}">
-    {{- /**/ -}}
-    <span class="navbar-brand__logo navbar-logo">
+    <span class="navbar-brand__logo navbar-logo" aria-hidden="true">
       {{- if ne .Site.Params.ui.navbar_logo false -}}
         {{ with resources.Get "icons/logo.svg" -}}
           {{ ( . | minify).Content | safeHTML -}}
         {{ end -}}
       {{ end -}}
     </span>
-    {{- /**/ -}}
-    <span class="navbar-brand__name">
+    {{/* Visually hidden but read by screen readers — gives the brand link
+         an accessible name since the SVG logo itself has no text. */}}
+    <span class="navbar-brand__name visually-hidden">
       {{- .Site.Title -}}
     </span>
-    {{- /**/ -}}
   </a>
   <div class="td-navbar-nav-scroll ms-md-auto" id="main_navbar">
     <ul class="navbar-nav">
@@ -46,17 +45,38 @@
           <span>Discussion</span>
         </a>
       </li>
+      {{/* Theme toggle — visible on mobile, flows inline with menu */}}
+      <li class="nav-item d-lg-none d-flex align-items-center">
+        <button
+          type="button"
+          class="theme-toggle"
+          data-theme-toggle
+          aria-label="Switch theme"
+          aria-pressed="false"
+          title="Toggle light / dark theme">
+          <i class="icon-sun fas fa-sun" aria-hidden="true"></i>
+          <i class="icon-moon fas fa-moon" aria-hidden="true"></i>
+        </button>
+      </li>
     </ul>
   </div>
-  <div class="d-none d-lg-block">
+  <div class="d-none d-lg-flex align-items-center">
     {{ if or (eq .Site.Language.Lang "en") (eq .Site.Language.Lang "") -}}
       {{- partial "search-input.html" . -}}
     {{ end -}}
+    <button
+      type="button"
+      class="theme-toggle"
+      data-theme-toggle
+      aria-label="Switch theme"
+      aria-pressed="false"
+      title="Toggle light / dark theme">
+      <i class="icon-sun fas fa-sun" aria-hidden="true"></i>
+      <i class="icon-moon fas fa-moon" aria-hidden="true"></i>
+    </button>
   </div>
 </div>
 </nav>
-{{ if (and (ne .Site.Params.ui.navbar_variant "dark") (not $cover)) -}}
-<div class="container-fluid">
-  <hr class="my-0">
-</div>
-{{- end }}
+{{/* Docsy upstream renders a decorative <hr> separator here when the navbar
+     is light. Our navbar is always dark so the separator just adds a thin
+     empty strip below the nav — skip it. */}}

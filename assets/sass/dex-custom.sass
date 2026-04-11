@@ -1,10 +1,15 @@
 // Custom styles for Dex website
+// Google Fonts are loaded via `<link rel="preconnect">` + `<link rel="stylesheet">`
+// in layouts/partials/head.html (parallel network, not render-blocking).
 @charset "utf-8"
 
-// Import Google Fonts
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap")
-
-// Import our custom SCSS files
+// Partials — order matters. Breakpoints and design tokens come first so
+// every downstream partial can reference them, then typography, components,
+// Docsy overrides, and finally the home-page composition.
+@import "../scss/breakpoints"
+@import "../scss/tokens"
+@import "../scss/typography"
+@import "../scss/components"
+@import "../scss/docsy-docs"
 @import "../scss/home"
 @import "../scss/styles_project"
-

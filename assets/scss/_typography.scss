@@ -1,0 +1,59 @@
+/* ==========================================================================
+   Typography — body, headings, inline code, links (inc. refined underlines
+   for running prose). All values reference tokens from _tokens.scss.
+   ========================================================================== */
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-page);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  letter-spacing: var(--tracking-normal);
+}
+
+pre, code, kbd, samp {
+  font-family: var(--font-mono);
+}
+
+code {
+  background-color: var(--bg-code);
+  padding: 0.15em 0.35em;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+a {
+  color: var(--link);
+  transition: color 0.15s ease;
+
+  &:hover {
+    color: var(--link-hover);
+  }
+}
+
+/* Refined editorial underlines for inline links inside running prose.
+   Scoped to text paragraphs and lists — buttons, cards and nav untouched. */
+:is(.td-content, .content) :is(p, li, td) > a,
+.band p:not(.section-label):not(.section-lead):not(.cncf-card-text) > a {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--blue-tint-4);
+  transition: text-decoration-color 0.15s ease, color 0.15s ease;
+}
+
+:is(.td-content, .content) :is(p, li, td) > a:hover {
+  text-decoration-color: var(--dex-red);
+  color: var(--dex-red);
+}

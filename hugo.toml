@@ -1,4 +1,5 @@
 baseURL = "https://dexidp.io/"
+title = "Dex"
 copyright = "Dex IdP Contributors"
 theme = "docsy"
 
@@ -44,14 +45,8 @@ taxonomyCloudTitle = ["Tag Cloud", "Categories"]
 taxonomyPageHeader = ["tags", "categories"]
 
 
-# Highlighting config
-pygmentsCodeFences = true
-pygmentsUseClasses = false
-# Use the new Chroma Go highlighter in Hugo.
-pygmentsUseClassic = false
-#pygmentsOptions = "linenos=table"
-# See https://help.farbox.com/pygments.html
-pygmentsStyle = "tango"
+# Syntax highlighting config lives in [markup.highlight] below —
+# the legacy `pygments*` top-level keys have been removed.
 
 # Configure how URLs look like per section.
 [permalinks]
@@ -196,7 +191,7 @@ icon = "fab fa-slack"
 
 [[params.fonts]]
 name = "Inter"
-sizes = [300, 400, 500, 600, 700]
+sizes = [400, 500, 600, 700]
 type = "sans_serif"
 
 [[params.fonts]]
@@ -204,44 +199,29 @@ name = "JetBrains Mono"
 sizes = [400, 500, 600]
 type = "monospace"
 
-[[params.fonts]]
-name = "Fira Sans"
-sizes = [300, 400, 600, 700]
-type = "heading_font"
-
 [params.links]
-# End user relevant links. These will show up on left side of footer and in the community page if you have one.
+# End-user relevant links. Shown in the footer and community page.
 [[params.links.user]]
-  name = "User mailing list"
-  url = "https://example.org/mail"
-  icon = "fa fa-envelope"
-  desc = "Discussion and help from your fellow users"
+  name = "GitHub Discussions"
+  url = "https://github.com/dexidp/dex/discussions"
+  icon = "fab fa-github"
+  desc = "Ask questions and discuss with the community"
 [[params.links.user]]
-  name ="Twitter"
-  url = "https://example.org/twitter"
-  icon = "fab fa-twitter"
-  desc = "Follow us on Twitter to get the latest news!"
-[[params.links.user]]
-  name = "Stack Overflow"
-  url = "https://example.org/stack"
-  icon = "fab fa-stack-overflow"
-  desc = "Practical questions and curated answers"
-# Developer relevant links. These will show up on right side of footer and in the community page if you have one.
+  name = "Slack"
+  url = "https://cloud-native.slack.com/archives/C01HF2G1R34"
+  icon = "fab fa-slack"
+  desc = "Chat with users and maintainers in #dex on the CNCF Slack"
+# Developer relevant links.
 [[params.links.developer]]
   name = "GitHub"
-  url = "https://github.com/google/docsy"
+  url = "https://github.com/dexidp/dex"
   icon = "fab fa-github"
-  desc = "Development takes place here!"
+  desc = "Development happens here"
 [[params.links.developer]]
-  name = "Slack"
-  url = "https://example.org/slack"
-  icon = "fab fa-slack"
-  desc = "Chat with other project developers"
-[[params.links.developer]]
-  name = "Developer mailing list"
-  url = "https://example.org/mail"
-  icon = "fa fa-envelope"
-  desc = "Discuss development issues around the project"
+  name = "Issues"
+  url = "https://github.com/dexidp/dex/issues"
+  icon = "fas fa-bug"
+  desc = "Report bugs and request features"
 
 [module]
   replacements = "github.com/FortAwesome/Font-Awesome -> ., github.com/twbs/bootstrap -> ."

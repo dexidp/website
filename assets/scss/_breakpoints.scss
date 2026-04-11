@@ -1,0 +1,24 @@
+// ==========================================================================
+// Shared breakpoint variables. Values track Bootstrap/Docsy conventions so
+// our custom rules line up with Docsy's own media queries without fractional-
+// pixel gaps. The `-down` variants use the Bootstrap `-0.02px` trick so a
+// `max-width: $bp-md-down` rule cleanly abuts a `min-width: $bp-md` rule.
+//
+// Usage:
+//
+//   @import "breakpoints";     // done once in dex-custom.sass
+//
+//   @media (max-width: $bp-md-down) { ... }   // phones + tablets
+//   @media (min-width: $bp-lg)       { ... }  // desktops
+// ==========================================================================
+
+$bp-xs:  576px;   // Phones portrait
+$bp-sm:  768px;   // Phones landscape, small tablets
+$bp-md:  992px;   // Tablets, narrow desktops
+$bp-lg:  1200px;  // Desktops
+$bp-xl:  1400px;  // Wide desktops
+
+$bp-xs-down: 575.98px;
+$bp-sm-down: 767.98px;
+$bp-md-down: 991.98px;
+$bp-lg-down: 1199.98px;
