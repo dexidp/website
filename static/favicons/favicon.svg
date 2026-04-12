@@ -2,7 +2,10 @@
 <!-- Modern vector favicon. Preferred by Chrome 80+, Firefox 41+, Safari 15+.
      PNG siblings in this folder are fallbacks for older browsers and
      platform-specific touch icons. -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 109">
+<!-- viewBox is made square (112×112) with the original glyph vertically
+     centred via a -1.5 y-offset. Favicon checkers require square canvases
+     so browsers and OS icon renderers don't stretch/letterbox the mark. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1.5 112 112">
   <path fill="#449FD8" d="M88.345,51.574c7.588-3.55,12.764-10.49,14.175-18.53C96.396,19.395,84.663,9.054,70.094,4.851
     c4.923,7.133,7.272,15.583,6.771,24.17C83.311,34.466,87.716,42.55,88.345,51.574z M27.27,38.542
     c-8.207-1.045-16.333,1.973-21.858,8.054C3.23,61.683,7.869,76.84,18.099,88.158c-0.527-8.64,1.856-17.306,6.831-24.483
