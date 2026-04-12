@@ -299,6 +299,21 @@ don't need to touch any SCSS.
   `themes/` or pull a fresh Docsy submodule, `make docsy` (or manual
   `cd themes/docsy && npm install`) must run or Hugo will try to fetch
   FortAwesome over the network and fail.
+- **Favicons** — we override Docsy's `favicons.html` partial at
+  `layouts/partials/favicons.html` with a modern minimal set (SVG icon +
+  3 PNG fallbacks + apple-touch + Safari mask-icon + manifest +
+  theme-color). PNG sizes are rendered from
+  `static/img/logos/dex-glyph-color.svg` via `rsvg-convert` and committed
+  under `static/favicons/`. Docsy also ships its own favicons (`android-*`,
+  `tile*`, `pwa-*`) which Hugo mounts into `public/favicons/` — these are
+  NOT linked from any page but stay on disk as unused by-products of the
+  theme. Safe to ignore. If you need to regenerate icons:
+
+      SRC=static/img/logos/dex-glyph-color.svg
+      for size in 16 32 48 180 192 512; do
+        rsvg-convert -w $size -h $size "$SRC" \
+          -o static/favicons/favicon-${size}x${size}.png
+      done
 
 ---
 

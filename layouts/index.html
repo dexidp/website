@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
-  {{- partial "head.html" . -}}
+<html lang="{{ .Site.Language.Lang | default "en" }}">
+  <head>
+    {{- partial "head.html" . -}}
+  </head>
   <body class="td-home">
     {{- partial "navbar.html" . -}}
 
