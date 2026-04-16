@@ -343,9 +343,10 @@
 }
 
 /* --------------------------------------------------------------------------
-   Content images (docs diagrams) — keep legible on dark theme.
-   Wraps raster images with a white background card so they never sit
-   directly on a dark canvas.
+   Content images — theme-aware diagrams use the {{< diagram >}} shortcode
+   (inline SVG, adapts to data-theme automatically). Any remaining legacy
+   PNG diagrams in markdown get a white backdrop in dark theme so they
+   stay legible; SVGs and no-wrap-tagged raster images are left alone.
    -------------------------------------------------------------------------- */
 
 :root[data-theme="dark"] .td-content img:not([src*=".svg"]):not(.no-wrap) {
@@ -353,6 +354,44 @@
   padding: 1rem;
   border-radius: var(--radius-md);
   max-width: 100%;
+}
+
+/* Diagram shortcode — theme-aware inline SVG.
+   Without an explicit `width: 100%` on the SVG, browsers fall back to the
+   UA default 300×150 CSS pixels for inline SVGs that only declare a viewBox.
+   `max-width: 100%` alone caps the width but doesn't fill the container,
+   so the diagram sits tiny and doesn't visibly grow on browser zoom.
+   We force the SVG to fill its container (capped at a reading-column width),
+   and `height: auto` derives the height from the viewBox aspect ratio. */
+
+.td-content .diagram {
+  margin: 1.75rem 0;      /* left-aligned, not centred in the reading column */
+  padding: 0;
+  max-width: 720px;
+}
+
+/* Architecture diagram — denser content, needs more real estate so icons
+   and labels don't collapse. Breaks out of the reading column but still
+   capped so icons don't balloon on a wide monitor (the viewBox is 880, so
+   past ~1040 CSS px the 26-px connector tiles start reading as buttons). */
+.td-content .diagram--wide {
+  max-width: 1040px;
+}
+
+.td-content .diagram svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;              /* sit flush left inside the wrapper */
+}
+
+.td-content .diagram figcaption {
+  margin-top: 0.85rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--text-muted);
+  text-align: center;
+  letter-spacing: 0.04em;
 }
 
 /* --------------------------------------------------------------------------
