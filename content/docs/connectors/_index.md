@@ -9,7 +9,7 @@ weight: 2000
 
 When a user logs in through Dex, the user's identity is usually stored in another user-management system: a LDAP directory, a GitHub org, etc. Dex acts as a shim between a client app and the upstream identity provider. The client only needs to understand OpenID Connect to query Dex, while Dex implements an array of protocols for querying other user-management systems.
 
-![](/img/dex-flow.png)
+{{< diagram "dex-flow" >}}
 
 A "connector" is a strategy used by Dex for authenticating a user against another identity provider. Dex implements connectors that target specific platforms such as GitHub, LinkedIn, and Microsoft as well as established protocols like LDAP and SAML.
 

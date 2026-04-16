@@ -29,7 +29,7 @@ Apps that directly use dex to authenticate a user use OAuth2 code flows to reque
 * Dex redirects user to client with a code.
 * Client exchanges code with dex for an id_token.
 
-![Dex flow](/img/dex-flow.png)
+{{< diagram "dex-flow" >}}
 
 The dex repo contains a small [example app][example-app] as a working, self contained app that performs this flow.
 
@@ -145,7 +145,7 @@ A more thorough discussion of these kinds of best practices can be found in the 
 
 Apps can also choose to consume ID tokens, letting other trusted clients handle the web flows for login. Clients pass along the ID tokens they receive from dex, usually as a bearer token, letting them act as the user to the backend service.
 
-![Dex backend flow](/img/dex-backend-flow.png)
+{{< diagram "dex-backend-flow" >}}
 
 To accept ID tokens as user credentials, an app would construct an OpenID Connect verifier similarly to the above example. The verifier validates the ID token's signature, ensures it hasn't expired, etc. An important part of this code is that the verifier only trusts the example app's client. This ensures the example app is the one who's using the ID token, and not another, untrusted client.
 
@@ -190,8 +190,6 @@ func authorize(ctx context.Context, bearerToken string) (*user, error) {
 ```
 
 [api-server]: https://kubernetes.io/docs/reference/access-authn-authz/authentication/#openid-connect-tokens
-[dex-flow]: img/dex-flow.png
-[dex-backend-flow]: img/dex-backend-flow.png
 [example-app]: https://github.com/dexidp/dex/tree/master/examples/example-app
 [oauth2-threat-model]: https://tools.ietf.org/html/rfc6819
 [go-oidc]: https://godoc.org/github.com/coreos/go-oidc

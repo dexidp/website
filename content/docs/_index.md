@@ -34,7 +34,7 @@ Dex is an identity service that uses OpenID Connect to drive authentication for 
 
 ## Architecture
 
-<img src="/img/architecture.png" alt="Dex architecture diagram">
+{{< diagram "architecture" >}}
 
 ## Getting help
 

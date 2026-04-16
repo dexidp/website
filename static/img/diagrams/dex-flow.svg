@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 220" role="img" aria-label="End-user uses a Client app; the Client app delegates authentication to Dex, which talks to an upstream Identity Provider and returns an id_token back to the Client app.">
+  <style>
+    .stroke      { fill: none; stroke: var(--text-secondary, #475569); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+    .box         { fill: var(--bg-card, #FFFFFF); stroke: var(--border-strong, #94A3B8); stroke-width: 1.5; }
+    .box-dex     { fill: var(--blue-tint-2, rgba(68,159,216,0.08)); stroke: var(--dex-blue, #449FD8); stroke-width: 1.8; }
+    .label       { fill: var(--text-primary, #0F172A); font-family: var(--font-sans, -apple-system, Helvetica, sans-serif); font-size: 13px; font-weight: 600; text-anchor: middle; }
+    .label-dex   { fill: var(--dex-blue, #449FD8); font-weight: 700; font-size: 15px; letter-spacing: -0.01em; }
+    .token       { fill: var(--dex-red, #F04D5C); font-family: var(--font-mono, Menlo, monospace); font-size: 10px; font-weight: 600; text-anchor: middle; letter-spacing: 0.04em; }
+    .flow        { fill: none; stroke: var(--text-secondary, #475569); stroke-width: 1.5; stroke-linecap: round; }
+    .flow-back   { fill: none; stroke: var(--dex-red, #F04D5C); stroke-width: 1.5; stroke-dasharray: 4 3; stroke-linecap: round; }
+    .head        { fill: var(--text-secondary, #475569); }
+    .head-back   { fill: var(--dex-red, #F04D5C); }
+  </style>
+
+  <defs>
+    <marker id="mk" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path class="head" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+    <marker id="mk-back" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path class="head-back" d="M 0 0 L 10 5 L 0 10 z"/>
+    </marker>
+  </defs>
+
+  <!-- ═══════ id_token return arrow on TOP ═══════ -->
+  <path class="flow-back" d="M 260 45 L 260 20 L 100 20 L 100 45" marker-end="url(#mk-back)"/>
+  <text class="token" x="180" y="14">id_token</text>
+
+  <!-- ═══════ Client app box — typography only ═══════ -->
+  <rect class="box" x="30" y="45" width="140" height="70" rx="3"/>
+  <text class="label" x="100" y="86">Client App</text>
+
+  <!-- ═══════ Dex box — the only box that carries an icon (brand glyph) ═══════ -->
+  <rect class="box-dex" x="190" y="45" width="140" height="70" rx="3"/>
+  <g transform="translate(247, 52) scale(0.22)">
+    <path fill="var(--dex-blue, #449FD8)" d="M88.345,51.574c7.588-3.55,12.764-10.49,14.175-18.53C96.396,19.395,84.663,9.054,70.094,4.851
+      c4.923,7.133,7.272,15.583,6.771,24.17C83.311,34.466,87.716,42.55,88.345,51.574z M27.27,38.542
+      c-8.207-1.045-16.333,1.973-21.858,8.054C3.23,61.683,7.869,76.84,18.099,88.158c-0.527-8.64,1.856-17.306,6.831-24.483
+      C22.19,55.048,23.32,45.944,27.27,38.542z M33.01,76.928c-2.997,8.079-1.755,17.193,3.642,24.215
+      c12.155,4.943,26.051,5.146,38.643-0.035c-7.818-2.516-14.886-7.518-19.887-14.731C47.233,86.23,39.124,83.032,33.01,76.928z
+       M63.122,22.202C61.615,14.044,56.069,6.819,47.892,3.47C33.778,5.711,20.745,13.966,12.76,26.631
+      c8.115-2.487,16.74-2.178,24.529,0.639C44.816,22.008,54.043,20.144,63.122,22.202z M85.891,66.457
+      c-3.086,7.399-8.722,13.188-15.678,16.61c6.194,5.604,14.805,7.758,22.852,5.834c9.054-9.587,13.884-22.198,13.9-35.009
+      C101.549,60.198,94.131,64.67,85.891,66.457z"/>
+    <circle fill="var(--dex-red, #F04D5C)" cx="56.035" cy="53.892" r="15.972"/>
+  </g>
+  <text class="label label-dex" x="260" y="98">Dex</text>
+
+  <!-- ═══════ Identity Provider box — typography only ═══════ -->
+  <rect class="box" x="350" y="45" width="140" height="70" rx="3"/>
+  <text class="label" x="420" y="86">Upstream IdP</text>
+
+  <!-- ═══════ Forward flow arrows ═══════ -->
+  <line class="flow" x1="170" y1="80" x2="188" y2="80" marker-end="url(#mk)"/>
+  <line class="flow" x1="330" y1="80" x2="348" y2="80" marker-end="url(#mk)"/>
+
+  <!-- ═══════ End-user stick figure below Client app ═══════ -->
+  <g transform="translate(80, 144)">
+    <circle class="stroke" cx="20" cy="8" r="7"/>
+    <line class="stroke" x1="20" y1="15" x2="20" y2="42"/>
+    <line class="stroke" x1="7"  y1="26" x2="33" y2="26"/>
+    <line class="stroke" x1="20" y1="42" x2="9"  y2="58"/>
+    <line class="stroke" x1="20" y1="42" x2="31" y2="58"/>
+  </g>
+  <text class="label" x="100" y="215">End-user</text>
+
+  <!-- User → Client app -->
+  <line class="flow" x1="100" y1="140" x2="100" y2="118" marker-end="url(#mk)"/>
+</svg>

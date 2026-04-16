@@ -1,0 +1,25 @@
+{{/*
+  Inline-SVG shortcode for theme-aware diagrams.
+
+  Usage:  {{< diagram "dex-flow" >}}           (default caption: none)
+          {{< diagram "architecture" "Dex sits between actors and upstream identity sources." >}}
+
+  Reads  static/img/diagrams/{{ .Get 0 }}.svg  and inlines it into the page.
+  Inlining is required because `<img src="...svg">` renders the SVG in an
+  isolated context where CSS custom properties defined on the host page
+  (like `--bg-card`, `--dex-blue`) are not visible — our diagrams depend on
+  those variables to swap between light and dark themes.
+*/}}
+{{- $slug := .Get 0 -}}
+{{- $caption := .Get 1 -}}
+{{- $path := printf "static/img/diagrams/%s.svg" $slug -}}
+{{- $svg := readFile $path -}}
+{{/* architecture.svg deliberately takes the full content width — it has
+     more nested detail than the flow diagrams so it needs more pixels
+     to stay legible. */ -}}
+{{- $cls := "diagram" -}}
+{{- if eq $slug "architecture" -}}{{- $cls = "diagram diagram--wide" -}}{{- end -}}
+<figure class="{{ $cls }}">
+  {{ $svg | safeHTML }}
+  {{ with $caption }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>
