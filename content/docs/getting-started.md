@@ -43,7 +43,7 @@ The [example config][example-config] file documents many of the configuration op
 
 ### Templated configuration
 
-The default entrypoint for distributed container images utilize [gomplate][gomplate]
+The default entrypoint for distributed container images utilizes [gomplate][gomplate]
 to pre-process configuration files (`.tpl`, `.tmpl`, `.yaml`) passed as arguments.
 This enables templating any field from the environment, for example:
 
@@ -52,6 +52,16 @@ secret: "{{ .Env.MY_SECRET_ENV }}"
 ```
 
 See [gomplate docs][gomplate-docs] for templating syntax.
+
+Gomplate preprocessing is provided by the container image entrypoint. If a
+deployment overrides the container command and runs the `dex` binary directly,
+for example `dex serve /etc/dex/config.yaml`, the entrypoint is skipped and
+gomplate templates are not rendered.
+
+Dex also expands environment variables in configuration values before parsing
+the config file. This supports `$VAR` and `${VAR}` references in YAML values,
+such as connector credentials. Set `DEX_EXPAND_ENV=false` to disable this
+built-in expansion.
 
 ## Running a client
 
