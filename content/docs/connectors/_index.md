@@ -21,7 +21,7 @@ Dex implements the following connectors:
 | ---- | ----------------------- | --------------------- | --------------------------------- | ------ | ----- |
 | [LDAP](/docs/connectors/ldap/) | yes | yes | yes | stable | |
 | [GitHub](/docs/connectors/github/) | yes | yes | yes | stable | |
-| [SAML 2.0](/docs/connectors/saml/) | no | yes | no | stable |
+| [SAML 2.0](/docs/connectors/saml/) | no | yes | no | deprecated |
 | [GitLab](/docs/connectors/gitlab/) | yes | yes | yes | beta | |
 | [OpenID Connect](/docs/connectors/oidc/) | yes | yes | yes | beta | Includes Salesforce, Azure, etc. |
 | [OAuth 2.0](/docs/connectors/oauth/) | no | yes | yes | alpha |
@@ -36,9 +36,10 @@ Dex implements the following connectors:
 | [OpenStack Keystone](/docs/connectors/keystone/) | yes | yes | no | alpha |  |
 
 
-Stable, beta, and alpha are defined as:
+Stable, deprecated, beta, and alpha are defined as:
 
 * Stable: well tested, in active use, and will not change in backward incompatible ways.
+* Deprecated: no longer actively maintained
 * Beta: tested and unlikely to change in backward incompatible ways.
 * Alpha: may be untested by core maintainers and is subject to change in backward incompatible ways.
 
