@@ -152,8 +152,35 @@ Please note that `tenant` must be configured to either `<tenant uuid>` or
 `<tenant name>` for this to work. For more details on `tenant` configuration,
 see [Configuration](#configuration).
 
-By default, dex resolve groups ids to groups names, to keep groups ids, you can
-specify the configuration option `groupNameFormat: id`.
+By default (`groupNameFormat: name`), dex resolves group ids to group names.
+To keep group ids instead, set `groupNameFormat: id`. Name resolution uses a
+single Microsoft Graph request, which fails for users in more than 1000
+groups; set `batchGroupLookups: true` (boolean) to split the lookup into
+batches of 1000 ids instead:
+
+```yaml
+connectors:
+  - type: microsoft
+    # Required field for connector id.
+    id: microsoft
+    # Required field for connector name.
+    name: Microsoft
+    config:
+      # Credentials can be string literals or pulled from the environment.
+      clientID: $MICROSOFT_APPLICATION_ID
+      clientSecret: $MICROSOFT_CLIENT_SECRET
+      redirectURI: http://127.0.0.1:5556/dex/callback
+      tenant: myorg.onmicrosoft.com
+      # Split group name lookups into batches of 1000 ids, supporting users
+      # in more than 1000 groups.
+      batchGroupLookups: true
+```
+
+{{% alert title="Note" color="primary" %}}
+Resolving names for large group counts can produce a large JWT. If an
+ingress or gateway sits in front of dex, its default header buffer size may
+be too small to accept the result and may need tuning.
+{{% /alert %}}
 
 It is possible to require a user to be a member of a particular group in order
 to be successfully authenticated in dex. For example, with the following
@@ -181,7 +208,7 @@ connectors:
 Also, `useGroupsAsWhitelist` configuration option, can restrict the groups
 claims to include only the user's groups that are in the configured `groups`.
 
-You can use the emailToLowercase (boolean) configuration option to streamline 
+You can use the `emailToLowercase` (boolean) configuration option to streamline 
 UPNs (user email) from Active Directory before putting them into an id token.
 Without this option, it can be tough to match the email claim because a client 
 application doesn't know whether an email address has been added with 
