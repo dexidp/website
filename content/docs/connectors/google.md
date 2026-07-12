@@ -83,4 +83,5 @@ time they log in.
 To change this behavior, you can set the `promptType` field in config file to
 any OIDC-supported value. To skip the consent screen for every authorization
 request, set `promptType` to `""` (empty string) to fall back to Google's
-default behavior.
+default behavior. Google does not support refreshing tokens when `promptType`
+is set to `""`.
