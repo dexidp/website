@@ -18,6 +18,8 @@ When a client redeems a refresh token through dex, dex will re-query GitHub to u
 
 * A user must explicitly [request][github-request-org-access] an [organization][github-orgs] give dex [resource access][github-approve-org-access]. Dex will not have the correct permissions to determine if the user is in that organization otherwise, and the user will not be able to log in. This request mechanism is a feature of the GitHub API.
 
+* The organisation and team names are **case sensitive**. Dex will not have the correct team name to determine the right roles.
+
 ## Configuration
 
 Register a new application with [GitHub][github-oauth2] ensuring the callback URL is `(dex issuer)/callback`. For example if dex is listening at the non-root path `https://auth.example.com/dex` the callback would be `https://auth.example.com/dex/callback`.
