@@ -1,0 +1,219 @@
+---
+title: "Authentication Through an Upstream JWT"
+linkTitle: "JWT"
+description: ""
+date: 2026-09-22
+draft: false
+toc: true
+weight: 2095
+---
+
+NOTE: This connector is experimental and may change in the future.
+
+## Overview
+
+The `jwt` connector returns identities based on a JWT bearer token that an
+upstream proxy, gateway or service mesh places on the request. Unlike the
+[authproxy](/docs/connectors/authproxy/) connector, which trusts plain headers,
+the `jwt` connector verifies the token's signature against the upstream
+provider's JWKS and always enforces the expected issuer. Unlike the
+[OpenID Connect](/docs/connectors/oidc/) connector, it performs no redirect to
+the upstream provider: the token must already be present on the request.
+
+This is useful when the upstream infrastructure has already authenticated the
+user and holds a signed token for them, but you still want Dex to validate that
+token rather than take a header at face value.
+
+The connector does not support refresh tokens, and it does not support the token
+exchange grant.
+
+## How the flow works
+
+Like the authproxy connector, the `jwt` connector sends the user straight to its
+own callback URL:
+
+```
+( dex issuer URL )/callback/( connector id )?( url query )
+```
+
+For example, if Dex runs at `https://auth.example.com/dex` and the connector ID
+is `jwt`, the callback URL looks like:
+
+```
+https://auth.example.com/dex/callback/jwt?state=xdg3z6quhrhwaueo5iysvliqf
+```
+
+The proxy must set the configured header on requests to that exact URL
+(including the query). Dex then verifies the token, maps its claims and issues
+its own ID token.
+
+## Configuration
+
+```yaml
+connectors:
+- type: jwt
+  id: jwt
+  name: Upstream JWT
+  config:
+    # The expected "iss" claim. Required, and always enforced.
+    issuer: https://idp.example.com
+
+    # Optional. Overrides key retrieval only: when set, Dex fetches the signing
+    # keys from this URL instead of discovering them through the issuer's
+    # .well-known/openid-configuration document. Issuer validation is performed
+    # either way.
+    jwksURL: https://idp.example.com/keys
+
+    # Optional. A token is accepted when at least one of its audiences matches.
+    # When omitted, the "aud" claim is not checked.
+    audiences:
+    - argocd
+
+    # Optional. Defaults to RS256.
+    supportedSigningAlgs:
+    - RS256
+
+    # Optional. The header carrying the token. Defaults to Authorization.
+    # An optional "Bearer " prefix is stripped case-insensitively.
+    header: Authorization
+
+    # Optional. Certificates used when fetching the JWKS.
+    rootCAs:
+    - /etc/dex/idp-ca.pem
+    insecureSkipVerify: false
+```
+
+The `exp` and `nbf` claims are validated together with the signature, so expired
+or not-yet-valid tokens are rejected.
+
+### Claim mapping
+
+Claim mapping mirrors the OpenID Connect connector, so configuration can be
+moved between the two connectors:
+
+```yaml
+config:
+  issuer: https://idp.example.com
+
+  # Claim used as the user ID. Defaults to "sub".
+  userIDKey: sub
+
+  # Claim used as the username. Defaults to "name".
+  userNameKey: name
+
+  # Override the value of email_verified to true in the returned claims.
+  insecureSkipEmailVerified: false
+
+  claimMapping:
+    preferred_username: preferred_username
+    email: email
+    groups: groups
+
+  claimModifications:
+    # Keep only the groups matching this regular expression.
+    filterGroupClaims:
+      groupsFilter: '^argocd-.*$'
+
+    # Add a prefix and/or suffix to every group taken from the groups claim.
+    modifyGroupNames:
+      prefix: "upstream:"
+      suffix: ""
+
+    # Join several claims into an additional group.
+    newGroupFromClaims:
+    - claims:
+      - organization
+      - team
+      delimiter: ":"
+      clearDelimiter: false
+      prefix: org
+
+  # Only allow users holding at least one of these groups. The identity's
+  # groups are reduced to the matching set.
+  allowedGroups:
+  - argocd-admins
+```
+
+The groups claim may be either a single string or an array of strings. An array
+of objects with a `name` field is also accepted.
+
+If the token carries an email but no `email_verified` claim, the login is
+rejected unless `insecureSkipEmailVerified` is set.
+
+### Mapping claims to roles
+
+`roleMapping` binds the values of an arbitrary claim to additional groups. Each
+rule names a `claim` and matches it with either `value` (exact) or `valueRegex`;
+the two are mutually exclusive. When a rule matches, its `groups` are added to
+the identity:
+
+```yaml
+config:
+  issuer: https://idp.example.com
+  roleMapping:
+  - claim: department
+    value: platform
+    groups:
+    - argocd-admins
+  - claim: roles
+    valueRegex: '^sre-.*$'
+    groups:
+    - argocd-sre
+```
+
+The claim inspected by a rule may hold a single string or an array of strings.
+Groups added through `roleMapping` are **not** affected by
+`modifyGroupNames`, so the names you write here are the names that reach the
+downstream application unchanged. The resulting group list is de-duplicated.
+
+Invalid rules (missing `claim`, no matcher, both matchers, or an invalid
+regular expression) are rejected when Dex starts.
+
+## Example: Argo CD
+
+Argo CD resolves RBAC subjects from the ID token Dex issues: the subject is
+taken from `federated_claims.user_id` (the connector's user ID, falling back to
+`sub`), and group memberships are read from the claims listed in `scopes` in
+`argocd-rbac-cm`, which defaults to `groups`.
+
+That means a `roleMapping` group name can be referenced directly from the Argo
+CD policy. With this connector config:
+
+```yaml
+connectors:
+- type: jwt
+  id: jwt
+  name: Upstream JWT
+  config:
+    issuer: https://idp.example.com
+    audiences:
+    - argocd
+    header: X-Access-Token
+    roleMapping:
+    - claim: department
+      value: platform
+      groups:
+      - argocd-admins
+```
+
+the matching Argo CD policy is:
+
+```yaml
+# argocd-rbac-cm
+policy.csv: |
+  g, argocd-admins, role:admin
+```
+
+The gateway in front of Dex must set `X-Access-Token` to the upstream JWT on
+requests to `/dex/callback/jwt`.
+
+## Security considerations
+
+- The token's signature, issuer, expiry and not-before time are always verified.
+  There is no option to skip issuer validation: a token from an unexpected
+  issuer is always rejected, including when `jwksURL` is set.
+- Set `audiences` whenever the upstream provider issues tokens for more than one
+  audience, so a token minted for a different service cannot be replayed
+  against Dex.
+- Prefer a dedicated header over `Authorization` when the proxy already uses
+  `Authorization` for its own credentials.
