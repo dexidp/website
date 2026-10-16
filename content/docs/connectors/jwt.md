@@ -43,9 +43,8 @@ is `jwt`, the callback URL looks like:
 https://auth.example.com/dex/callback/jwt?state=xdg3z6quhrhwaueo5iysvliqf
 ```
 
-The proxy must set the configured header on requests to that exact URL
-(including the query). Dex then verifies the token, maps its claims and issues
-its own ID token.
+The proxy must set the configured header on requests to that callback path.
+Dex then verifies the token, maps its claims and issues its own ID token.
 
 ## Configuration
 
@@ -61,7 +60,7 @@ connectors:
     # Optional. Overrides key retrieval only: when set, Dex fetches the signing
     # keys from this URL instead of discovering them through the issuer's
     # .well-known/openid-configuration document. Issuer validation is performed
-    # either way.
+    # either way. Required when the issuer is not a URL serving OIDC discovery.
     jwksURL: https://idp.example.com/keys
 
     # Optional. A token is accepted when at least one of its audiences matches.
@@ -84,7 +83,15 @@ connectors:
 ```
 
 The `exp` and `nbf` claims are validated together with the signature, so expired
-or not-yet-valid tokens are rejected.
+or not-yet-valid tokens are rejected (`nbf` with five minutes of leeway for
+clock skew).
+
+Without `jwksURL`, Dex performs OIDC discovery on the issuer when the connector
+is opened, at startup. The issuer must then be a URL that serves
+`.well-known/openid-configuration` and is reachable from Dex at that moment.
+Upstreams whose `iss` is not a URL, or that publish only a JWKS, need
+`jwksURL`. With `jwksURL` set, keys are fetched on the first login and
+refreshed when a token carries an unknown key ID.
 
 ### Claim mapping
 
@@ -128,11 +135,24 @@ config:
       clearDelimiter: false
       prefix: org
 
-  # Only allow users holding at least one of these groups. The identity's
-  # groups are reduced to the matching set.
+  # Only allow users holding at least one of these groups in the groups
+  # claim. The identity's groups are reduced to the matching set.
   allowedGroups:
   - argocd-admins
 ```
+
+Groups are processed in this order:
+
+1. the groups claim is read;
+2. `filterGroupClaims` keeps only the matching groups;
+3. `allowedGroups` rejects the login if none of the remaining groups match, and
+   otherwise reduces them to the matching set;
+4. `modifyGroupNames` adds the prefix and suffix;
+5. groups from `newGroupFromClaims` and `roleMapping` are appended.
+
+Groups from step 5 are not filtered, checked against `allowedGroups` or renamed.
+In particular, `allowedGroups` only considers the groups claim: a user who
+would qualify only through a `roleMapping` group is still rejected.
 
 The groups claim may be either a single string or an array of strings. An array
 of objects with a `name` field is also accepted.
@@ -162,19 +182,27 @@ config:
 ```
 
 The claim inspected by a rule may hold a single string or an array of strings.
-Groups added through `roleMapping` are **not** affected by
-`modifyGroupNames`, so the names you write here are the names that reach the
-downstream application unchanged. The resulting group list is de-duplicated.
+Groups added through `roleMapping` are **not** affected by `filterGroupClaims`,
+`allowedGroups` or `modifyGroupNames`, so the names you write here are the names
+that reach the downstream application unchanged. The resulting group list is
+de-duplicated.
+
+Because `filterGroupClaims` does not apply to them, the two combine well: a
+filter that matches nothing, such as `groupsFilter: '^$'`, drops every
+upstream group, leaving only the groups `roleMapping` grants. This keeps an
+upstream role that happens to share a name with a downstream group from
+granting access by accident.
 
 Invalid rules (missing `claim`, no matcher, both matchers, or an invalid
 regular expression) are rejected when Dex starts.
 
 ## Example: Argo CD
 
-Argo CD resolves RBAC subjects from the ID token Dex issues: the subject is
-taken from `federated_claims.user_id` (the connector's user ID, falling back to
-`sub`), and group memberships are read from the claims listed in `scopes` in
-`argocd-rbac-cm`, which defaults to `groups`.
+Argo CD resolves RBAC subjects from the ID token Dex issues. Since Argo CD 3.0
+the subject is taken from `federated_claims.user_id` (the connector's user ID,
+falling back to `sub`); earlier versions use `sub`. Group memberships are read
+from the claims listed in `scopes` in `argocd-rbac-cm`, which defaults to
+`groups`.
 
 That means a `roleMapping` group name can be referenced directly from the Argo
 CD policy. With this connector config:
@@ -204,16 +232,58 @@ policy.csv: |
   g, argocd-admins, role:admin
 ```
 
-The gateway in front of Dex must set `X-Access-Token` to the upstream JWT on
-requests to `/dex/callback/jwt`.
+When Dex runs as Argo CD's bundled Dex, it is served by `argocd-server` under
+`/api/dex`, so the callback is `/api/dex/callback/jwt`. The gateway sits in
+front of `argocd-server`, which passes the header on to Dex: the gateway must
+set `X-Access-Token` to the upstream JWT on requests to that path, or simply on
+every request to Argo CD.
+
+## Example: Teleport application access
+
+[Teleport](https://goteleport.com/docs/enroll-resources/application-access/jwt/introduction/)
+adds a signed JWT in the `Teleport-Jwt-Assertion` header to every request it
+proxies to an application. Its `iss` claim is the Teleport cluster name, not a
+URL, so `jwksURL` must point at the proxy's JWKS endpoint. Its `aud` claim is
+the application's `uri` as configured in Teleport (the address Teleport
+forwards to), not its public address. The user is in `sub` and `username`, and
+the user's Teleport roles in `roles`; there is no email claim.
+
+```yaml
+connectors:
+- type: jwt
+  id: teleport
+  name: Teleport
+  config:
+    issuer: teleport.example.com
+    jwksURL: https://teleport.example.com/.well-known/jwks.json
+    audiences:
+    - http://argocd-server.argocd.svc.cluster.local
+    header: Teleport-Jwt-Assertion
+    userIDKey: sub
+    userNameKey: username
+    claimMapping:
+      preferred_username: username
+      groups: roles
+    roleMapping:
+    - claim: roles
+      value: admin
+      groups:
+      - argocd-admins
+```
+
+Publish Argo CD as a Teleport application with that `uri`; since every
+request carries the header, the login completes without further prompts.
 
 ## Security considerations
 
 - The token's signature, issuer, expiry and not-before time are always verified.
   There is no option to skip issuer validation: a token from an unexpected
   issuer is always rejected, including when `jwksURL` is set.
-- Set `audiences` whenever the upstream provider issues tokens for more than one
-  audience, so a token minted for a different service cannot be replayed
+- Set `audiences`. Without it, any token the issuer signs is accepted,
+  including tokens minted for other services, which can then be replayed
   against Dex.
+- A token is a bearer credential until it expires: anyone who captures one can
+  log in with it until `exp`. Keep Dex reachable only through the proxy that
+  adds the token, and prefer upstreams that issue short-lived tokens.
 - Prefer a dedicated header over `Authorization` when the proxy already uses
   `Authorization` for its own credentials.
