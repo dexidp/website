@@ -48,6 +48,27 @@ Dex attempts to bind with the backing LDAP server using the end user's _plain te
 
 Dex currently allows insecure connections because the project is still verifying that dex works with the wide variety of LDAP implementations. However, dex may remove this transport option, and _users who configure LDAP login using 389 are not covered by any compatibility guarantees with future releases._
 
+## TLS modes and default ports
+
+The connector uses the `insecureNoSSL` and `startTLS` flags to decide how it connects to the LDAP server. When `host` does not include a port, dex falls back to a default port based on `insecureNoSSL`.
+
+| `insecureNoSSL` | `startTLS` | Scheme | Default port | Resulting TLS mode |
+|-----------------|------------|--------|--------------|--------------------|
+| `false` | `false` | `ldaps://` | `636` | Implicit TLS |
+| `false` | `true` | `ldap://` | `636` | StartTLS |
+| `true` | `false` | `ldap://` | `389` | Plaintext |
+| `true` | `true` | `ldap://` | `389` | Plaintext (StartTLS is not used) |
+
+If you want StartTLS on the standard LDAP port `389`, set the port explicitly, for example `host: ldap.example.com:389`.
+
+{{% alert title="Warning" color="warning" %}}
+Do not set both `insecureNoSSL: true` and `startTLS: true` expecting a secure connection. Because `insecureNoSSL` takes precedence, the connector opens a plaintext `ldap://` connection and does not use StartTLS.
+{{% /alert %}}
+
+{{% alert title="Warning" color="warning" %}}
+Implicit TLS (`ldaps://`) and StartTLS cannot be used together. When `startTLS: true` the connector always uses `ldap://` and negotiates TLS with StartTLS, even if the default or supplied port is `636`.
+{{% /alert %}}
+
 ## Configuration
 
 User entries are expected to have an email attribute (configurable through `emailAttr`), and a display name attribute (configurable through `nameAttr`). `*Attr` attributes could be set to "DN" in situations where it is needed but not available elsewhere, and if "DN" attribute does not exist in the record.
@@ -65,9 +86,10 @@ connectors:
   name: LDAP
   config:
     # Host and optional port of the LDAP server in the form "host:port".
-    # If the port is not supplied, it will be guessed based on "insecureNoSSL",
-    # and "startTLS" flags. 389 for insecure or StartTLS connections, 636
-    # otherwise.
+    # If the port is not supplied, it will be guessed based on "insecureNoSSL":
+    # 389 when insecureNoSSL is true, 636 otherwise. When using "startTLS",
+    # set the port explicitly (usually 389) to avoid using the implicit-TLS
+    # default port.
     host: ldap.example.com:636
 
     # Following field is required if the LDAP host is not using TLS (port 389).
