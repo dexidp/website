@@ -130,7 +130,7 @@ connectors:
     groupSearch:
       # BaseDN to start the search from. It will translate to the query
       # "(&(objectClass=group)(member=<user uid>))".
-      baseDN: cn=groups,dc=freeipa,dc=example,dc=com
+      baseDN: cn=groups,dc=example,dc=com
       # Optional filter to apply when searching the directory.
       filter: "(objectClass=group)"
 
