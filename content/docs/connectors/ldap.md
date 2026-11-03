@@ -297,6 +297,7 @@ connectors:
     userSearch:
       # Would translate to the query "(&(objectClass=posixAccount)(uid=<username>))".
       baseDN: cn=users,dc=freeipa,dc=example,dc=com
+      scope: one
       filter: "(objectClass=posixAccount)"
       username: uid
       idAttr: uid
@@ -306,6 +307,7 @@ connectors:
     groupSearch:
       # Would translate to the query "(&(objectClass=group)(member=<user uid>))".
       baseDN: cn=groups,dc=freeipa,dc=example,dc=com
+      scope: one
       filter: "(objectClass=group)"
       userMatchers:
       - userAttr: uid
@@ -365,6 +367,7 @@ The following is a `groupsearch` configuration that enables this functionality.
 ```yaml
 groupSearch:
   baseDN: cn=groups,dc=freeipa,dc=example,dc=com
+  scope: one
   filter: "(objectClass=group)"
   userMatchers:
   - userAttr: uid
