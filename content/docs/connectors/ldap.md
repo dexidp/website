@@ -305,14 +305,14 @@ connectors:
       emailAttr: mail
       # Entity attribute to map to display name of users.
     groupSearch:
-      # Would translate to the query "(&(objectClass=group)(member=<user uid>))".
+      # Would translate to the query "(&(objectClass=groupOfNames)(member=<user uid>))".
       baseDN: cn=groups,dc=freeipa,dc=example,dc=com
       scope: one
-      filter: "(objectClass=group)"
+      filter: "(objectClass=groupOfNames)"
       userMatchers:
       - userAttr: uid
         groupAttr: member
-      nameAttr: name
+      nameAttr: cn
 ```
 
 If the search finds an entry, it will attempt to use the provided password to bind as that user entry.
