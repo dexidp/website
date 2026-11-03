@@ -296,7 +296,7 @@ connectors:
     rootCA: ca.crt
     userSearch:
       # Would translate to the query "(&(objectClass=posixAccount)(uid=<username>))".
-      baseDN: cn=users,dc=freeipa,dc=example,dc=com
+      baseDN: cn=users,cn=accounts,dc=example,dc=com
       scope: one
       filter: "(objectClass=posixAccount)"
       username: uid
@@ -306,7 +306,7 @@ connectors:
       # Entity attribute to map to display name of users.
     groupSearch:
       # Would translate to the query "(&(objectClass=groupOfNames)(member=<user uid>))".
-      baseDN: cn=groups,dc=freeipa,dc=example,dc=com
+      baseDN: cn=groups,cn=accounts,dc=example,dc=com
       scope: one
       filter: "(objectClass=groupOfNames)"
       userMatchers:
@@ -366,7 +366,7 @@ The following is a `groupsearch` configuration that enables this functionality.
 
 ```yaml
 groupSearch:
-  baseDN: cn=groups,dc=freeipa,dc=example,dc=com
+  baseDN: cn=groups,cn=accounts,dc=example,dc=com
   scope: one
   filter: "(objectClass=group)"
   userMatchers:
