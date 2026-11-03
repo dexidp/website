@@ -356,11 +356,34 @@ connectors:
       nameAttr: cn
 ```
 
+## Example: Searching a FreeIPA server for nested groups efficiently with the "in chain" matching rule
+
+Some LDAP schemas support group nesting, where groups can contain other groups.
+A special "[transitive eval](https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-adts/4e638665-f466-4597-93c4-12f2ebfabab5)" matching rule, also commonly known as "in chain", can be used to request that the LDAP server recursively gather the list of all groups that the user is a member of.
+
+You might want to use this if, for example, John is a member of the group `seniorAdmins`, and `seniorAdmins` is itself a member of the group `admins`. With the "in chain" match rule, John will be treated as a member of both `seniorAdmins` and `admins`, even though he’s only directly assigned to `seniorAdmins`.
+
+Permission to use this matching rule with FreeIPA must be granted as described in the [389 Directory Server documentation[(https://www.port389.org/docs/389ds/design/matching-rule-in-chain.html).
+
+The following is a `groupsearch` configuration that enables this functionality.
+
+```yaml
+groupSearch:
+  # Would translate to the query "(&(objectClass=groupOfNames)(member:1.2.840.113556.1.4.1941:=<user distinguished name>))".
+  baseDN: cn=accounts,dc=example,dc=com
+  scope: sub
+  filter: "(objectClass=groupOfNames)"
+  userMatchers:
+  - groupAttr: 'member:1.2.840.113556.1.4.1941:'
+    userAttr: dn
+  nameAttr: cn
+```
+
 ## Example: Searching a FreeIPA server for nested groups
 
-Some LDAP schemas support group nesting, where groups can contain other groups. Dex supports resolving these indirect group memberships using the `recursionGroupAttr` attribute within the `groupSearch.userMatchers` block. By defining this attribute, recursive group lookup will be enabled.
-
-You might want to use this if, for example, John is a member of the group `seniorAdmins`, and `seniorAdmins` is itself a member of the group `admins`. With recursive search enabled, John will be treated as a member of both `seniorAdmins` and `admins`, even though he’s only directly assigned to `seniorAdmins`.
+Where the "in chain" matching rule cannot be used, Dex supports resolving indirect group memberships using the `recursionGroupAttr` attribute within the `groupSearch.userMatchers` block.
+By defining this attribute, recursive group lookup will be enabled.
+This generally performs worse than "in chain" matching, but is still useful when the special matching rule cannot be used.
 
 The following is a `groupsearch` configuration that enables this functionality.
 
